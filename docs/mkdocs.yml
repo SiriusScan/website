@@ -1,0 +1,27 @@
+site_name: Documentation
+
+theme:
+  name: 'material'
+  custom_dir: 'custom_theme'
+  palette:
+    primary: '#1976d2'
+    accent: 'light blue'
+  logo: 'assets/logo.png'
+extra_css:
+  - extra.css
+docs_dir: docs
+nav:
+  - Home: /
+  - Getting Started:
+    - Initial Setup: setup.md
+    - Features: features.md
+  - Documentation:
+    - API:
+      - Overview: api.md
+      - Endpoint: 1.md
+    - UI:
+      - Overview: ui.md
+      - Code: 2.md
+    - Engine:
+      - Overview: engine.md
+  - Community: community.md
