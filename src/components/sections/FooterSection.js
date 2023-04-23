@@ -3,7 +3,7 @@ import React from 'react';
 import { Box, Container, Typography, Grid, Link } from '@mui/material';
 import { styled } from '@mui/system';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import MailIcon from '@mui/icons-material/Mail';
+import ChatBubble from '@mui/icons-material/ChatBubble';
 import PhoneIcon from '@mui/icons-material/Phone';
 
 import logo from '../../assets/images/logo.png';
@@ -20,11 +20,11 @@ const Tagline = styled(Typography)(({ theme }) => ({
 
 const FooterSection = () => {
   const footerLinks = [
-    { title: 'Home', href: '#' },
-    { title: 'Download', href: '#' },
-    { title: 'Documentation', href: '#' },
-    { title: 'Community', href: '#' },
-    { title: 'Support', href: '#' },
+    { title: 'Home', href: '/' },
+    { title: 'Download', href: 'https://github.com/SiriusScan/Sirius' },
+    { title: 'Documentation', href: '/docs' },
+    { title: 'Community', href: '/Community' },
+    { title: 'Support', href: 'https://discord.gg/VTjqSxkJqX' },
   ];
 
   return (
@@ -51,10 +51,15 @@ const FooterSection = () => {
             <Typography variant="h6">Contact</Typography>
             <Box mt={1}>
                 <Typography>
-                <MailIcon /> Email: info@siriusscan.com
-                </Typography>
-                <Typography>
-                <PhoneIcon /> Phone: +1 (123) 456-7890
+                  <Link
+                      href="https://discord.gg/VTjqSxkJqX"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      color="inherit"
+                      underline="hover"
+                  >
+                    <ChatBubble /> Community Discord Server
+                  </Link>
                 </Typography>
             </Box>
             <Box mt={2}>
@@ -71,13 +76,21 @@ const FooterSection = () => {
                 </Link>
                 </Box>
             </Box>
+            <hr />
+            <Link
+                    href="https://opensecurity.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    color="inherit"
+                    underline="hover"
+                >
+              <Typography variant="subtitle1">Sponsored by Open Security</Typography>
+            </Link>
             </Grid>
         </Grid>
       </Container>
     </SectionWrapper>
   );
 };
-
-{/*<a href="https://www.freepik.com/free-vector/network-connections-background-with-connecting-lines-dots_8033697.htm#query=connected%20dots&position=0&from_view=keyword&track=ais">Image by kjpargeter</a> on Freepik*/}
 
 export default FooterSection;

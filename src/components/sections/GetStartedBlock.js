@@ -1,5 +1,6 @@
 // src/components/sections/GetStartedBlock.js
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Box, Container, Button, Typography } from '@mui/material';
 import { styled } from '@mui/system';
 
@@ -34,6 +35,16 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
+const NavLink = styled(Link)(({ theme }) => ({
+  color: 'inherit',
+  textDecoration: 'none',
+  margin: theme.spacing(0, 2),
+  '&:hover': {
+    fontWeight: 'bold',
+  },
+}));
+
+
 const GetStartedBlock = () => {
   return (
       <GetStartedWrapper>
@@ -41,11 +52,12 @@ const GetStartedBlock = () => {
           Unlock the potential of Sirius Scan today! {/* Update the text */}
         </Typography>
         <ButtonContainer>
-          <StyledButton variant="contained" color="secondary">
-            Download Sirius Scan
-          </StyledButton>
+          <NavLink to="https://github.com/SiriusScan/Sirius">
+            <StyledButton variant="contained" color="secondary">
+              Download Sirius Scan
+            </StyledButton>
+          </NavLink>
         </ButtonContainer>
-        
       </GetStartedWrapper>
   );
 };

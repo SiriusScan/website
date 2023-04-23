@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Box, Container, Typography, Grid, Button } from '@mui/material';
 import { styled } from '@mui/system';
 
@@ -13,6 +14,15 @@ const SectionWrapper = styled(Box)(({ theme }) => ({
   color: theme.palette.getContrastText(theme.palette.primary.main),
   paddingTop: theme.spacing(8),
   paddingBottom: theme.spacing(8),
+}));
+
+const NavLink = styled(Link)(({ theme }) => ({
+  color: 'inherit',
+  textDecoration: 'none',
+  margin: theme.spacing(0, 2),
+  '&:hover': {
+    fontWeight: 'bold',
+  },
 }));
 
 const IntroSection = () => {
@@ -45,23 +55,28 @@ const IntroSection = () => {
                 Discover, Assess, and Remediate
               </Typography>
               <Box mt={2}>
-                <Button
-                  sx={{
-                    minWidth: '300px',
-                    fontSize: '1.35rem',
-                    borderColor: 'secondary.main',
-                    color: 'secondary.main',
-                    borderWidth: 2,
-                    padding: '10px 10px',
-                    backgroundColor: 'transparent',
-                    '&:hover': {
-                      backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                    },
-                  }}
-                  variant="outlined"
-                >
-                  Learn More
-                </Button>
+                <NavLink to="/features">
+                  <Button
+                      component={Link}
+                      to="/features"
+                      sx={{
+                        minWidth: '300px',
+                        fontSize: '1.35rem',
+                        borderColor: 'secondary.main',
+                        color: 'secondary.main',
+                        borderWidth: 2,
+                        padding: '10px 10px',
+                        backgroundColor: 'transparent',
+                        transition: 'background-color ease-in-out', // Add or adjust the transition duration
+                        '&:hover': {
+                          backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        },
+                      }}
+                      variant="outlined"
+                    >
+                    Learn More
+                  </Button>
+                </NavLink>
               </Box>
             </Grid>
             <Grid item xs={12} md={6}>

@@ -1,6 +1,6 @@
 // src/components/sections/FeaturesIntroSection.js
 import React from 'react';
-import { Box, Container, Typography, Button } from '@mui/material';
+import { Box, Container, Typography, Button, Link } from '@mui/material';
 import { styled } from '@mui/system';
 
 import netbg from '../../assets/images/netbg.png';
@@ -35,23 +35,26 @@ const FeaturesIntroSection = () => {
             }}
           />
           <Box mt={2}>
-            <Button
-              sx={{
-                minWidth: '300px',
-                fontSize: '1.35rem',
-                borderColor: 'secondary.main',
-                color: 'secondary.main',
-                borderWidth: 2,
-                padding: '10px 10px',
-                backgroundColor: 'transparent',
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                },
-              }}
-              variant="outlined"
-            >
-              Get Started
-            </Button>
+            
+              <Button
+                sx={{
+                  minWidth: '300px',
+                  fontSize: '1.35rem',
+                  borderColor: 'secondary.main',
+                  color: 'secondary.main',
+                  borderWidth: 2,
+                  padding: '10px 10px',
+                  backgroundColor: 'transparent',
+                  '&:hover': {
+                    backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  },
+                }}
+                variant="outlined"
+              >
+                <Link href="https://github.com/SiriusScan/Sirius" color="inherit" underline="hover">
+                  Get Started
+                </Link>
+              </Button>
           </Box>
         </Box>
       </Container>
