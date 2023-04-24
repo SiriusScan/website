@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Container, Typography, Button, Link } from '@mui/material';
 import { styled } from '@mui/system';
 
+import tutorial from '../../assets/images/tutorial.gif';
 import netbg from '../../assets/images/netbg.png';
 
 const SectionWrapper = styled(Box)(({ theme }) => ({
@@ -21,9 +22,6 @@ const FeaturesIntroSection = () => {
       <Container maxWidth="xl">
         <Box py={8} px={4} color="secondary.main" display="flex" flexDirection="column" alignItems="center">
           <Box
-            component="iframe"
-            title="Sirius Scan Video"
-            src="https://www.youtube.com/embed/fVnNI4UM_sg" // Replace with your video URL
             sx={{
               width: '100%',
               maxWidth: '1000px',
@@ -33,7 +31,12 @@ const FeaturesIntroSection = () => {
               border: 'none',
               marginBottom: '1.0rem',
             }}
-          />
+          >              
+            <img
+              src={tutorial}
+              style={{ maxWidth: '100%', borderRadius: '8px' }}
+            />
+          </Box>
           <Box mt={2}>
             
               <Button
