@@ -23,17 +23,17 @@ const Header: React.FC = () => {
   return (
     <header
       className={`fixed left-0 top-0 w-full transition-all duration-300 ${
-        scroll ? "bg-transparent text-black" : "bg-blue-500 text-white"
+        scroll ? "bg-transparent text-black" : " text-white"
       } p-4`}
     >
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/">
           <span>
             <Image
-              src={scroll ? "/path/to/logo2.png" : "/path/to/logo.png"}
+              src={scroll ? "/sirius-logo400w.png" : "/sirius-logo400w.png"}
               alt="Your Logo"
-              width={60}
-              height={60}
+              width={200}
+              height={36}
             />
           </span>
         </Link>
