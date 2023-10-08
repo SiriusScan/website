@@ -15,6 +15,7 @@ const IntroSection: React.FC = () => {
           ? "bg-blue-500 "
           : "bg-gradient-to-b from-[#2e026d] to-[#15162c]"
       }`}
+
     >
       <div className="container mx-auto px-4">
         <div className="ml-4 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
@@ -51,7 +52,7 @@ const IntroSection: React.FC = () => {
               />
             ) : (
               <Image
-                src="/dashboard-dark.png"
+                src="/dash-dark.gif"
                 alt="Sirius Scan"
                 width={800}
                 height={0}
