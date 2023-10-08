@@ -22,9 +22,9 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed left-0 top-0 w-full transition-all duration-300 ${
+      className={`fixed w-full transition-all duration-300 ${
         scroll ? "bg-transparent text-black" : " text-white"
-      } p-4`}
+      } py-4`}
     >
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/">
