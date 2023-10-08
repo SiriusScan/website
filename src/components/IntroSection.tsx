@@ -52,7 +52,7 @@ const IntroSection: React.FC = () => {
               />
             ) : (
               <Image
-                src="/dash-dark.gif"
+                src="/dashboard-dark.gif"
                 alt="Sirius Scan"
                 width={800}
                 height={0}
