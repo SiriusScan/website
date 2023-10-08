@@ -6,7 +6,7 @@ import "typeface-roboto-slab";
 
 const IntroSection: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const title = useTypewriter("Welcome to Sirius Scan", 30);
+  const title = useTypewriter("Welcome to Sirius Scan");
 
   return (
     <div
