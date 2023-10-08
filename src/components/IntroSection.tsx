@@ -18,13 +18,13 @@ const IntroSection: React.FC = () => {
 
     >
       <div className="container mx-auto px-4">
-        <div className="ml-4 grid grid-cols-1 items-center gap-12 md:grid-cols-2">
+        <div className="ml-4 grid grid-cols-[2fr,3fr] items-center gap-12">
           <div>
-            <h2 className="font-robotoSlab text-shadow-md mb-1 text-4xl font-extralight tracking-wide">
+            <h2 className="font-robotoSlab text-shadow-md mb-6 text-4xl font-extralight tracking-wide">
               {title}
             </h2>
 
-            <p className="mb-2 text-lg font-extralight">
+            <p className="mb-2 text-xl font-extralight leading-relaxed tracking-wide">
               Sirius Scan is an open-source, general-purpose vulnerability
               scanning tool that helps you identify and manage security risks in
               your network infrastructure.
