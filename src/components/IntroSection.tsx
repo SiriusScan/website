@@ -18,7 +18,7 @@ const IntroSection: React.FC = () => {
 
     >
       <div className="container mx-auto px-4">
-        <div className="ml-4 grid grid-cols-[2fr,3fr] items-center gap-12">
+        <div className="ml-4 grid grid-cols-1 md:grid-cols-[2fr,3fr] items-center gap-12">
           <div>
             <h2 className="font-robotoSlab text-shadow-md mb-6 text-4xl font-extralight tracking-wide">
               {title}
