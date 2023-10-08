@@ -37,7 +37,7 @@ const Header: React.FC = () => {
             />
           </span>
         </Link>
-        <div>
+        <div className="text-xl">
           <Link href="/features">
             <span className="mx-2 hover:font-bold">Features</span>
           </Link>
