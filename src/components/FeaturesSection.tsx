@@ -22,19 +22,19 @@ const FeaturesSection: React.FC = () => {
       title: "Vulnerability Discovery and Remediation (VDR)",
       subtitle:
       "Don't be passive, hunt down vulnerabilities wherever they may be.",
-      description: "With it's powerful agent Sirius ScanInteracting ",
+      description: "With its powerful agent Sirius Scan makes interacting with vulnerabilities a breeze. Are you looking to script specialized discovery? How about automate validation? Exploitation? Sirius Scan has you covered.",
       image: require("../../public/svdb.gif"),
     },
     {
       title: "Modular Scanning Engine",
       subtitle: "Your favorite scanners, plus one, then enhanced!",
-      description: "howl ",
+      description: "The Sirius Scan engine is modular and integrates with the best open source scanners including Rustscan, Nmap Scripting Engine and Nuclei. Sirius also includes its own customizable scanner, Howl.",
       image: require("../../public/scanningEngine.png"),
     },
   ];
 
   return (
-    <div className="container mx-auto px-4 py-16 text-white">
+    <div className="container mx-auto bg-[#15162c] px-4 py-16 text-white mt-[-1px]">
       <h2 className="mb-8 text-center text-4xl text-violet-200 ">
         A Tactical Vulnerability Scanner. One Dedicated To You, The Operator.
       </h2>

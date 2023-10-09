@@ -3,6 +3,8 @@ import Head from "next/head";
 import Header from "../components/Header";
 import IntroSection from "../components/IntroSection";
 import FeaturesSection from "~/components/FeaturesSection";
+import VGPTSection from "~/components/VGPTSection";
+import Footer from "~/components/Footer";
 
 export default function Home() {
   return (
@@ -15,15 +17,12 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="flex min-h-screen flex-col bg-gradient-to-b from-[#131e38] to-[#15162c]">
+      <main className="flex min-h-screen flex-col bg-[#15162c]">
         <Header />
         <IntroSection />
         <FeaturesSection />
-        <div className="container flex flex-col items-center justify-center gap-12 px-4">
-
-          asdf
-          {/* Add other sections here */}
-        </div>
+        <VGPTSection />
+        <Footer />
       </main>
     </>
   );
