@@ -28,6 +28,9 @@ const Header: React.FC = () => {
           <Link href="/community">
             <span className="mx-2 hover:font-bold">Community</span>
           </Link>
+          <Link href="/start">
+            <span className="mx-2 hover:font-bold">Getting Started</span>
+          </Link>
         </div>
         <button className="sm:hidden" onClick={() => setIsOpen(!isOpen)}>
           <span className="text-xl">

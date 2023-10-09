@@ -20,7 +20,7 @@ const VGPTSection: React.FC = () => {
           />
         </div>
         <div>
-          <p className="text-md">
+          <p className="text-lg font-light">
             Artificial Intelligence is a game-changer for many open source
             projects. For Sirius Scan it is through VulnerabilityGPT that we are
             able to produce more detailed vulnerability reporting than major
@@ -97,17 +97,19 @@ const EaseOfUseSection = () => {
       <span className="text-4xl font-extralight">
         Effortless Setup and Powerful Usability
       </span>
-      <div className="mt-8 flex flex-row gap-12">
+      <div className="mt-8 flex flex-col gap-12 md:flex-row">
         {topicAreas.map((topic, index) => (
           <div className="flex flex-col items-center justify-center">
             <span className="text-2xl font-semibold leading-none">
               {topic.icon}
             </span>
-            <span className="mt-4 text-xl font-medium leading-snug">
+            <span className="mt-4 text-3xl font-medium leading-snug text-amber-300 md:text-xl">
               {topic.title}
             </span>
 
-            <span className="mt-2 font-light">{topic.description}</span>
+            <span className="mt-2 text-2xl font-light md:text-lg">
+              {topic.description}
+            </span>
           </div>
         ))}
       </div>
