@@ -1,5 +1,5 @@
-import React from 'react';
-import Image, { StaticImageData } from 'next/image';
+import React from "react";
+import Image, { StaticImageData } from "next/image";
 
 interface Feature {
   title: string;
@@ -11,37 +11,50 @@ interface Feature {
 const FeaturesSection: React.FC = () => {
   const features: Feature[] = [
     {
-      title: 'Public Vulnerability Database',
-      subtitle: 'Stay Updated with the Latest Vulnerabilities',
+      title: "Actionable Vulnerabilities",
+      subtitle:
+        "Understand systems, work through vulnerabilities, and take action.",
       description:
-        'Sirius Scan uses a public vulnerability database based on NVD and leverages AI generation to provide the most accurate and up-to-date information. With our extensive database, you can ensure that your organization is prepared to handle emerging threats and stay ahead of potential security breaches.',
-      image: require('../../public/dash-dark.gif'),
+        "Interacting with vulnerabilities is a core security practice. Your vulnerability scanner should make it easy to take action on your findings. Sirius Scan allows you to quickly exclude vulnerabilities from systems or even entire engagements so that you can focus on what matters most.",
+      image: require("../../public/vulnerabilityNav.png"),
+    },
+    {
+      title: "Vulnerability Discovery and Remediation (VDR)",
+      subtitle:
+      "Don't be passive, hunt down vulnerabilities wherever they may be.",
+      description: "With it's powerful agent Sirius ScanInteracting ",
+      image: require("../../public/svdb.gif"),
+    },
+    {
+      title: "Modular Scanning Engine",
+      subtitle: "Your favorite scanners, plus one, then enhanced!",
+      description: "howl ",
+      image: require("../../public/scanningEngine.png"),
     },
   ];
 
   return (
-    <div className="container mx-auto py-16 px-4 text-white">
-      <h2 className="text-4xl text-center mb-8">
+    <div className="container mx-auto px-4 py-16 text-white">
+      <h2 className="mb-8 text-center text-4xl text-violet-200 ">
         A Tactical Vulnerability Scanner. One Dedicated To You, The Operator.
       </h2>
       <div className="grid grid-cols-1 gap-12">
         {features.map((feature, index) => (
-          <div key={index} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="text-center py-4 px-8">
-              <Image
-                src={feature.image}
-                alt={feature.title}
-                layout="responsive"
-                width={500}
-                height={300}
-                className="rounded-lg"
-              />
-            </div>
-            <div className="py-4 px-8">
-              <h3 className="text-2xl text-primary font-bold mb-2">{feature.title}</h3>
-              <h4 className="text-lg text-secondary font-medium mb-4">{feature.subtitle}</h4>
-              <p className="text-base">{feature.description}</p>
-            </div>
+          <div
+            key={index}
+            className="grid grid-cols-1 items-center gap-8 md:grid-cols-2"
+          >
+            {index % 2 === 0 ? (
+              <>
+                <FeatureImage feature={feature} />
+                <FeatureText feature={feature} />
+              </>
+            ) : (
+              <>
+                <FeatureText feature={feature} />
+                <FeatureImage feature={feature} />
+              </>
+            )}
           </div>
         ))}
       </div>
@@ -50,3 +63,26 @@ const FeaturesSection: React.FC = () => {
 };
 
 export default FeaturesSection;
+
+const FeatureImage: React.FC<{ feature: Feature }> = ({ feature }) => (
+  <div className="px-8 py-4 text-center">
+    <Image
+      src={feature.image}
+      alt={feature.title}
+      layout="responsive"
+      width={500}
+      height={300}
+      className="rounded-lg"
+    />
+  </div>
+);
+
+const FeatureText: React.FC<{ feature: Feature }> = ({ feature }) => (
+  <div className="px-8 py-4">
+    <h3 className="mb-2 text-3xl font-medium text-amber-300">
+      {feature.title}
+    </h3>
+    <h4 className="mb-4 text-xl text-violet-200">{feature.subtitle}</h4>
+    <p className="text-xl font-extralight">{feature.description}</p>
+  </div>
+);

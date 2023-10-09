@@ -74,7 +74,7 @@ const IntroSection: React.FC = () => {
                 ref={buttonRef}
                 className={`h-9 w-16 rounded-l-xl pl-6 text-white ${
                   !darkMode
-                    ? "border-2 border-white bg-gray-700"
+                    ? "border border-white bg-gray-700"
                     : "bg-black hover:bg-gray-700"
                 }`}
                 onClick={() => {
@@ -99,7 +99,9 @@ const IntroSection: React.FC = () => {
               </button>
               <button
                 className={`h-9 w-16 rounded-r-xl pl-4 text-black ${
-                  darkMode ? "border-2 border-black bg-gray-300" : "bg-white hover:bg-gray-300"
+                  darkMode
+                    ? "border border-black bg-gray-400"
+                    : "bg-white hover:bg-gray-300"
                 }`}
                 onClick={() => {
                   setDarkMode(true);
