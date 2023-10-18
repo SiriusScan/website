@@ -8,7 +8,7 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className={`absolute w-full pt-4 text-white transition-all duration-300`}
+      className={`absolute z-30 w-full pt-4 text-white transition-all duration-300`}
     >
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/">
@@ -28,7 +28,7 @@ const Header: React.FC = () => {
           <Link href="/community">
             <span className="mx-2 hover:font-bold">Community</span>
           </Link>
-          <Link href="/start">
+          <Link href="https://github.com/SiriusScan/Sirius">
             <span className="mx-2 hover:font-bold">Getting Started</span>
           </Link>
         </div>
@@ -50,16 +50,16 @@ const Header: React.FC = () => {
         </button>
       </div>
       {isOpen && (
-        <div className="top-full mx-auto mt-2 flex flex-col justify-end  border-b border-violet-100 bg-[#161b37] p-2 pb-16 text-xl text-violet-100 sm:hidden">
+        <div className="top-full mx-auto mt-2 flex flex-col justify-end  border-b border-violet-100 bg-[#161b37] p-2 pb-8 text-xl text-violet-100 sm:hidden">
           <Link href="/features">
             <span className="mx-2 my-2 block hover:font-bold">Features</span>
           </Link>
           <Link href="/community">
             <span className="mx-2 my-2 block hover:font-bold">Community</span>
           </Link>
-          <Link href="/docs">
+          <Link href="/start">
             <span className="mx-2 my-2 block hover:font-bold">
-              Documentation
+              Getting Started
             </span>
           </Link>
         </div>
