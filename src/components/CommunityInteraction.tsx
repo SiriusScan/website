@@ -26,18 +26,21 @@ const CommunityInteraction: React.FC = () => {
       {/* Left Side: Description */}
       <div className="md:flex-2 min-h-[500px] max-w-[500px] rounded-lg py-8 shadow-lg">
         <h2 className="mb-4 text-3xl font-bold">
-          {interactions[selectedItem]?.title}
+          {selectedItem !== null ? interactions[selectedItem]?.title : null}
         </h2>
         <p className="mb-4 text-lg leading-relaxed">
-          {interactions[selectedItem]?.description}
+          {selectedItem !== null
+            ? interactions[selectedItem]?.description
+            : null}
         </p>
-        {interactions[selectedItem]?.actionImage && (
+        {selectedItem !== null && interactions[selectedItem]?.actionImage && (
           <img
-            src={interactions[selectedItem]?.actionImage}
+            src={interactions[selectedItem]?.actionImage || ""}
             alt="Action Image"
             className="my-4 rounded-lg"
           />
         )}
+
         <div className="mt-8 flex gap-4">
           <Link href="https://twitter.com/Sirius_Scan">
             <button className="mr-4 flex rounded bg-blue-500 px-4 py-2 text-white transition-colors duration-300 hover:bg-blue-600">
