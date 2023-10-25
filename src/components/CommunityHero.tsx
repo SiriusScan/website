@@ -8,16 +8,25 @@ const CommunityHero: React.FC = () => {
         <div className="grid items-center gap-8 md:grid-cols-2">
           {/* Text Section */}
           <div>
-            <h1 className="mb-4 text-4xl font-bold">
-              Sirius Scan: Powered by the Community
+            <h1 className="mb-4 text-4xl font-bold text-amber-300">
+              The Race to #KEV100
             </h1>
-            <p className="mb-8 text-xl">
-              Showcasing the strength of open-source contributions,
-              sponsorships, and global collaborations.
+            <p className="mb-8 text-2xl font-extralight">
+              Not all vulnerabilities are created equal and most CVEs will never
+              be exploited. By anyone. Ever.
             </p>
-            <Link href="/community-details">
-              <button className="rounded-full bg-white px-8 py-3 text-[#15162c] transition duration-300 hover:bg-opacity-90">
-                Explore the Community
+            <p className="mb-8 text-xl text-violet-200">
+              How do we know what matters and is their an free option to empower
+              all security teams to find the most important vulnerabilities?{" "}
+              <br />
+              Sirius Scan is proud to support the endeavor to create an open
+              source option to discover every vulnerability on the Cybersecurity
+              Infrastructure Security Agency's (CISA) Known Exploited
+              Vulnerabilities (KEV) list.
+            </p>
+            <Link href="https://opensecurity.com">
+              <button className="rounded-md border border-violet-200 px-8 py-2 text-white transition duration-300 hover:bg-white hover:text-blue-500 hover:shadow-lg">
+                Join the Fight!
               </button>
             </Link>
           </div>
@@ -25,10 +34,12 @@ const CommunityHero: React.FC = () => {
           {/* Imagery Section */}
           <div className="flex items-center justify-center">
             {/* Placeholder for the image or collage */}
-            <div className="h-96 w-96 rounded-lg bg-gray-300">
-              <p className="text-center text-black">
-                Placeholder for Image/Collage
-              </p>
+            <div className="rounded-lg">
+              <img
+                className="rounded-xl"
+                src="/kev100.png"
+                alt="Community Hero"
+              />
             </div>
           </div>
         </div>

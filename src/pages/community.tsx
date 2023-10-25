@@ -1,7 +1,8 @@
 // pages/features.tsx
 import Head from "next/head";
 import CommunityHero from "~/components/CommunityHero";
-import CommuinitySponsor from "~/components/CommunitySponsor";
+import CommunityInteraction from "~/components/CommunityInteraction";
+import CommunitySponsor from "~/components/CommunitySponsor";
 
 export default function Features() {
   return (
@@ -16,7 +17,8 @@ export default function Features() {
       </Head>
       <main className="relative flex min-h-screen flex-col overflow-hidden bg-[#15162c]">
         <CommunityHero />
-        <CommuinitySponsor />
+        <CommunityInteraction />
+        <CommunitySponsor />
       </main>
     </>
   );
