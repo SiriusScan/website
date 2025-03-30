@@ -8,25 +8,27 @@ interface CodeExample {
 }
 
 interface CodePlaygroundProps {
-  examples: {
-    [key: string]: string;
-  };
+  examples: Record<string, string>;
   defaultLanguage?: string;
   title?: string;
 }
 
 const CodePlayground: React.FC<CodePlaygroundProps> = ({
   examples,
-  defaultLanguage = Object.keys(examples)[0],
+  defaultLanguage = Object.keys(examples)[0] ?? "",
   title,
 }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState(defaultLanguage);
+  const [selectedLanguage, setSelectedLanguage] =
+    useState<string>(defaultLanguage);
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    await navigator.clipboard.writeText(examples[selectedLanguage]);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    const code = examples[selectedLanguage];
+    if (code) {
+      await navigator.clipboard.writeText(code);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    }
   };
 
   return (
@@ -63,7 +65,7 @@ const CodePlayground: React.FC<CodePlaygroundProps> = ({
         </div>
         <div className="overflow-x-auto p-4">
           <SyntaxHighlighter
-            code={examples[selectedLanguage]}
+            code={examples[selectedLanguage] || ""}
             language={selectedLanguage.toLowerCase()}
             className="!m-0 !bg-transparent !p-0"
           />

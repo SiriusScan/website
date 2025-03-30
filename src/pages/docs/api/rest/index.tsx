@@ -9,7 +9,12 @@ import {
 
 const RestApiOverview = () => {
   return (
-    <DocsLayout>
+    <DocsLayout
+      meta={{
+        title: "REST API Overview",
+        description: "Overview of the Sirius Scan REST API endpoints and usage",
+      }}
+    >
       <div className="max-w-4xl">
         <h1 className="mb-6 text-4xl font-bold text-violet-200">REST API</h1>
         <p className="mb-8 text-xl text-gray-300">

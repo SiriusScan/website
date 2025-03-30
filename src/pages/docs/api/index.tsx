@@ -56,7 +56,13 @@ const APIOverview = () => {
           content="API and SDK documentation for Sirius Scan - Enterprise-grade vulnerability scanner"
         />
       </Head>
-      <DocsLayout>
+      <DocsLayout
+        meta={{
+          title: "API Overview",
+          description:
+            "API and SDK documentation for Sirius Scan - Enterprise-grade vulnerability scanner",
+        }}
+      >
         <div className="max-w-4xl">
           {/* Hero Section */}
           <div className="mb-12 rounded-xl bg-gradient-to-br from-violet-900/20 via-violet-800/10 to-transparent p-8">

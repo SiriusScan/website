@@ -15,7 +15,13 @@ import {
 
 const CommunityOverview = () => {
   return (
-    <DocsLayout>
+    <DocsLayout
+      meta={{
+        title: "Community",
+        description:
+          "Join the Sirius Scan community and contribute to the project",
+      }}
+    >
       <div className="max-w-4xl">
         <h1 className="mb-6 text-4xl font-bold text-violet-200">Community</h1>
         <p className="mb-8 text-xl text-gray-300">

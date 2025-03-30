@@ -63,7 +63,13 @@ const DocsIndex = () => {
           content="Documentation for Sirius Scan - Enterprise-grade Open-source Vulnerability Scanner"
         />
       </Head>
-      <DocsLayout>
+      <DocsLayout
+        meta={{
+          title: "Documentation",
+          description:
+            "Sirius Scan documentation - Learn how to use and integrate Sirius Scan",
+        }}
+      >
         <div className="max-w-4xl">
           {/* Hero Section */}
           <div className="relative mb-12 rounded-xl bg-gradient-to-br from-violet-900/20 via-violet-800/10 to-transparent p-8">
