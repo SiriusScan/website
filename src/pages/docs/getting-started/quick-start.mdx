@@ -1,0 +1,92 @@
+import DocsLayout from "../../../components/DocsLayout";
+
+export const meta = {
+  title: "Quick Start Guide - Sirius Scan",
+  description:
+    "Get started with Sirius Scan quickly and learn the essential first steps.",
+};
+
+# Quick Start Guide
+
+After [installing Sirius Scan](/docs/getting-started/installation), this guide will help you get started with the essential first steps. For a detailed walkthrough of the interface, see our [Interface Tour](/docs/getting-started/interface-tour).
+
+## Initial Setup
+
+Before diving into the interface, there are a few important steps to get started:
+
+### Authentication
+
+When you first access Sirius Scan, you'll be presented with the login screen:
+
+![Login Screen](/sirius-login.png)
+
+Default credentials for your first login:
+
+- Username: `admin`
+- Password: `password`
+
+> **Important**: For security reasons, change these credentials immediately after your first login.
+
+### First-Time Configuration
+
+1. **Change Default Credentials**
+
+   - Navigate to User Settings
+   - Update your password
+
+2. **Network Configuration**
+
+   - Verify network access to target environments
+   - Configure any necessary proxy settings
+   - Set up network segmentation if required
+
+3. **Agent Deployment** (Optional)
+   - Deploy agents for continuous monitoring
+   - Configure agent communication settings
+   - Verify agent connectivity
+
+## Common Workflows
+
+Before exploring individual features, here are some common workflows you'll use in Sirius Scan:
+
+### Vulnerability Assessment Workflow
+
+1. **Initial Scan**
+
+   - Configure target scope
+   - Select scan profile
+   - Launch assessment
+
+2. **Review Results**
+
+   - Check vulnerability findings
+   - Validate discoveries
+   - Prioritize remediation
+
+3. **Report Generation**
+   - Generate executive summary
+   - Export technical details
+   - Create remediation plan
+
+## Navigation Tips
+
+1. **Quick Actions**
+
+   - Use the side navigation bar for main sections
+   - Utilize search in the Vulnerability Navigator
+
+2. **Workflow Integration**
+
+   - Start with the Dashboard for overview
+   - Use Scan page to initiate assessments
+   - Review findings in Vulnerability Navigator
+   - Investigate hosts in Environment view
+
+## Next Steps
+
+- Take our [Interface Tour](/docs/getting-started/interface-tour) to learn about all features
+- Learn about [Advanced Scanning](/docs/guides/scanning)
+- Explore [Configuration Options](/docs/guides/configuration)
+- Join our [Community](/community)
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>;

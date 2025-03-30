@@ -1,0 +1,278 @@
+import DocsLayout from "../../../components/DocsLayout";
+
+export const meta = {
+  title: "Contributing to Sirius Scan",
+  description: "Learn how to contribute to Sirius Scan's open source project",
+};
+
+# Contributing to Sirius Scan
+
+Thank you for your interest in contributing to Sirius Scan! This guide will help you get started with contributing to our open-source vulnerability scanning platform.
+
+## Project Overview
+
+Sirius is an open-source general purpose vulnerability scanner that leverages community-driven security intelligence. The project combines:
+
+- Vulnerability Database Integration with NVD
+- Network Vulnerability Scanning
+- Agent-based Discovery
+- Custom Assessor Analysis
+- Modern Web Interface
+- RESTful API
+- Message Queue-based Architecture
+- Persistent Data Storage
+
+### System Architecture
+
+Sirius consists of several microservices:
+
+| Service         | Description             | Port       |
+| --------------- | ----------------------- | ---------- |
+| sirius-ui       | Web interface (Next.js) | 3000       |
+| sirius-api      | Backend API service     | 9001       |
+| sirius-engine   | Scanning engine         | 5174       |
+| sirius-rabbitmq | Message broker          | 5672/15672 |
+| sirius-postgres | Database                | 5432       |
+| sirius-valkey   | Key-value store         | 6379       |
+
+## Prerequisites
+
+Before you begin contributing, ensure you have:
+
+- Docker Engine 20.10.0 or newer
+- Docker Compose V2
+- Git
+- 4GB RAM minimum
+- 10GB free disk space
+- Node.js 16+ (for UI development)
+- Go 1.19+ (for backend development)
+
+## Development Setup
+
+1. **Fork and Clone**
+
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/Sirius.git
+   cd Sirius
+   ```
+
+2. **Start Services**
+
+   ```bash
+   # Start all services
+   docker compose up -d
+
+   # Verify services are running
+   docker compose ps
+   ```
+
+3. **Install Dependencies**
+
+   ```bash
+   # Backend dependencies
+   go mod download
+
+   # Frontend dependencies
+   cd website
+   npm install
+   ```
+
+4. **Configure Environment**
+
+   The project uses environment variables configured in docker-compose.yaml:
+
+   ```yaml
+   # Database configuration
+   POSTGRES_USER: postgres
+   POSTGRES_PASSWORD: postgres
+   POSTGRES_DB: sirius
+
+   # API configuration
+   API_PORT: 9001
+   DB_HOST: sirius-postgres
+   ```
+
+5. **Run Tests**
+
+   ```bash
+   # Run all tests
+   ./run_tests.sh --all
+
+   # Run specific test suites
+   ./run_tests.sh --models  # Model tests
+   ./run_tests.sh --ui      # UI tests
+   ```
+
+## Ways to Contribute
+
+### 1. Code Contributions
+
+- Bug fixes
+- New features
+- Performance improvements
+- UI/UX enhancements
+- Test coverage improvements
+
+### 2. Documentation
+
+- API documentation
+- User guides
+- Architecture documentation
+- Code comments
+- Example code
+
+### 3. Bug Reports
+
+- Report issues on GitHub
+- Provide detailed reproduction steps
+- Include system information
+- Share relevant logs
+
+### 4. Community Support
+
+- Help others in Discord
+- Share knowledge
+- Answer questions
+- Review pull requests
+
+## Contribution Guidelines
+
+### 1. Creating Issues
+
+Before starting work:
+
+1. Search existing issues
+2. Create a new issue describing:
+   - Problem or feature
+   - Implementation approach
+   - Expected outcome
+3. Wait for maintainer feedback
+4. Reference the issue in your PR
+
+### 2. Branch Naming
+
+Use descriptive branch names:
+
+- `feature/description` - New features
+- `fix/description` - Bug fixes
+- `docs/description` - Documentation
+- `refactor/description` - Code improvements
+- `test/description` - Test additions
+
+### 3. Commit Messages
+
+Write clear commit messages:
+
+```
+Add host discovery feature
+
+- Implement ARP scanning
+- Add subnet range support
+- Include rate limiting option
+
+Fixes #123
+```
+
+Guidelines:
+
+- Use present tense
+- First line is summary (50 chars)
+- Include motivation for change
+- Reference issues
+
+### 4. Code Style
+
+#### Go Code
+
+- Use `gofmt` for formatting
+- Follow [Effective Go](https://golang.org/doc/effective_go)
+- Add tests for new features
+- Document exported functions
+- Handle errors appropriately
+
+#### TypeScript/React
+
+- Use ESLint configuration
+- Follow project component structure
+- Add PropTypes/TypeScript types
+- Write unit tests
+- Document complex logic
+
+### 5. Pull Request Process
+
+1. Update your fork to latest main
+2. Create a feature branch
+3. Make your changes
+4. Write/update tests
+5. Update documentation
+6. Submit PR with:
+   - Clear description
+   - Issue references
+   - Screenshots (if UI changes)
+   - Test results
+
+## Testing
+
+The project includes comprehensive testing:
+
+```bash
+# Backend tests
+go test ./...
+
+# Frontend tests
+npm test
+
+# Integration tests
+./run_tests.sh --integration
+
+# Reset test database
+./run_tests.sh --reset
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Service fails to start**
+
+   - Check logs: `docker compose logs <service-name>`
+   - Verify ports: `netstat -tuln`
+   - Check resources
+
+2. **Database connection issues**
+
+   - Verify PostgreSQL: `docker compose ps sirius-postgres`
+   - Check credentials
+   - Review logs
+
+3. **Message queue problems**
+   - Check RabbitMQ status: http://localhost:15672
+   - Verify connections
+   - Review logs
+
+## Getting Help
+
+- Join [Discord](https://discord.gg/VTjqSxkJqX)
+- Check [Documentation](/docs)
+- Ask in [GitHub Discussions](https://github.com/SiriusScan/Sirius/discussions)
+- Review [Common Issues](https://github.com/SiriusScan/Sirius/issues?q=is%3Aissue+label%3A%22common+issue%22)
+
+## Recognition
+
+We value all contributions and recognize them through:
+
+- GitHub contributors page
+- Release notes mentions
+- Community spotlights
+- Special Discord badges
+
+## Next Steps
+
+- [Join Discord Community](https://discord.gg/VTjqSxkJqX)
+- [Browse Open Issues](https://github.com/SiriusScan/Sirius/issues)
+- [Read API Documentation](/docs/api/rest/endpoints)
+- [View Support Guide](/docs/community/support)
+
+export default ({ children }) => (
+  <DocsLayout meta={meta}>{children}</DocsLayout>
+);

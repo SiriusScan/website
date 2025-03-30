@@ -4,9 +4,15 @@
  */
 await import("./src/env.mjs");
 
+import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
+import rehypePrismPlus from "rehype-prism-plus";
+import rehypeSlug from "rehype-slug";
+
 /** @type {import("next").NextConfig} */
-const config = {
+const nextConfig = {
   reactStrictMode: true,
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
 
   /**
    * If you are using `appDir` then you must comment the below `i18n` config out.
@@ -19,4 +25,15 @@ const config = {
   },
 };
 
-export default config;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [[rehypePrismPlus, { ignoreMissing: true }], rehypeSlug],
+    providerImportSource: "@mdx-js/react",
+  },
+});
+
+export default withMDX({
+  ...nextConfig,
+  pageExtensions: ["ts", "tsx", "js", "jsx", "md", "mdx"],
+});

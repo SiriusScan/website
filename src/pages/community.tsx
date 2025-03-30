@@ -4,14 +4,14 @@ import CommunityHero from "~/components/CommunityHero";
 import CommunityInteraction from "~/components/CommunityInteraction";
 import CommunitySponsor from "~/components/CommunitySponsor";
 
-export default function Features() {
+export default function Community() {
   return (
     <>
       <Head>
-        <title>Sirius Scan</title>
+        <title>Community - Sirius Scan</title>
         <meta
           name="description"
-          content="Sirius Scan is an open-source General-Purpose Vulnerability Scanner."
+          content="Join the Sirius Scan community - an open-source General-Purpose Vulnerability Scanner."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

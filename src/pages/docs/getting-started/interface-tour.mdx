@@ -1,0 +1,167 @@
+import DocsLayout from "../../../components/DocsLayout";
+
+export const meta = {
+  title: "Interface Tour - Sirius Scan",
+  description:
+    "A comprehensive walkthrough of Sirius Scan's interface and features.",
+};
+
+# Interface Tour
+
+This guide provides a detailed walkthrough of Sirius Scan's interface, helping you understand each component and its capabilities. After completing [initial setup](/docs/getting-started/quick-start), use this guide to explore the full functionality of Sirius Scan.
+
+## Dashboard Overview
+
+The Dashboard serves as your central command center, providing real-time insights into your security posture. Here you'll find an intuitive interface displaying active scans, recent discoveries, and system health metrics. The dashboard is designed to give you immediate visibility into your security status and quick access to essential functions.
+
+- Real-time scanning activity and progress
+- Latest vulnerability discoveries and trends
+- System performance and health indicators
+- Quick-access controls for common actions
+- Overview of critical security metrics
+
+![Sirius Scan Dashboard](/dash-dark.gif)
+
+## Scanning Interface
+
+The Scan page is the heart of Sirius Scan's functionality, where you have complete control over vulnerability assessments. This powerful interface allows you to not only initiate and monitor scans but also fine-tune your scanning strategy. The visual module editor enables you to customize scanning parameters, create specialized workflows, and manage automated scan schedules. You can view real-time scan progress, adjust scan intensity on the fly, and access detailed scan configurations all from one centralized location.
+
+![Scanning Interface](/docs/scanner.jpg)
+
+### Basic Scan Controls
+
+- Start/stop scans with a single click
+- Monitor real-time scan progress and findings
+- View detailed scan logs and status updates
+- Pause and resume scan operations
+- Quick access to common scan configurations
+
+### Advanced Configuration
+
+- Fine-tune scanning parameters for optimal performance
+- Create and save custom scan profiles
+- Configure target scope and exclusions
+- Set up automated scanning schedules
+- Adjust resource utilization and scan intensity
+
+### Visual Module Editor
+
+The module editor provides an intuitive graphical interface for:
+
+- Browse and select from available scanning modules
+- Customize module parameters and settings
+- Create and test custom scan workflows
+- Preview module configurations before deployment
+- Save and manage scanning templates
+
+## Vulnerability Navigator
+
+The Vulnerability Navigator is your comprehensive platform for managing discovered vulnerabilities across your environment. This powerful interface aggregates all findings and provides multiple ways to view, sort, and analyze vulnerabilities. With advanced search capabilities and flexible viewing options, you can quickly identify critical issues and track remediation progress. The interface supports various visualization methods to help you understand your security posture from different perspectives.
+
+![Vulnerability Navigator](/docs/vulnerability-navigator.jpg)
+
+### Key Features
+
+- Dynamic vulnerability listing with real-time updates
+- Advanced search with multiple filtering options
+- Customizable views (list, grid, severity-based grouping)
+- Bulk actions for efficient vulnerability management
+- Detailed sorting and categorization options
+- Export capabilities for reporting and analysis
+
+### Vulnerability Reports
+
+When you select a specific vulnerability, you'll access a detailed report that provides comprehensive information about the security issue. These reports are designed to give you all the information needed for understanding, validating, and remediating the vulnerability. Each report includes technical details, impact assessment, and actionable remediation steps.
+
+![Vulnerability Details](/docs/vulnerability.jpg)
+
+- Detailed CVE/CPE identification and mapping
+- Complete CVSS scoring breakdown and risk assessment
+- Affected systems and components
+- Step-by-step remediation instructions
+- Technical proof of concept details
+- Historical context and discovery information
+- Related vulnerabilities and dependencies
+
+## Environment Overview
+
+The Environment page provides a comprehensive view of your infrastructure security landscape. This interface gives you visibility into all discovered hosts, their security status, and associated risks. You can quickly identify high-risk assets, track security metrics across your environment, and monitor the overall health of your infrastructure. The interface includes both high-level overviews and detailed drill-down capabilities.
+
+![Environment Overview](/docs/environment.jpg)
+
+### Host Management
+
+- Complete inventory of discovered hosts
+- Risk scoring and security metrics per host
+- Vulnerability statistics and trending
+- Interactive network topology visualization
+- Asset categorization and grouping
+- Security compliance status tracking
+
+### Host Details
+
+The Host Details page provides an in-depth view of individual systems in your environment. When you select a specific host, you'll see a comprehensive breakdown of its security posture, including vulnerability counts, system information, and available services. This interface helps you understand the specific risks and characteristics of each asset in your infrastructure.
+
+![Host Details](/docs/host.jpg)
+
+- Detailed system information and specifications
+- Complete port and service enumeration
+- Vulnerability count by severity level
+- Historical scan findings and trends
+- System configuration details
+- Service version information
+- Security risk indicators and metrics
+
+## Terminal Interface
+
+The Terminal interface provides direct access to Sirius Scan's backend through a powerful PowerShell environment. This interface is designed for advanced users who need to perform custom operations, automate tasks, or manage agents directly. Through the terminal, you can execute complex commands, create custom scripts, and have granular control over the scanning infrastructure.
+
+![Terminal Interface](/docs/terminal.jpg)
+
+### PowerShell Interface
+
+- Direct command-line access to Sirius backend
+- Custom script creation and execution
+- Advanced scan configuration options
+- System diagnostic capabilities
+- Batch operation support
+- Output formatting and filtering
+
+### Agent Management
+
+- Centralized agent deployment and control
+- Real-time agent health monitoring
+- Configuration management for distributed agents
+- Agent update and maintenance tools
+- Performance metrics and logging
+- Remote troubleshooting capabilities
+
+## Interface Tips
+
+1. **Navigation Shortcuts**
+
+   - Use keyboard shortcuts for quick access
+   - Leverage quick filters in list views
+   - Utilize the global search function
+   - Pin frequently used views
+
+2. **Customization Options**
+
+   - Adjust dashboard layouts
+   - Configure default views
+   - Set up personal preferences
+   - Create custom report templates
+
+3. **Advanced Features**
+   - Use bulk operations for efficiency
+   - Leverage saved searches
+   - Create custom dashboards
+   - Configure automated workflows
+
+## Next Steps
+
+- Learn about [Advanced Scanning](/docs/guides/scanning)
+- Explore [Configuration Options](/docs/guides/configuration)
+- Read about [API Integration](/docs/api)
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>;

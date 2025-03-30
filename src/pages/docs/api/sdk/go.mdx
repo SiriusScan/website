@@ -1,0 +1,274 @@
+import DocsLayout from "../../../../components/DocsLayout";
+
+export const meta = {
+  title: "Go SDK - Sirius Scan",
+  description: "Learn how to use the Sirius Scan Go client library",
+};
+
+# Go SDK
+
+The Sirius Scan Go API provides a comprehensive backend system for vulnerability scanning and management. It integrates with various services including PostgreSQL for data persistence, RabbitMQ for message queuing, and the National Vulnerability Database (NVD) for vulnerability data.
+
+## Installation
+
+Install the package using Go modules:
+
+```bash
+go get github.com/SiriusScan/go-api
+```
+
+## Package Organization
+
+```
+go-api/
+├── sirius/
+│   ├── postgres/     # Database operations
+│   ├── host/        # Host management
+│   ├── vulnerability/ # Vulnerability operations
+│   ├── queue/       # RabbitMQ integration
+│   └── store/       # Key-value store
+└── nvd/            # NVD API integration
+```
+
+## Quick Start
+
+Here's a simple example to get you started:
+
+```go
+package main
+
+import (
+    "log"
+    "github.com/SiriusScan/go-api/sirius/postgres"
+    "github.com/SiriusScan/go-api/sirius/host"
+)
+
+func main() {
+    // Initialize database connection
+    db := postgres.GetDB()
+    if db == nil {
+        log.Fatal("Failed to connect to database")
+    }
+
+    // Example: Get host information
+    hostInfo, err := host.GetHost("192.168.1.1")
+    if err != nil {
+        log.Printf("Error getting host: %v", err)
+    }
+}
+```
+
+## Core Features
+
+### Database Connection Management
+
+The database connection is managed through the `postgres` package:
+
+```go
+// GetDB returns the database connection, initializing it if necessary
+func GetDB() *gorm.DB
+
+// IsConnected returns whether the database is connected
+func IsConnected() bool
+
+// GetConnectionError returns the last connection error
+func GetConnectionError() error
+```
+
+Key Features:
+
+- Automatic connection retry with exponential backoff
+- Environment-aware configuration (Docker vs local)
+- Automatic schema initialization and migration
+- Connection pooling via GORM
+
+### Host Management
+
+The `host` package provides functionality for managing host information:
+
+```go
+// Get host information
+hostInfo, err := host.GetHost("192.168.1.1")
+
+// Get all hosts
+hosts, err := host.GetAllHosts()
+
+// Add or update a host
+newHost := sirius.Host{
+    IP:        "192.168.1.1",
+    Hostname:  "example-host",
+    OS:        "Linux",
+    OSVersion: "Ubuntu 20.04",
+}
+err := host.AddHost(newHost)
+
+// Delete a host
+err := host.DeleteHost("192.168.1.1")
+```
+
+### Vulnerability Management
+
+The `vulnerability` package handles vulnerability data:
+
+```go
+// Get vulnerability information
+vuln, err := vulnerability.GetVulnerability("CVE-2021-1234")
+
+// Check if vulnerability exists
+exists := vulnerability.CheckVulnerabilityExists("CVE-2021-1234")
+
+// Add new vulnerability
+newVuln := sirius.Vulnerability{
+    ID: "CVE-2021-1234",
+    // ... additional fields
+}
+err := vulnerability.AddVulnerability(newVuln)
+
+// Delete vulnerability
+err := vulnerability.DeleteVulnerability("CVE-2021-1234")
+```
+
+### Queue System
+
+The `queue` package provides RabbitMQ integration:
+
+```go
+// Define message processor
+processor := func(msg string) {
+    log.Printf("Processing message: %s", msg)
+}
+
+// Listen to queue
+queue.Listen("scan-queue", processor)
+
+// Send message to queue
+err := queue.Send("scan-queue", "Start scan")
+```
+
+### Key-Value Store
+
+The `store` package provides a key-value store interface:
+
+```go
+// Create new store
+kvStore, err := store.NewValkeyStore()
+if err != nil {
+    log.Fatal(err)
+}
+defer kvStore.Close()
+
+ctx := context.Background()
+
+// Store a value
+err := kvStore.SetValue(ctx, "scan-status", "running")
+
+// Retrieve a value
+val, err := kvStore.GetValue(ctx, "scan-status")
+```
+
+### NVD Integration
+
+The `nvd` package provides integration with the National Vulnerability Database:
+
+```go
+// Get CVE information
+cve, err := nvd.GetCVE("CVE-2021-1234")
+```
+
+## Configuration
+
+The API can be configured through environment variables:
+
+- `DB_HOST`: Database host address
+- `SIRIUS_RABBITMQ`: RabbitMQ connection string
+- `SIRIUS_VALKEY`: Valkey store connection string
+
+## Advanced Usage Examples
+
+### Scanning a Host for Vulnerabilities
+
+```go
+package main
+
+import (
+    "context"
+    "log"
+    "github.com/SiriusScan/go-api/sirius"
+    "github.com/SiriusScan/go-api/sirius/host"
+    "github.com/SiriusScan/go-api/sirius/vulnerability"
+)
+
+func scanHost() {
+    // Create a new host
+    newHost := sirius.Host{
+        IP: "192.168.1.1",
+        OS: "Linux",
+        OSVersion: "Ubuntu 20.04",
+    }
+
+    // Add host to database
+    if err := host.AddHost(newHost); err != nil {
+        log.Fatalf("Failed to add host: %v", err)
+    }
+
+    // Get vulnerability statistics
+    stats, err := host.GetHostRiskStatistics(newHost.IP)
+    if err != nil {
+        log.Printf("Error getting risk stats: %v", err)
+    }
+
+    log.Printf("Host vulnerability count: %d", stats.VulnerabilityCount)
+}
+```
+
+### Using the Message Queue
+
+```go
+package main
+
+import (
+    "log"
+    "github.com/SiriusScan/go-api/sirius/queue"
+)
+
+func processMessages() {
+    // Define message processor
+    processor := func(msg string) {
+        log.Printf("Processing message: %s", msg)
+    }
+
+    // Start listening for messages
+    queue.Listen("scan-queue", processor)
+
+    // Send a message
+    if err := queue.Send("scan-queue", "Start scan"); err != nil {
+        log.Printf("Error sending message: %v", err)
+    }
+}
+```
+
+## Best Practices
+
+1. **Always Check Error Returns**
+2. **Close Resources When Done**
+   ```go
+   defer db.Close()
+   defer kvStore.Close()
+   ```
+3. **Use Appropriate Context for Cancellation**
+   ```go
+   ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+   defer cancel()
+   ```
+4. **Handle Database Reconnection Scenarios**
+5. **Implement Proper Logging and Monitoring**
+
+## Next Steps
+
+- [View REST API Documentation](/docs/api/rest/endpoints)
+- [Learn about Authentication](/docs/api/rest/authentication)
+- [Error Handling Guide](/docs/api/rest/errors)
+
+export default ({ children }) => (
+  <DocsLayout meta={meta}>{children}</DocsLayout>
+);

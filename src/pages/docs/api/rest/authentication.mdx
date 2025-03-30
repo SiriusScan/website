@@ -1,0 +1,150 @@
+import DocsLayout from "../../../../components/DocsLayout";
+
+export const meta = {
+  title: "Authentication - Sirius Scan API",
+  description: "Authentication system for the Sirius Scan API (Coming Soon)",
+};
+
+# Authentication
+
+> **⚠️ Coming Soon:** API key authentication is currently under development and will be available before the v1.0 release. The current API implementation is unauthenticated.
+
+Sirius Scan will use API keys to authenticate requests. This documentation outlines the planned authentication system that will be implemented before the v1.0 release.
+
+## Planned Authentication System
+
+The upcoming authentication system will provide:
+
+- API key management through the Sirius Scan dashboard
+- Secure request authentication using Bearer tokens
+- Fine-grained permission controls
+- Environment-specific API keys
+- Automated key rotation capabilities
+
+We recommend following this documentation's structure to prepare for the authentication system's release. Subscribe to our release notifications to be informed when API key authentication becomes available.
+
+## Current Status
+
+The API is currently unauthenticated during the development phase. This means:
+
+- No authentication is required to make API requests
+- All endpoints are publicly accessible
+- This is temporary and will change before the v1.0 release
+- Not recommended for production use until authentication is implemented
+
+## Obtaining an API Key
+
+1. Log in to your Sirius Scan dashboard
+2. Navigate to **Settings > API Keys**
+3. Click **Create New API Key**
+4. Give your key a descriptive name and select the appropriate permissions
+5. Copy and securely store your API key - it will only be shown once
+
+## Using API Keys
+
+### REST API
+
+Include your API key in the `Authorization` header of your HTTP requests:
+
+```bash
+curl -X GET "https://api.siriusscan.com/v1/hosts" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+### Go SDK
+
+Initialize the SDK client with your API key:
+
+```go
+import "github.com/siriusscan/sirius/sdk"
+
+client := sirius.NewClient("YOUR_API_KEY")
+```
+
+## Environment Variables
+
+We recommend storing your API key in an environment variable:
+
+```bash
+# Set the API key
+export SIRIUS_API_KEY=your_api_key
+
+# Use in curl commands
+curl -X GET "https://api.siriusscan.com/v1/hosts" \
+  -H "Authorization: Bearer $SIRIUS_API_KEY"
+```
+
+In Go applications:
+
+```go
+import (
+    "os"
+    "github.com/siriusscan/sirius/sdk"
+)
+
+client := sirius.NewClient(os.Getenv("SIRIUS_API_KEY"))
+```
+
+## Best Practices
+
+1. **Never hardcode API keys** in your application code or version control
+2. Use environment variables or secure secret management systems
+3. Rotate API keys periodically
+4. Use separate API keys for different environments (development, staging, production)
+5. Grant minimal required permissions to each API key
+
+## Response Codes
+
+| Status Code | Description                                    |
+| ----------- | ---------------------------------------------- |
+| 200         | Success - Request authenticated successfully   |
+| 401         | Unauthorized - Invalid or missing API key      |
+| 403         | Forbidden - API key lacks required permissions |
+
+## Example Error Responses
+
+### Invalid API Key
+
+```json
+{
+  "error": {
+    "code": "invalid_api_key",
+    "message": "The provided API key is invalid or has been revoked",
+    "status": 401
+  }
+}
+```
+
+### Missing API Key
+
+```json
+{
+  "error": {
+    "code": "missing_api_key",
+    "message": "No API key provided. Include your API key in the Authorization header",
+    "status": 401
+  }
+}
+```
+
+### Insufficient Permissions
+
+```json
+{
+  "error": {
+    "code": "insufficient_permissions",
+    "message": "The provided API key does not have permission to perform this action",
+    "status": 403
+  }
+}
+```
+
+## Next Steps
+
+- [Browse API Endpoints](/docs/api/rest/endpoints)
+- [View Go SDK Documentation](/docs/api/sdk/go)
+- [Learn about Error Handling](/docs/api/rest/errors)
+
+export default ({ children }) => (
+  <DocsLayout meta={meta}>{children}</DocsLayout>
+);

@@ -1,0 +1,632 @@
+import DocsLayout from "../../../../components/DocsLayout";
+import { useState } from "react";
+
+export const meta = {
+  title: "API Endpoints - Sirius Scan",
+  description: "Complete reference of Sirius Scan REST API endpoints",
+};
+
+export const Endpoint = ({
+  title,
+  method,
+  path,
+  isOpen: defaultOpen = false,
+  children,
+}) => {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+return (
+
+<div className="mb-6 overflow-hidden rounded-lg border border-violet-700/40">
+  <button
+    onClick={() => setIsOpen(!isOpen)}
+    className="flex w-full items-center justify-between bg-violet-900/20 p-4 text-left transition-colors hover:bg-violet-900/30"
+  >
+    <div className="flex items-center space-x-3">
+      <span
+        className={`rounded px-2 py-1 text-xs font-medium ${
+          method === "POST"
+            ? "bg-green-900/50 text-green-400"
+            : method === "GET"
+            ? "bg-blue-900/50 text-blue-400"
+            : method === "PUT"
+            ? "bg-yellow-900/50 text-yellow-400"
+            : "bg-red-900/50 text-red-400"
+        }`}
+      >
+        {method}
+      </span>
+      <span className="font-mono text-sm text-violet-200">{path}</span>
+      <span className="text-gray-400">{title}</span>
+    </div>
+    <svg
+      className={`h-5 w-5 transform text-violet-400 transition-transform ${
+        isOpen ? "rotate-180" : ""
+      }`}
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M19 9l-7 7-7-7"
+      />
+    </svg>
+  </button>
+  {isOpen && (
+    <div className="border-t border-violet-700/40 p-4">{children}</div>
+  )}
+</div>
+); };
+
+# API Endpoints
+
+This page provides a comprehensive list of all available endpoints in the Sirius Scan REST API. The API follows REST principles and uses standard HTTP methods.
+
+## Quick Links
+
+- [Base URL Configuration](#base-url)
+- [Scan Management](#scan-management)
+- [Host Management](#host-management)
+- [Vulnerability Management](#vulnerability-management)
+
+## Base URL
+
+All API requests should be made to:
+
+```plaintext
+http://localhost:9001
+```
+
+For production deployments, replace `localhost:9001` with your Sirius Scan instance URL.
+
+## Scan Management
+
+<Endpoint
+  title="Start a new vulnerability scan"
+  method="POST"
+  path="/app/scan"
+  isOpen={true}
+>
+  Start a new vulnerability scan for specified targets.
+
+### Request Body
+
+```json
+{
+  "id": "scan-123",
+  "targets": [
+    {
+      "value": "192.168.123.188",
+      "type": "single_ip"
+    }
+  ],
+  "options": {
+    "template": "quick"
+  },
+  "priority": 3
+}
+```
+
+### Parameters
+
+| Field              | Type   | Description                          |
+| ------------------ | ------ | ------------------------------------ |
+| `id`               | string | Custom identifier for the scan       |
+| `targets`          | array  | List of targets to scan              |
+| `targets[].value`  | string | Target value (IP, hostname, etc.)    |
+| `targets[].type`   | string | Type of target (`single_ip`, etc.)   |
+| `options.template` | string | Scan template to use (`quick`, etc.) |
+| `priority`         | number | Scan priority level (1-5)            |
+
+### Example Request
+
+```bash
+curl -X POST "http://localhost:9001/app/scan" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": "scan-123",
+    "targets": [
+        {
+            "value": "192.168.123.188",
+            "type": "single_ip"
+        }
+    ],
+    "options": {
+        "template": "quick"
+    },
+    "priority": 3
+}'
+```
+
+### Response
+
+```json
+{
+  "status": "accepted",
+  "message": "Scan request accepted",
+  "scan_id": "scan-123"
+}
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Get scan status (Coming Soon)"
+  method="GET"
+  path="/app/scan/{scanId}/status"
+>
+  > **Note:** This endpoint is planned for future implementation. Currently, scan status is stored in the Valkey database and is accessible through the Go SDK.
+
+### Current Access Methods
+
+To access scan status, you can:
+
+1. Use the Go SDK to query the Valkey database directly
+2. Monitor the message queue for scan updates
+
+### Example using Go SDK (coming soon)
+
+```go
+import "github.com/siriusscan/sirius/sdk"
+
+// Get scan status
+status, err := client.GetScanStatus("scan-123")
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Get scan results (Coming Soon)"
+  method="GET"
+  path="/app/scan/{scanId}/results"
+>
+  > **Note:** This endpoint is planned for future implementation. Currently, scan results are stored in the Valkey database and are accessible through the Go SDK.
+
+### Current Access Methods
+
+To access scan results, you can:
+
+1. Use the Go SDK to query the Valkey database directly
+2. Use the database client to query scan results
+
+### Example using Go SDK (coming soon)
+
+```go
+import "github.com/siriusscan/sirius/sdk"
+
+// Get scan results
+results, err := client.GetScanResults("scan-123")
+```
+
+</Endpoint>
+
+## Host Management
+
+<Endpoint
+  title="Add host to inventory"
+  method="POST"
+  path="/host"
+>
+  Add a new host to the inventory with detailed system information.
+
+### Request Body
+
+```json
+{
+  "hid": "a1b2c3d4e5f6",
+  "os": "Windows",
+  "osversion": "Server 2003",
+  "ip": "192.168.50.13",
+  "hostname": "lab-server",
+  "ports": [
+    {
+      "id": 445,
+      "protocol": "tcp",
+      "state": "closed"
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "vid": "CVE-2021-34527",
+      "description": "Mock Data",
+      "title": ""
+    },
+    {
+      "vid": "CVE-2017-0143",
+      "description": "Mock Data",
+      "title": "CVE-2017-0145 - WannaCry, ETERNALBLUE"
+    }
+  ],
+  "cpe": [
+    "cpe:2.3:o:canonical:ubuntu:22.04",
+    "cpe:2.3:a:apache:http_server:2.4.52"
+  ],
+  "users": ["alice", "bob"],
+  "notes": [
+    "Initial setup completed",
+    "Apache installed and configured",
+    "Server in development environment"
+  ]
+}
+```
+
+### Parameters
+
+| Field                           | Type   | Description                       |
+| ------------------------------- | ------ | --------------------------------- |
+| `hid`                           | string | Unique host identifier            |
+| `os`                            | string | Operating system name             |
+| `osversion`                     | string | Operating system version          |
+| `ip`                            | string | IP address of the host            |
+| `hostname`                      | string | Host's network name               |
+| `ports`                         | array  | List of scanned ports             |
+| `ports[].id`                    | number | Port number                       |
+| `ports[].protocol`              | string | Protocol (tcp/udp)                |
+| `ports[].state`                 | string | Port state (open/closed/filtered) |
+| `vulnerabilities`               | array  | List of detected vulnerabilities  |
+| `vulnerabilities[].vid`         | string | CVE identifier                    |
+| `vulnerabilities[].description` | string | Vulnerability description         |
+| `vulnerabilities[].title`       | string | Vulnerability title               |
+| `cpe`                           | array  | List of CPE identifiers           |
+| `users`                         | array  | List of user accounts             |
+| `notes`                         | array  | Additional notes about the host   |
+
+### Example Request
+
+```bash
+curl -X POST "http://localhost:9001/host" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "hid": "a1b2c3d4e5f6",
+    "os": "Windows",
+    "osversion": "Server 2003",
+    "ip": "192.168.50.13",
+    "hostname": "lab-server",
+    "ports": [
+        {
+            "id": 445,
+            "protocol": "tcp",
+            "state": "closed"
+        }
+    ],
+    "vulnerabilities": [
+        {
+            "vid": "CVE-2021-34527",
+            "description": "Mock Data",
+            "title": ""
+        }
+    ],
+    "cpe": [
+        "cpe:2.3:o:canonical:ubuntu:22.04"
+    ],
+    "users": ["alice", "bob"],
+    "notes": ["Initial setup completed"]
+}'
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Get host details"
+  method="GET"
+  path="/host/{ip}"
+>
+  Retrieve detailed information about a specific host.
+
+### Parameters
+
+| Parameter | Type   | Description            |
+| --------- | ------ | ---------------------- |
+| `ip`      | string | IP address of the host |
+
+### Example Request
+
+```bash
+curl -X GET "http://localhost:9001/host/192.168.123.188"
+```
+
+</Endpoint>
+
+<Endpoint
+  title="List all hosts"
+  method="GET"
+  path="/host"
+>
+  Retrieve a list of all hosts in the inventory.
+
+### Example Request
+
+```bash
+curl -X GET "http://localhost:9001/host"
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Get all vulnerabilities"
+  method="GET"
+  path="/host/vulnerabilities/all"
+>
+  Retrieve a list of all vulnerabilities across all hosts.
+
+### Example Request
+
+```bash
+curl -X GET "http://localhost:9001/host/vulnerabilities/all"
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Get host statistics"
+  method="GET"
+  path="/host/statistics/{ip}"
+>
+  Retrieve statistical information about a specific host.
+
+### Parameters
+
+| Parameter | Type   | Description            |
+| --------- | ------ | ---------------------- |
+| `ip`      | string | IP address of the host |
+
+### Example Request
+
+```bash
+curl -X GET "http://localhost:9001/host/statistics/192.168.123.234"
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Get host vulnerability statistics"
+  method="GET"
+  path="/host/statistics/{ip}"
+>
+  Retrieve vulnerability statistics for a specific host.
+
+### Parameters
+
+| Parameter | Type   | Description            |
+| --------- | ------ | ---------------------- |
+| `ip`      | string | IP address of the host |
+
+### Example Request
+
+```bash
+curl -X GET "http://localhost:9001/host/statistics/192.168.123.186"
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Get host vulnerability severity counts"
+  method="GET"
+  path="/host/severity/{ip}"
+>
+  Retrieve vulnerability severity counts for a specific host.
+
+### Parameters
+
+| Parameter | Type   | Description            |
+| --------- | ------ | ---------------------- |
+| `ip`      | string | IP address of the host |
+
+### Example Request
+
+```bash
+curl -X GET "http://localhost:9001/host/severity/192.168.123.186"
+```
+
+</Endpoint>
+
+## Vulnerability Management
+
+<Endpoint
+  title="Get vulnerability details"
+  method="GET"
+  path="/vulnerability/{vid}"
+>
+  Retrieve detailed information about a specific vulnerability.
+
+### Parameters
+
+| Parameter | Type   | Description        |
+| --------- | ------ | ------------------ |
+| `vid`     | string | CVE ID to retrieve |
+
+### Example Request
+
+```bash
+curl -X GET "http://localhost:9001/vulnerability/CVE-2017-0143"
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Get NVD CVE details"
+  method="GET"
+  path="https://services.nvd.nist.gov/rest/json/cves/2.0"
+>
+  Query the National Vulnerability Database (NVD) for CVE details.
+
+### Query Parameters
+
+| Parameter | Type   | Description       |
+| --------- | ------ | ----------------- |
+| `cveId`   | string | CVE ID to look up |
+
+### Example Request
+
+```bash
+curl -X GET "https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2023-38408"
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Add vulnerability"
+  method="POST"
+  path="/vulnerability"
+>
+  Add a new vulnerability to the database.
+
+### Request Body
+
+```json
+{
+  "vid": "CVE-2025-1234",
+  "description": "A remote code execution vulnerability found in the WebAdmin module allowing attackers to gain privileged access under certain conditions.",
+  "title": "Remote Code Execution in WebAdmin Module",
+  "riskScore": {
+    "CVSSV3": {
+      "cvssV3": {
+        "version": "3.1",
+        "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+        "attackVector": "NETWORK",
+        "attackComplexity": "LOW",
+        "privilegesRequired": "NONE",
+        "userInteraction": "NONE",
+        "scope": "UNCHANGED",
+        "confidentialityImpact": "HIGH",
+        "integrityImpact": "HIGH",
+        "availabilityImpact": "HIGH",
+        "baseScore": 9.8,
+        "baseSeverity": "CRITICAL",
+        "exploitCodeMaturity": "FUNCTIONAL",
+        "remediationLevel": "OFFICIAL_FIX",
+        "reportConfidence": "CONFIRMED",
+        "temporalScore": 8.9,
+        "temporalSeverity": "HIGH",
+        "confidentialityRequirement": "HIGH",
+        "integrityRequirement": "MEDIUM",
+        "availabilityRequirement": "MEDIUM",
+        "modifiedAttackVector": "NETWORK",
+        "modifiedAttackComplexity": "LOW",
+        "modifiedPrivilegesRequired": "NONE",
+        "modifiedUserInteraction": "NONE",
+        "modifiedScope": "UNCHANGED",
+        "modifiedConfidentialityImpact": "HIGH",
+        "modifiedIntegrityImpact": "HIGH",
+        "modifiedAvailabilityImpact": "HIGH",
+        "environmentalScore": 8.9,
+        "environmentalSeverity": "HIGH"
+      },
+      "exploitabilityScore": 3.9,
+      "impactScore": 5.9
+    },
+    "CVSSV2": {
+      "cvssV2": {
+        "version": "2.0",
+        "vectorString": "AV:N/AC:L/Au:N/C:C/I:C/A:C",
+        "accessVector": "NETWORK",
+        "accessComplexity": "LOW",
+        "authentication": "NONE",
+        "confidentialityImpact": "COMPLETE",
+        "integrityImpact": "COMPLETE",
+        "availabilityImpact": "COMPLETE",
+        "baseScore": 10.0,
+        "exploitability": "FUNCTIONAL",
+        "remediationLevel": "OFFICIAL_FIX",
+        "reportConfidence": "CONFIRMED",
+        "temporalScore": 9.5,
+        "collateralDamagePotential": "LOW",
+        "targetDistribution": "MEDIUM",
+        "confidentialityRequirement": "HIGH",
+        "integrityRequirement": "MEDIUM",
+        "availabilityRequirement": "MEDIUM",
+        "environmentalScore": 9.0
+      },
+      "severity": "HIGH",
+      "exploitabilityScore": 10.0,
+      "impactScore": 10.0,
+      "acInsufInfo": false,
+      "obtainAllPrivilege": false,
+      "obtainUserPrivilege": false,
+      "obtainOtherPrivilege": false,
+      "userInteractionRequired": false
+    }
+  }
+}
+```
+
+### Parameters
+
+| Field              | Type   | Description                                   |
+| ------------------ | ------ | --------------------------------------------- |
+| `vid`              | string | CVE identifier                                |
+| `description`      | string | Detailed description of the vulnerability     |
+| `title`            | string | Brief title of the vulnerability              |
+| `riskScore`        | object | Risk scoring details including CVSS v2 and v3 |
+| `riskScore.CVSSV3` | object | CVSS version 3 scoring details                |
+| `riskScore.CVSSV2` | object | CVSS version 2 scoring details                |
+
+### Example Request
+
+```bash
+curl -X POST "http://localhost:9001/vulnerability" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "vid": "CVE-2025-1234",
+    "description": "A remote code execution vulnerability...",
+    "title": "Remote Code Execution in WebAdmin Module",
+    "riskScore": {
+      "CVSSV3": {
+        "cvssV3": {
+          "version": "3.1",
+          "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+          "baseScore": 9.8,
+          "baseSeverity": "CRITICAL"
+        }
+      }
+    }
+}'
+```
+
+</Endpoint>
+
+<Endpoint
+  title="Delete vulnerability"
+  method="POST"
+  path="/vulnerability/delete"
+>
+  Remove a vulnerability from the database.
+
+### Request Body
+
+```json
+{
+  "vid": "CVE-2017-0143"
+}
+```
+
+### Parameters
+
+| Field | Type   | Description              |
+| ----- | ------ | ------------------------ |
+| `vid` | string | CVE identifier to delete |
+
+### Example Request
+
+```bash
+curl -X POST "http://localhost:9001/vulnerability/delete" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "vid": "CVE-2017-0143"
+}'
+```
+
+</Endpoint>
+
+## Next Steps
+
+- [Learn about Authentication](/docs/api/rest/authentication)
+- [View Go SDK Documentation](/docs/api/sdk/go)
+- [Read about Error Handling](/docs/api/rest/errors)
+
+export default ({ children }) => (
+  <DocsLayout meta={meta}>{children}</DocsLayout>
+);

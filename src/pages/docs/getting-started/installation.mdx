@@ -1,0 +1,133 @@
+import DocsLayout from "../../../components/DocsLayout";
+
+export const meta = {
+  title: "Installation Guide - Sirius Scan",
+  description:
+    "Learn how to install and set up Sirius Scan using Docker Compose.",
+};
+
+# Installing Sirius Scan
+
+Welcome to the Sirius Scan installation guide. Sirius is an open-source general purpose vulnerability scanner that leverages community-driven security intelligence, combining vulnerability databases, network scanning, agent-based discovery, and custom assessor analysis.
+
+## System Requirements
+
+Before installing Sirius Scan, ensure your system meets the following requirements:
+
+- **Docker Engine**: Version 20.10.0 or newer
+- **Docker Compose**: V2
+- **Git**: Latest stable version
+- **RAM**: Minimum 4GB
+- **Storage**: 10GB free disk space
+- **Network**: Active internet connection
+
+## System Architecture
+
+Sirius consists of several microservices:
+
+- **sirius-ui**: Web interface (Next.js) running on port 3000
+- **sirius-api**: Backend API service on port 9001
+- **sirius-engine**: Scanning engine on port 5174
+- **sirius-rabbitmq**: Message broker (RabbitMQ) on ports 5672/15672
+- **sirius-postgres**: Database (PostgreSQL) on port 5432
+- **sirius-valkey**: Key-value store on port 6379
+
+## Installation Steps
+
+1. **Clone the Repository**
+
+```bash
+git clone https://github.com/SiriusScan/Sirius.git
+cd Sirius
+```
+
+2. **Start the Services**
+
+```bash
+docker compose up -d
+```
+
+3. **Access the Web Interface**
+
+- Open http://localhost:3000 in your browser
+- Login with default credentials:
+  - Username: `admin`
+  - Password: `password`
+
+![Sirius Scan Login Page](/sirius-login.png)
+
+## Verifying Installation
+
+### Service Health Checks
+
+Check if all services are running:
+
+```bash
+docker compose ps
+```
+
+View service logs:
+
+```bash
+# All services
+docker compose logs
+
+# Specific service
+docker compose logs sirius-api
+```
+
+### Port Verification
+
+Ensure these ports are available and properly mapped:
+
+- Web UI: 3000 (HTTP), 3001 (Development)
+- API: 9001
+- Engine: 5174
+- RabbitMQ: 5672 (AMQP), 15672 (Management)
+- PostgreSQL: 5432
+- Valkey: 6379
+
+## Troubleshooting
+
+### Common Issues
+
+1. **Service Fails to Start**
+
+   - Check service logs: `docker compose logs <service-name>`
+   - Verify port availability: `netstat -tuln`
+   - Ensure sufficient system resources
+
+2. **Database Connection Issues**
+
+   - Verify PostgreSQL is running: `docker compose ps sirius-postgres`
+   - Check database logs: `docker compose logs sirius-postgres`
+   - Ensure correct credentials in environment variables
+
+3. **Message Queue Problems**
+   - Check RabbitMQ status: http://localhost:15672
+   - Verify RabbitMQ logs: `docker compose logs sirius-rabbitmq`
+
+### Getting Help
+
+If you encounter any issues:
+
+1. Check our [FAQ](/docs/community/faq)
+2. Join our [Discord community](/community)
+3. [Open an issue](https://github.com/SiriusScan/Sirius/issues) on GitHub
+
+## Security Notice
+
+**Important**: For production deployments, ensure you:
+
+- Change all default credentials
+- Properly secure your services
+- Review and update environment variables
+- Configure appropriate firewall rules
+
+## Next Steps
+
+- Read the [Quick Start Guide](/docs/getting-started/quick-start)
+- Learn about [Basic Scanning](/docs/guides/scanning)
+- Explore [Configuration Options](/docs/guides/configuration)
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>;

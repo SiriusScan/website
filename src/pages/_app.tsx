@@ -3,8 +3,12 @@ import Head from "next/head";
 import Footer from "~/components/Footer";
 import Header from "../components/Header";
 import "~/styles/globals.css";
+import { useRouter } from "next/router";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
+  const router = useRouter();
+  const isDocsPage = router.pathname.startsWith("/docs");
+
   return (
     <>
       <Head>
@@ -17,7 +21,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
       </Head>
       <Header />
       <Component {...pageProps} />
-      <Footer />
+      {!isDocsPage && <Footer />}
     </>
   );
 };

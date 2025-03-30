@@ -1,0 +1,217 @@
+import DocsLayout from "../../../components/DocsLayout";
+import Link from "next/link";
+import {
+  BookOpenIcon,
+  RocketLaunchIcon,
+  CommandLineIcon,
+  CubeTransparentIcon,
+  ArrowRightIcon,
+  ShieldCheckIcon,
+  ServerIcon,
+  ChartBarIcon,
+} from "@heroicons/react/24/outline";
+
+export const meta = {
+  title: "Getting Started - Sirius Scan",
+  description:
+    "Get started with Sirius Scan - An enterprise-grade open-source vulnerability scanner.",
+};
+
+<div className="space-y-8">
+  {/* Hero Section */}
+  <div className="relative mb-12 rounded-xl bg-gradient-to-br from-violet-900/20 via-violet-800/10 to-transparent p-8">
+    <div className="absolute inset-0 bg-grid-white/5 [mask-image:linear-gradient(0deg,transparent,black)]" />
+    <h1 className="mb-6 bg-gradient-to-br from-violet-200 to-violet-400 bg-clip-text text-4xl font-bold text-transparent">
+      Getting Started with Sirius Scan
+    </h1>
+    <p className="text-xl text-gray-300">
+      Welcome to Sirius Scan! This guide will help you set up and master our enterprise-grade vulnerability scanner. Whether you're new to security or an experienced professional, we'll get you scanning in minutes.
+    </p>
+    <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <div className="flex items-start space-x-2">
+        <ShieldCheckIcon className="mt-1 h-6 w-6 flex-shrink-0 text-violet-400" />
+        <span className="text-sm text-gray-300">Enterprise-grade security scanning</span>
+      </div>
+      <div className="flex items-start space-x-2">
+        <ServerIcon className="mt-1 h-6 w-6 flex-shrink-0 text-violet-400" />
+        <span className="text-sm text-gray-300">Scales from small to large infrastructures</span>
+      </div>
+      <div className="flex items-start space-x-2">
+        <ChartBarIcon className="mt-1 h-6 w-6 flex-shrink-0 text-violet-400" />
+        <span className="text-sm text-gray-300">Comprehensive vulnerability assessment</span>
+      </div>
+    </div>
+  </div>
+
+{/* Quick Start Cards */}
+
+  <div className="grid gap-6 md:grid-cols-3 mb-8">
+    <Link href="/docs/getting-started/installation" className="no-underline">
+      <div className="group relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5 p-6 transition-all hover:border-violet-600/60 hover:bg-violet-900/10">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-violet-500/10 transition-colors group-hover:bg-violet-500/20">
+          <CommandLineIcon className="h-6 w-6 text-violet-400" />
+        </div>
+        <h3 className="mb-2 text-xl font-semibold text-violet-200">Installation</h3>
+        <p className="mb-4 text-sm text-gray-400">Get up and running with Docker-based installation and initial configuration.</p>
+        <ul className="mb-4 space-y-2 text-sm text-gray-400">
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            System requirements
+          </li>
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            Docker setup
+          </li>
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            Security setup
+          </li>
+        </ul>
+        <span className="group inline-flex items-center text-violet-400 transition-colors group-hover:text-violet-300">
+          Install Now
+          <ArrowRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+
+    <Link href="/docs/getting-started/quick-start" className="no-underline">
+      <div className="group relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5 p-6 transition-all hover:border-violet-600/60 hover:bg-violet-900/10">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-violet-500/10 transition-colors group-hover:bg-violet-500/20">
+          <RocketLaunchIcon className="h-6 w-6 text-violet-400" />
+        </div>
+        <h3 className="mb-2 text-xl font-semibold text-violet-200">Quick Start</h3>
+        <p className="mb-4 text-sm text-gray-400">Learn the essential first steps and common workflows to get started quickly.</p>
+        <ul className="mb-4 space-y-2 text-sm text-gray-400">
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            First-time setup
+          </li>
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            Basic workflows
+          </li>
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            Best practices
+          </li>
+        </ul>
+        <span className="group inline-flex items-center text-violet-400 transition-colors group-hover:text-violet-300">
+          Start Learning
+          <ArrowRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+
+    <Link href="/docs/getting-started/interface-tour" className="no-underline">
+      <div className="group relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5 p-6 transition-all hover:border-violet-600/60 hover:bg-violet-900/10">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-violet-500/10 transition-colors group-hover:bg-violet-500/20">
+          <CubeTransparentIcon className="h-6 w-6 text-violet-400" />
+        </div>
+        <h3 className="mb-2 text-xl font-semibold text-violet-200">Interface Tour</h3>
+        <p className="mb-4 text-sm text-gray-400">Explore the interface and learn about all available features and tools.</p>
+        <ul className="mb-4 space-y-2 text-sm text-gray-400">
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            Dashboard overview
+          </li>
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            Scanning tools
+          </li>
+          <li className="flex items-center">
+            <span className="mr-2 h-1.5 w-1.5 rounded-full bg-violet-400" />
+            Advanced features
+          </li>
+        </ul>
+        <span className="group inline-flex items-center text-violet-400 transition-colors group-hover:text-violet-300">
+          Take the Tour
+          <ArrowRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+        </span>
+      </div>
+    </Link>
+
+  </div>
+
+{/* Learning Path */}
+
+<div className="mb-8 rounded-xl border border-violet-700/40 bg-violet-900/5 p-8">
+  <h2 className="mb-6 text-2xl font-semibold text-violet-200">
+    Recommended Learning Path
+  </h2>
+  <div className="space-y-6">
+    <div className="flex items-center space-x-4">
+      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">
+        1
+      </div>
+      <div className="flex-1">
+        <h3 className="font-medium text-violet-200">Installation</h3>
+        <p className="text-sm text-gray-400">
+          Set up your environment and configure initial settings
+        </p>
+      </div>
+    </div>
+    <div className="flex items-center space-x-4">
+      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">
+        2
+      </div>
+      <div className="flex-1">
+        <h3 className="font-medium text-violet-200">Quick Start Guide</h3>
+        <p className="text-sm text-gray-400">
+          Learn essential workflows and basic configuration
+        </p>
+      </div>
+    </div>
+    <div className="flex items-center space-x-4">
+      <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-violet-500/10 text-sm font-bold text-violet-400">
+        3
+      </div>
+      <div className="flex-1">
+        <h3 className="font-medium text-violet-200">Interface Tour</h3>
+        <p className="text-sm text-gray-400">
+          Explore all features and capabilities
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* Help Resources */}
+
+  <div className="rounded-xl border border-violet-700/40 bg-violet-900/5 p-8">
+    <h2 className="mb-6 text-2xl font-semibold text-violet-200">Getting Help</h2>
+    <div className="grid gap-6 md:grid-cols-3">
+      <a
+        href="https://discord.gg/VTjqSxkJqX"
+        className="group flex items-start space-x-3 rounded-lg border border-violet-700/40 bg-violet-900/10 p-4 transition-all hover:border-violet-600/60 hover:bg-violet-900/20 no-underline"
+      >
+        <BookOpenIcon className="h-6 w-6 text-violet-400" />
+        <div>
+          <h3 className="font-medium text-violet-200">Discord Community</h3>
+          <p className="text-sm text-gray-400">Get real-time help from the community</p>
+        </div>
+      </a>
+      <a
+        href="https://github.com/SiriusScan/Sirius/issues"
+        className="group flex items-start space-x-3 rounded-lg border border-violet-700/40 bg-violet-900/10 p-4 transition-all hover:border-violet-600/60 hover:bg-violet-900/20 no-underline"
+      >
+        <BookOpenIcon className="h-6 w-6 text-violet-400" />
+        <div>
+          <h3 className="font-medium text-violet-200">GitHub Issues</h3>
+          <p className="text-sm text-gray-400">Report bugs or request features</p>
+        </div>
+      </a>
+      <a
+        href="https://github.com/SiriusScan/Sirius"
+        className="group flex items-start space-x-3 rounded-lg border border-violet-700/40 bg-violet-900/10 p-4 transition-all hover:border-violet-600/60 hover:bg-violet-900/20 no-underline"
+      >
+        <BookOpenIcon className="h-6 w-6 text-violet-400" />
+        <div>
+          <h3 className="font-medium text-violet-200">GitHub Repository</h3>
+          <p className="text-sm text-gray-400">Contribute to the project</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+export default ({ children }) => <DocsLayout>{children}</DocsLayout>;

@@ -1,0 +1,185 @@
+import DocsLayout from "../../../components/DocsLayout";
+
+export const meta = {
+  title: "Support - Sirius Scan",
+  description: "Get help and support for Sirius Scan",
+};
+
+# Getting Support
+
+Need help with Sirius Scan? Here's how to get support from our community and maintainers.
+
+## Community Support Channels
+
+### 1. Discord Community
+
+Our [Discord server](https://discord.gg/VTjqSxkJqX) is the primary place for real-time support:
+
+- **#general**: General discussion and help
+- **#troubleshooting**: Technical support
+- **#feature-requests**: Suggest new features
+- **#announcements**: Latest updates and news
+
+### 2. GitHub Issues
+
+For bug reports and feature requests:
+
+1. Search [existing issues](https://github.com/SiriusScan/Sirius/issues)
+2. Follow issue templates
+3. Provide detailed information
+4. Stay engaged in the discussion
+
+### 3. GitHub Discussions
+
+Use [GitHub Discussions](https://github.com/SiriusScan/Sirius/discussions) for:
+
+- Q&A
+- Best practices
+- Community showcase
+- General discussion
+
+## Getting Help Effectively
+
+### 1. Before Asking
+
+- Search documentation
+- Check FAQs
+- Look through closed issues
+- Search Discord history
+
+### 2. Writing Good Support Requests
+
+Include:
+
+- Sirius Scan version
+- Operating system
+- Clear description
+- Steps to reproduce
+- Expected vs actual behavior
+- Relevant logs
+- Screenshots if applicable
+
+Example:
+
+```markdown
+**Version**: 1.2.0
+**OS**: Ubuntu 22.04
+**Description**: Scan fails when targeting IPv6 addresses
+
+**Steps**:
+
+1. Configure scan for IPv6 target
+2. Start scan
+3. Error occurs immediately
+
+**Error Log**:
+[error] Failed to initialize IPv6 scanner: unsupported protocol
+```
+
+### 3. Debug Information
+
+Gather debug info with:
+
+```bash
+sirius-scan debug info
+```
+
+This provides:
+
+- System information
+- Configuration
+- Dependencies
+- Recent logs
+
+## Common Issues
+
+### Installation Problems
+
+1. **Dependencies Missing**
+
+   - Check required Go version
+   - Verify system requirements
+   - Run dependency check
+
+2. **Permission Issues**
+
+   - Verify file permissions
+   - Check service account
+   - Review security policies
+
+3. **Network Issues**
+   - Test connectivity
+   - Check firewall rules
+   - Verify proxy settings
+
+### Scanning Issues
+
+1. **Scan Failures**
+
+   - Verify target accessibility
+   - Check rate limits
+   - Review scan options
+
+2. **Performance Problems**
+   - Adjust thread count
+   - Monitor resource usage
+   - Check network capacity
+
+### API Integration
+
+1. **Authentication**
+
+   - Verify API keys
+   - Check token expiration
+   - Review permissions
+
+2. **Rate Limiting**
+   - Monitor usage
+   - Implement backoff
+   - Review quotas
+
+## Enterprise Support
+
+For enterprise users:
+
+1. **Priority Support**
+
+   - Dedicated support channel
+   - SLA guarantees
+   - Direct maintainer access
+
+2. **Custom Solutions**
+   - Integration assistance
+   - Custom feature development
+   - Performance optimization
+
+## Contributing to Support
+
+Help improve support by:
+
+1. **Documentation**
+
+   - Report unclear docs
+   - Suggest improvements
+   - Share examples
+
+2. **Community Help**
+
+   - Answer questions
+   - Share experiences
+   - Report common issues
+
+3. **Knowledge Base**
+   - Write tutorials
+   - Create guides
+   - Share solutions
+
+## Next Steps
+
+- [Join Discord](https://discord.gg/VTjqSxkJqX)
+- [Read Contributing Guide](/docs/community/contributing)
+- [Browse Documentation](/docs)
+
+export default ({ children }) => (
+  <DocsLayout meta={meta}>{children}</DocsLayout>
+);

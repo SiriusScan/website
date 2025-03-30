@@ -1,0 +1,162 @@
+import DocsLayout from "../../../../components/DocsLayout";
+
+export const meta = {
+  title: "Error Handling - Sirius Scan API",
+  description: "Learn how to handle errors in the Sirius Scan REST API",
+};
+
+# Error Handling
+
+> **⚠️ Coming Soon:** Standardized error handling is currently under development and will be available before the v1.0 release. The current API implementation returns basic error messages.
+
+Sirius Scan will implement a comprehensive error handling system. This documentation outlines the planned error handling that will be implemented before the v1.0 release.
+
+## Planned Error Handling System
+
+The upcoming error handling system will provide:
+
+- Consistent JSON error response format
+- Detailed error codes and messages
+- Additional context in error details
+- Standard HTTP status code usage
+- Rate limiting information
+- Validation error details
+
+We recommend following this documentation's structure to prepare for the error handling system's release. Subscribe to our release notifications to be informed when standardized error handling becomes available.
+
+## Current Status
+
+The API currently provides basic error responses during the development phase. This means:
+
+- Error formats may be inconsistent
+- Limited error details are provided
+- HTTP status codes are basic
+- This is temporary and will change before the v1.0 release
+- Not recommended for production use until standardized error handling is implemented
+
+## Planned Error Response Format
+
+All API errors will follow this consistent JSON format:
+
+```json
+{
+  "error": {
+    "code": "error_code",
+    "message": "Human readable message",
+    "details": {
+      "additional": "context about the error"
+    }
+  }
+}
+```
+
+## HTTP Status Codes
+
+The API will use standard HTTP status codes to indicate the success or failure of requests:
+
+| Status Code | Description                               |
+| ----------- | ----------------------------------------- |
+| 200         | Success                                   |
+| 201         | Resource created                          |
+| 400         | Bad request - invalid parameters          |
+| 401         | Unauthorized - invalid or missing API key |
+| 403         | Forbidden - insufficient permissions      |
+| 404         | Resource not found                        |
+| 409         | Conflict - resource already exists        |
+| 422         | Validation error                          |
+| 429         | Too many requests - rate limit exceeded   |
+| 500         | Internal server error                     |
+| 503         | Service unavailable                       |
+
+## Example Error Types
+
+### Authentication Errors
+
+```json
+{
+  "error": {
+    "code": "invalid_api_key",
+    "message": "The provided API key is invalid or has expired",
+    "details": {
+      "key_id": "abc123"
+    }
+  }
+}
+```
+
+### Validation Errors
+
+```json
+{
+  "error": {
+    "code": "validation_error",
+    "message": "The request parameters are invalid",
+    "details": {
+      "fields": {
+        "ip": "Invalid IP address format",
+        "scan_type": "Must be one of: quick, full, custom"
+      }
+    }
+  }
+}
+```
+
+### Resource Not Found
+
+```json
+{
+  "error": {
+    "code": "resource_not_found",
+    "message": "The requested host was not found",
+    "details": {
+      "resource_type": "host",
+      "resource_id": "192.168.1.1"
+    }
+  }
+}
+```
+
+## Planned Error Handling Best Practices
+
+When the standardized error handling is implemented, we recommend:
+
+1. Always check HTTP status codes first
+2. Parse the error response for detailed information
+3. Handle specific error codes appropriately
+4. Implement retry logic for transient errors (429, 503)
+5. Log error details for debugging
+6. Handle rate limits gracefully using response headers
+
+## Rate Limiting
+
+Rate limiting will be implemented with the following headers:
+
+- `X-RateLimit-Limit`: Total requests allowed per window
+- `X-RateLimit-Remaining`: Remaining requests in current window
+- `X-RateLimit-Reset`: Time when the rate limit resets
+- `Retry-After`: Seconds to wait when rate limited
+
+Example rate limit error:
+
+```json
+{
+  "error": {
+    "code": "rate_limit_exceeded",
+    "message": "API rate limit exceeded",
+    "details": {
+      "limit": 100,
+      "reset_at": "2024-03-29T12:00:00Z"
+    }
+  }
+}
+```
+
+## Next Steps
+
+- [Browse API Endpoints](/docs/api/rest/endpoints)
+- [View Authentication Guide](/docs/api/rest/authentication)
+- [Go SDK Documentation](/docs/api/sdk/go)
+
+export default ({ children }) => (
+  <DocsLayout meta={meta}>{children}</DocsLayout>
+);
