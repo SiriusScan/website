@@ -7,10 +7,8 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 const flatNavigation = [
   { title: "Installation", href: "/docs/getting-started/installation" },
   { title: "Quick Start", href: "/docs/getting-started/quick-start" },
-  { title: "Scanning Guide", href: "/docs/guides/scanning" },
-  { title: "Configuration", href: "/docs/guides/configuration" },
+  { title: "Interface Tour", href: "/docs/getting-started/interface-tour" },
   { title: "API Overview", href: "/docs/api" },
-  { title: "API Reference", href: "/docs/api/reference" },
   { title: "Contributing", href: "/docs/community/contributing" },
   { title: "Support", href: "/docs/community/support" },
 ];

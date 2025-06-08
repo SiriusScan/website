@@ -251,12 +251,12 @@ const DocsIndex = () => {
                 </h2>
               </div>
               <p className="mb-4 text-gray-300">
-                Learn how to perform scans, configure settings, and get the most
+                Learn how to use the interface, perform scans, and get the most
                 out of Sirius Scan.
               </p>
-              <Link href="/docs/guides/scanning">
+              <Link href="/docs/getting-started/interface-tour">
                 <span className="group inline-flex items-center text-violet-400 transition-colors hover:text-violet-300">
-                  <span>View Guides</span>
+                  <span>Interface Tour</span>
                   <ArrowRightIcon className="ml-1 h-4 w-4 transform transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>

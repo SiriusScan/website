@@ -20,23 +20,9 @@ Before starting, ensure your setup is optimal:
    - Storage: 20GB+ free space for scan data
    - Network: Stable internet for initial setup
 
-2. **Docker Health Check**
-
-   ```bash
-   # Verify Docker is running properly
-   docker --version
-   docker compose version
-
-   # Test Docker functionality
-   docker run hello-world
-   ```
-
-3. **Repository Setup**
-   ```bash
-   # Ensure you're using the correct repository
-   git remote -v
-   # Should show: https://github.com/SiriusScan/Sirius.git
-   ```
+2. **Docker Status**
+   - Verify Docker is running: `docker --version`
+   - Ensure all services started: `docker compose ps`
 
 ## Initial Setup
 
@@ -75,32 +61,6 @@ Default credentials for your first login:
    - Configure agent communication settings
    - Verify agent connectivity
    - Set up agent authentication
-
-## Initial System Verification
-
-After installation, verify everything is working correctly:
-
-### Service Status Check
-
-```bash
-# Check all services are running
-docker compose ps
-
-# Verify UI is accessible
-curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
-# Should return: 200
-
-# Check for any service errors
-docker compose logs | grep -i error
-```
-
-### Basic Functionality Test
-
-1. **UI Access**: Navigate to http://localhost:3000
-2. **Login**: Use default credentials (admin/password)
-3. **Dashboard**: Verify dashboard loads without errors
-4. **Navigation**: Test main menu navigation
-5. **Settings**: Access and verify settings panels
 
 ## Common Workflows
 
@@ -167,7 +127,9 @@ Before exploring individual features, here are some common workflows you'll use 
    - Investigate hosts in Environment view
    - Access Terminal for system management
 
-## Troubleshooting Common Issues
+## ⚠️ Troubleshooting Common Issues
+
+_Most users won't need this section. These steps are only necessary if you experience problems after installation._
 
 ### UI Not Loading
 
@@ -199,7 +161,6 @@ docker compose restart sirius-ui
 
 - Take our [Interface Tour](/docs/getting-started/interface-tour) to learn about all features
 - Review the [comprehensive README](https://github.com/SiriusScan/Sirius/blob/main/README.md) for detailed setup instructions
-- Explore the [Docker architecture documentation](https://github.com/SiriusScan/Sirius/blob/main/documentation/README.architecture.md)
 
 ### Advanced Configuration
 
