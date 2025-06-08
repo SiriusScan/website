@@ -10,6 +10,34 @@ export const meta = {
 
 After [installing Sirius Scan](/docs/getting-started/installation), this guide will help you get started with the essential first steps. For a detailed walkthrough of the interface, see our [Interface Tour](/docs/getting-started/interface-tour).
 
+## Prerequisites Verification
+
+Before starting, ensure your setup is optimal:
+
+1. **System Resources**
+
+   - RAM: 8GB+ recommended (4GB minimum)
+   - Storage: 20GB+ free space for scan data
+   - Network: Stable internet for initial setup
+
+2. **Docker Health Check**
+
+   ```bash
+   # Verify Docker is running properly
+   docker --version
+   docker compose version
+
+   # Test Docker functionality
+   docker run hello-world
+   ```
+
+3. **Repository Setup**
+   ```bash
+   # Ensure you're using the correct repository
+   git remote -v
+   # Should show: https://github.com/SiriusScan/Sirius.git
+   ```
+
 ## Initial Setup
 
 Before diving into the interface, there are a few important steps to get started:
@@ -33,17 +61,46 @@ Default credentials for your first login:
 
    - Navigate to User Settings
    - Update your password
+   - Configure user roles if needed
 
 2. **Network Configuration**
 
    - Verify network access to target environments
    - Configure any necessary proxy settings
    - Set up network segmentation if required
+   - Test connectivity to scan targets
 
 3. **Agent Deployment** (Optional)
    - Deploy agents for continuous monitoring
    - Configure agent communication settings
    - Verify agent connectivity
+   - Set up agent authentication
+
+## Initial System Verification
+
+After installation, verify everything is working correctly:
+
+### Service Status Check
+
+```bash
+# Check all services are running
+docker compose ps
+
+# Verify UI is accessible
+curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
+# Should return: 200
+
+# Check for any service errors
+docker compose logs | grep -i error
+```
+
+### Basic Functionality Test
+
+1. **UI Access**: Navigate to http://localhost:3000
+2. **Login**: Use default credentials (admin/password)
+3. **Dashboard**: Verify dashboard loads without errors
+4. **Navigation**: Test main menu navigation
+5. **Settings**: Access and verify settings panels
 
 ## Common Workflows
 
@@ -53,20 +110,45 @@ Before exploring individual features, here are some common workflows you'll use 
 
 1. **Initial Scan**
 
-   - Configure target scope
-   - Select scan profile
+   - Configure target scope (IP ranges, domains)
+   - Select scan profile (Quick, Standard, Comprehensive)
+   - Review scan parameters
    - Launch assessment
 
-2. **Review Results**
+2. **Monitor Progress**
+
+   - Track scan progress in real-time
+   - Monitor system resource usage
+   - Review preliminary findings
+   - Handle any scan errors
+
+3. **Review Results**
 
    - Check vulnerability findings
    - Validate discoveries
-   - Prioritize remediation
+   - Prioritize remediation by risk level
+   - Export findings for analysis
 
-3. **Report Generation**
+4. **Report Generation**
    - Generate executive summary
    - Export technical details
    - Create remediation plan
+   - Schedule follow-up scans
+
+### Agent Management Workflow
+
+1. **Agent Deployment**
+
+   - Download agent packages
+   - Deploy to target systems
+   - Configure agent settings
+   - Verify connectivity
+
+2. **Monitoring**
+   - Track agent status
+   - Review agent reports
+   - Manage agent updates
+   - Handle disconnected agents
 
 ## Navigation Tips
 
@@ -74,6 +156,8 @@ Before exploring individual features, here are some common workflows you'll use 
 
    - Use the side navigation bar for main sections
    - Utilize search in the Vulnerability Navigator
+   - Bookmark frequently used pages
+   - Use keyboard shortcuts for efficiency
 
 2. **Workflow Integration**
 
@@ -81,12 +165,76 @@ Before exploring individual features, here are some common workflows you'll use 
    - Use Scan page to initiate assessments
    - Review findings in Vulnerability Navigator
    - Investigate hosts in Environment view
+   - Access Terminal for system management
+
+## Troubleshooting Common Issues
+
+### UI Not Loading
+
+```bash
+# Check UI service status
+docker compose logs sirius-ui
+
+# Restart UI service if needed
+docker compose restart sirius-ui
+```
+
+### Scan Failures
+
+1. Verify target connectivity
+2. Check firewall settings
+3. Review scan logs
+4. Ensure sufficient resources
+
+### Performance Issues
+
+1. Monitor system resources
+2. Adjust scan concurrency
+3. Check database performance
+4. Review log files for errors
 
 ## Next Steps
 
+### Essential Reading
+
 - Take our [Interface Tour](/docs/getting-started/interface-tour) to learn about all features
-- Learn about [Advanced Scanning](/docs/guides/scanning)
-- Explore [Configuration Options](/docs/guides/configuration)
-- Join our [Community](/community)
+- Review the [comprehensive README](https://github.com/SiriusScan/Sirius/blob/main/README.md) for detailed setup instructions
+- Explore the [Docker architecture documentation](https://github.com/SiriusScan/Sirius/blob/main/documentation/README.architecture.md)
+
+### Advanced Configuration
+
+- Review [Docker setup documentation](https://github.com/SiriusScan/Sirius/blob/main/documentation/README.docker.md) for production deployments
+- Check the [troubleshooting guide](https://github.com/SiriusScan/Sirius/blob/main/README.md#troubleshooting) for common issues
+- Join our [community discussions](https://github.com/SiriusScan/Sirius/discussions) for tips and support
+
+### Getting Help
+
+- [GitHub Issues](https://github.com/SiriusScan/Sirius/issues) - Report bugs or request features
+- [GitHub Discussions](https://github.com/SiriusScan/Sirius/discussions) - Ask questions and share experiences
+- [Project Documentation](https://github.com/SiriusScan/Sirius/tree/main/documentation) - Comprehensive technical guides
+
+## Security Best Practices
+
+For production deployments:
+
+1. **Credential Management**
+
+   - Change all default passwords
+   - Use strong, unique passwords
+   - Implement regular password rotation
+   - Consider multi-factor authentication
+
+2. **Network Security**
+
+   - Configure firewalls appropriately
+   - Use VPNs for remote access
+   - Implement network segmentation
+   - Monitor network traffic
+
+3. **System Hardening**
+   - Keep systems updated
+   - Monitor logs regularly
+   - Implement access controls
+   - Regular security assessments
 
 export default ({ children }) => <DocsLayout>{children}</DocsLayout>;

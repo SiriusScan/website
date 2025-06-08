@@ -17,8 +17,8 @@ Before installing Sirius Scan, ensure your system meets the following requiremen
 - **Docker Engine**: Version 20.10.0 or newer
 - **Docker Compose**: V2
 - **Git**: Latest stable version
-- **RAM**: Minimum 4GB
-- **Storage**: 10GB free disk space
+- **RAM**: Minimum 8GB (4GB absolute minimum)
+- **Storage**: 20GB free disk space (10GB minimum)
 - **Network**: Active internet connection
 
 ## System Architecture
@@ -41,9 +41,11 @@ git clone https://github.com/SiriusScan/Sirius.git
 cd Sirius
 ```
 
-2. **Start the Services**
+2. **Build and Start the Services**
 
 ```bash
+# Build all services locally (recommended)
+docker compose build --no-cache
 docker compose up -d
 ```
 
@@ -66,6 +68,13 @@ Check if all services are running:
 docker compose ps
 ```
 
+Verify UI accessibility:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
+# Should return: 200
+```
+
 View service logs:
 
 ```bash
@@ -74,6 +83,9 @@ docker compose logs
 
 # Specific service
 docker compose logs sirius-api
+
+# Check for errors
+docker compose logs | grep -i error
 ```
 
 ### Port Verification
@@ -89,6 +101,46 @@ Ensure these ports are available and properly mapped:
 
 ## Troubleshooting
 
+### Critical Docker Issues
+
+#### Issue: "pull access denied" errors
+
+**Root Cause**: Docker trying to pull non-existent images instead of building locally.
+
+**Solution**:
+
+```bash
+# Force local build instead of pull
+docker compose build --no-cache
+docker compose up -d
+```
+
+#### Issue: Container build failures
+
+**Symptoms**: bcrypt compilation errors, dependency installation failures, Node.js build issues
+
+**Solution**:
+
+```bash
+# Clear all Docker cache and rebuild
+docker compose down
+docker system prune -f
+docker compose build --no-cache
+docker compose up -d
+```
+
+#### Issue: Volume mount problems
+
+**Symptoms**: Files not updating, permission errors
+
+**Solution**:
+
+```bash
+# Check volume mounts and permissions
+docker compose config
+sudo chown -R $USER:$USER ./
+```
+
 ### Common Issues
 
 1. **Service Fails to Start**
@@ -96,38 +148,103 @@ Ensure these ports are available and properly mapped:
    - Check service logs: `docker compose logs <service-name>`
    - Verify port availability: `netstat -tuln`
    - Ensure sufficient system resources
+   - Verify Docker and Docker Compose versions
 
 2. **Database Connection Issues**
 
    - Verify PostgreSQL is running: `docker compose ps sirius-postgres`
    - Check database logs: `docker compose logs sirius-postgres`
    - Ensure correct credentials in environment variables
+   - Wait for database initialization (may take 30-60 seconds)
 
 3. **Message Queue Problems**
+
    - Check RabbitMQ status: http://localhost:15672
    - Verify RabbitMQ logs: `docker compose logs sirius-rabbitmq`
+   - Ensure RabbitMQ has sufficient memory
+
+4. **UI Access Issues**
+   - Verify sirius-ui is running: `docker compose ps sirius-ui`
+   - Check UI logs: `docker compose logs sirius-ui`
+   - Clear browser cache and cookies
+   - Try accessing from different browser/incognito mode
+
+### Performance Optimization
+
+For production deployments:
+
+- **RAM**: 8GB+ recommended for full scanning capabilities
+- **Storage**: SSD storage for better database performance
+- **Network**: Ensure adequate bandwidth for large scans
+- **CPU**: Multi-core processor recommended for concurrent scans
+
+### Complete Restart Procedure
+
+If experiencing persistent issues:
+
+```bash
+# Stop all services
+docker compose down
+
+# Remove all containers and networks
+docker compose down --volumes --remove-orphans
+
+# Clean Docker system
+docker system prune -f
+
+# Rebuild from scratch
+docker compose build --no-cache
+
+# Start services
+docker compose up -d
+
+# Monitor startup
+docker compose logs -f
+```
 
 ### Getting Help
 
 If you encounter any issues:
 
-1. Check our [FAQ](/docs/community/faq)
-2. Join our [Discord community](/community)
-3. [Open an issue](https://github.com/SiriusScan/Sirius/issues) on GitHub
+1. Check our [troubleshooting documentation](https://github.com/SiriusScan/Sirius/blob/main/README.md#troubleshooting) in the main repository
+2. Review [open issues](https://github.com/SiriusScan/Sirius/issues) on GitHub for similar problems
+3. [Open a new issue](https://github.com/SiriusScan/Sirius/issues/new) with detailed error logs
+4. Join our [community discussions](https://github.com/SiriusScan/Sirius/discussions)
 
 ## Security Notice
 
 **Important**: For production deployments, ensure you:
 
-- Change all default credentials
-- Properly secure your services
+- Change all default credentials immediately
+- Properly secure your services with firewalls
 - Review and update environment variables
-- Configure appropriate firewall rules
+- Configure appropriate network access controls
+- Regularly update to latest versions
+- Monitor logs for security events
+
+## Development Setup
+
+For developers wanting to contribute:
+
+```bash
+# Clone with development branches
+git clone https://github.com/SiriusScan/Sirius.git
+cd Sirius
+
+# Start in development mode with hot reloading
+docker compose -f docker-compose.yaml -f docker-compose.override.yaml up -d
+
+# Access development tools
+# UI with hot reload: http://localhost:3000
+# RabbitMQ Management: http://localhost:15672
+# Database: localhost:5432
+```
 
 ## Next Steps
 
 - Read the [Quick Start Guide](/docs/getting-started/quick-start)
-- Learn about [Basic Scanning](/docs/guides/scanning)
-- Explore [Configuration Options](/docs/guides/configuration)
+- Take the [Interface Tour](/docs/getting-started/interface-tour)
+- Review the [comprehensive documentation](https://github.com/SiriusScan/Sirius/blob/main/README.md) in the main repository
+- Explore the [Docker architecture guide](https://github.com/SiriusScan/Sirius/blob/main/documentation/README.architecture.md)
 
 export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
