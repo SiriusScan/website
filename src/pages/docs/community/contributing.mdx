@@ -39,69 +39,140 @@ Sirius consists of several microservices:
 
 Before you begin contributing, ensure you have:
 
-- Docker Engine 20.10.0 or newer
-- Docker Compose V2
-- Git
-- 4GB RAM minimum
-- 10GB free disk space
-- Node.js 16+ (for UI development)
-- Go 1.19+ (for backend development)
+- **Git**: Version control system
+- **Docker Engine**: 20.10.0+ with Docker Compose V2
+- **Go**: 1.21+ for backend development
+- **Node.js**: 20+ for frontend development
+- **System Requirements**: 8GB RAM minimum, 20GB free disk space
+- **Understanding of Docker**: Multi-stage builds and volume mounting
 
 ## Development Setup
 
-1. **Fork and Clone**
+### Step 1: Clone the Main Repository
 
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/Sirius.git
-   cd Sirius
-   ```
+```bash
+git clone https://github.com/SiriusScan/Sirius.git
+cd Sirius
+```
 
-2. **Start Services**
+### Step 2: Clone Component Repositories (Optional)
 
-   ```bash
-   # Start all services
-   docker compose up -d
+Only clone the components you plan to develop:
 
-   # Verify services are running
-   docker compose ps
-   ```
+```bash
+# Create development directory structure
+mkdir -p ../minor-projects && cd ../minor-projects
 
-3. **Install Dependencies**
+# Clone components you want to develop
+git clone https://github.com/SiriusScan/go-api.git          # REST API backend
+git clone https://github.com/SiriusScan/app-scanner.git    # Scanning engine
+git clone https://github.com/SiriusScan/app-terminal.git   # Terminal service
+git clone https://github.com/SiriusScan/app-agent.git      # Remote agents
+git clone https://github.com/SiriusScan/sirius-nse.git     # NSE scripts
+git clone https://github.com/SiriusScan/app-system-monitor.git  # System monitor
+git clone https://github.com/SiriusScan/app-administrator.git   # Administrator service
 
-   ```bash
-   # Backend dependencies
-   go mod download
+cd ../Sirius
+```
 
-   # Frontend dependencies
-   cd website
-   npm install
-   ```
+### Step 3: Configure Development Mode
 
-4. **Configure Environment**
+Edit `docker-compose.dev.yaml` and uncomment volume mounts for components you're developing:
 
-   The project uses environment variables configured in docker-compose.yaml:
+```yaml
+services:
+  sirius-engine:
+    volumes:
+      # Uncomment ONLY for repositories you have cloned:
+      # - ../minor-projects/app-agent:/app-agent-src        # Agent development
+      # - ../minor-projects/app-scanner:/app-scanner-src    # Scanner development
+      # - ../minor-projects/app-terminal:/app-terminal-src  # Terminal development
+      # - ../minor-projects/go-api:/go-api                  # API development
+      # - ../minor-projects/app-system-monitor:/system-monitor  # Monitor development
+      # - ../minor-projects/app-administrator:/app-administrator  # Admin development
+```
 
-   ```yaml
-   # Database configuration
-   POSTGRES_USER: postgres
-   POSTGRES_PASSWORD: postgres
-   POSTGRES_DB: sirius
+### Step 4: Start Development Environment
 
-   # API configuration
-   API_PORT: 9001
-   DB_HOST: sirius-postgres
-   ```
+```bash
+# Development mode requires BOTH config files
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build
 
-5. **Run Tests**
+# Or for a clean start
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml down -v
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d
+```
 
-   ```bash
-   # Run all tests
-   ./run_tests.sh --all
+**⚠️ Important**: The `docker-compose.dev.yaml` file is an override file, not a standalone configuration. You must specify both the base configuration (`docker-compose.yaml`) and the development overrides (`docker-compose.dev.yaml`) when starting services in development mode.
 
-   # Run specific test suites
-   ./run_tests.sh --models  # Model tests
-   ./run_tests.sh --ui      # UI tests
-   ```
+### Development Features
+
+- **🔥 Hot Reload**: Live code reloading with Air for Go services
+- **📝 Live Editing**: Frontend changes reflect immediately
+- **🐛 Debug Mode**: Detailed logging and error reporting
+- **🔍 Development Tools**: Access to Go toolchain and debugging utilities
+
+## Development Workflow
+
+### Daily Development Commands
+
+```bash
+# View real-time logs
+docker compose logs -f sirius-engine
+
+# Access development container
+docker exec -it sirius-engine bash
+
+# Check live reload status
+docker exec sirius-engine ps aux | grep air
+
+# Restart specific service
+docker restart sirius-engine
+
+# Rebuild with changes (development mode)
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d --build
+
+# Stop development environment
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml down
+
+# Clean restart (removes volumes)
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml down -v
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d
+```
+
+### Working with Individual Components
+
+#### Backend Development (Go)
+
+```bash
+# Access the container
+docker exec -it sirius-engine bash
+
+# Run tests
+go test ./...
+
+# Build manually
+go build -o binary main.go
+
+# Check dependencies
+go mod tidy
+```
+
+#### Frontend Development (Next.js)
+
+```bash
+# Access the UI container
+docker exec -it sirius-ui bash
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build production
+npm run build
+```
 
 ## Ways to Contribute
 
@@ -211,23 +282,64 @@ Guidelines:
    - Screenshots (if UI changes)
    - Test results
 
-## Testing
+## Testing & Quality Assurance
 
-The project includes comprehensive testing:
+### Running Tests
 
 ```bash
-# Backend tests
-go test ./...
+# Run comprehensive test suite
+cd testing
+make test-all
 
-# Frontend tests
-npm test
+# Run specific test categories
+make test-build          # Container build tests
+make test-health         # Health check tests
+make test-integration    # Integration tests
 
-# Integration tests
-./run_tests.sh --integration
-
-# Reset test database
-./run_tests.sh --reset
+# Run documentation validation
+make lint-docs           # Full documentation linting
+make lint-docs-quick     # Quick documentation checks
+make lint-index          # Index completeness check
 ```
+
+### Manual Testing
+
+```bash
+# Test scanner functionality
+docker exec sirius-engine nmap --version
+docker exec sirius-engine nmap -p 80 127.0.0.1
+
+# Test API endpoints
+curl http://localhost:9001/health
+curl http://localhost:9001/api/v1/system/health
+
+# Test database connection
+docker exec sirius-postgres pg_isready
+docker exec sirius-postgres psql -U postgres -d sirius -c "SELECT version();"
+
+# Test RabbitMQ
+docker exec sirius-rabbitmq rabbitmqctl status
+docker exec sirius-rabbitmq rabbitmqctl list_queues
+```
+
+### Pre-Commit Testing
+
+Before committing code, always run:
+
+```bash
+# Run all validation checks
+cd testing
+make validate-all
+
+# Or use the pre-commit hook (automatically runs on commit)
+git commit -m "your commit message"
+```
+
+The pre-commit hook automatically runs:
+
+- Documentation linting (quick validation)
+- Index completeness check
+- Build validation (smart testing based on branch)
 
 ## Troubleshooting
 
@@ -266,12 +378,53 @@ We value all contributions and recognize them through:
 - Community spotlights
 - Special Discord badges
 
+## Additional Resources
+
+### Essential Documentation
+
+- [Development Workflow](https://github.com/SiriusScan/Sirius/blob/main/documentation/dev/README.development.md) - Complete development guide
+- [Container Testing](https://github.com/SiriusScan/Sirius/blob/main/documentation/dev/test/README.container-testing.md) - Testing system
+- [Git Operations](https://github.com/SiriusScan/Sirius/blob/main/documentation/dev/operations/README.git-operations.md) - Git workflow
+- [Architecture](https://github.com/SiriusScan/Sirius/blob/main/documentation/dev/architecture/README.architecture.md) - System design
+
+### Component Repositories
+
+- [go-api](https://github.com/SiriusScan/go-api) - REST API backend
+- [app-scanner](https://github.com/SiriusScan/app-scanner) - Scanning engine
+- [app-terminal](https://github.com/SiriusScan/app-terminal) - Terminal service
+- [app-agent](https://github.com/SiriusScan/app-agent) - Remote agents
+- [sirius-nse](https://github.com/SiriusScan/sirius-nse) - NSE scripts
+- [app-system-monitor](https://github.com/SiriusScan/app-system-monitor) - System monitor
+- [app-administrator](https://github.com/SiriusScan/app-administrator) - Admin service
+
+## Learning Path
+
+### For New Contributors
+
+1. **Set up development environment** (this guide)
+2. **Read architecture documentation**
+3. **Run the test suite** to understand coverage
+4. **Pick a "good first issue"** from GitHub
+5. **Submit your first PR**
+
+### For Regular Contributors
+
+1. **Understand the codebase** deeply
+2. **Review others' PRs** to learn
+3. **Propose new features** via issues
+4. **Help with documentation**
+5. **Mentor new contributors**
+
 ## Next Steps
 
 - [Join Discord Community](https://discord.gg/VTjqSxkJqX)
 - [Browse Open Issues](https://github.com/SiriusScan/Sirius/issues)
 - [Read API Documentation](/docs/api/rest/endpoints)
 - [View Support Guide](/docs/community/support)
+
+---
+
+Thank you for contributing to Sirius Scan! Your efforts help make security scanning accessible to everyone.
 
 export default ({ children }) => (
   <DocsLayout meta={meta}>{children}</DocsLayout>

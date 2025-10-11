@@ -22,6 +22,51 @@ The Dashboard serves as your central command center, providing real-time insight
 
 ![Sirius Scan Dashboard](/dash-dark.gif)
 
+## System Monitoring Dashboard (New in v0.4.0)
+
+The System Monitoring Dashboard provides comprehensive observability into the health and performance of your Sirius Scan deployment. Accessible at `/system-monitor`, this interface is essential for maintaining optimal system operation and quickly identifying issues.
+
+### Real-time Health Monitoring
+
+Monitor the status of all microservices in real-time:
+
+- **sirius-ui**: Web interface health and availability
+- **sirius-api**: Backend API service status
+- **sirius-engine**: Scanning engine operational state
+- **sirius-postgres**: Database connectivity and health
+- **sirius-valkey**: Cache layer performance
+- **sirius-rabbitmq**: Message queue status and throughput
+
+### Centralized Logging
+
+Access unified logs from all services in one location:
+
+- Filter logs by service, severity, and time range
+- Search through log entries with advanced filtering
+- Export logs for external analysis
+- Real-time log streaming with automatic updates
+- Historical log retention and management
+
+### Performance Metrics
+
+Track container resource utilization and system performance:
+
+- **CPU Usage**: Monitor processor utilization across containers
+- **Memory Consumption**: Track RAM usage and identify memory leaks
+- **Disk I/O**: Monitor storage performance and capacity
+- **Network Traffic**: Track bandwidth usage and connection patterns
+- **Response Times**: Monitor API and service latency
+- **Resource Trends**: View historical performance data
+
+### Key Features
+
+- Automatic log retention policies (7 days for logs, 24 hours for metrics)
+- Efficient pagination for large datasets
+- Real-time updates with optimized polling
+- Advanced filtering and search capabilities
+- Export functionality for external monitoring tools
+- Performance optimization for minimal system impact
+
 ## Scanning Interface
 
 The Scan page is the heart of Sirius Scan's functionality, where you have complete control over vulnerability assessments. This powerful interface allows you to not only initiate and monitor scans but also fine-tune your scanning strategy. The visual module editor enables you to customize scanning parameters, create specialized workflows, and manage automated scan schedules. You can view real-time scan progress, adjust scan intensity on the fly, and access detailed scan configurations all from one centralized location.

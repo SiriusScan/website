@@ -14,12 +14,11 @@ Welcome to the Sirius Scan installation guide. Sirius is an open-source general 
 
 Before installing Sirius Scan, ensure your system meets the following requirements:
 
-- **Docker Engine**: Version 20.10.0 or newer
-- **Docker Compose**: V2
-- **Git**: Latest stable version
-- **RAM**: Minimum 8GB (4GB absolute minimum)
-- **Storage**: 20GB free disk space (10GB minimum)
-- **Network**: Active internet connection
+- **Docker Engine**: Version 20.10.0 or newer with Docker Compose V2
+- **System Requirements**: 4GB RAM minimum, 10GB free disk space
+- **Network Access**: Internet connectivity for vulnerability database updates
+- **Supported Platforms**: Linux, macOS, Windows (with WSL2)
+- **Git**: Latest stable version recommended
 
 ## System Architecture
 
@@ -32,24 +31,51 @@ Sirius consists of several microservices:
 - **sirius-postgres**: Database (PostgreSQL) on port 5432
 - **sirius-valkey**: Key-value store on port 6379
 
-## Installation Steps
+## Installation Options
 
-1. **Clone the Repository**
+Sirius Scan offers three installation configurations to suit different use cases:
+
+### Option 1: Standard Setup (Recommended for Most Users)
+
+The default configuration provides a complete scanning environment:
 
 ```bash
 git clone https://github.com/SiriusScan/Sirius.git
 cd Sirius
-```
-
-2. **Start the Services**
-
-```bash
 docker compose up -d
 ```
 
-This command downloads pre-built Docker images and starts all services automatically.
+This provides:
+- ✅ Complete scanning capabilities out-of-the-box
+- ✅ Pre-configured vulnerability databases
+- ✅ No additional setup required
+- ✅ Production-ready security scanning
 
-3. **Access the Web Interface**
+### Option 2: User-Focused Setup (Simplified)
+
+For the cleanest experience without development tooling:
+
+```bash
+git clone https://github.com/SiriusScan/Sirius.git
+cd Sirius
+docker compose -f docker-compose.user.yaml up -d
+```
+
+### Option 3: Production Deployment
+
+For production environments with optimized performance:
+
+```bash
+git clone https://github.com/SiriusScan/Sirius.git
+cd Sirius
+docker compose -f docker-compose.production.yaml up -d
+```
+
+**⚠️ Security Notice**: For production deployments, change default credentials immediately.
+
+## Access the Web Interface
+
+After starting the services:
 
 - Open http://localhost:3000 in your browser
 - Login with default credentials:

@@ -66,6 +66,29 @@ Default credentials for your first login:
 
 Before exploring individual features, here are some common workflows you'll use in Sirius Scan:
 
+### System Monitoring Workflow (New in v0.4.0)
+
+1. **Access Monitoring Dashboard**
+
+   - Navigate to `/system-monitor` in the UI
+   - View real-time service health status
+   - Monitor container resource utilization
+   - Review centralized system logs
+
+2. **Health Check Monitoring**
+
+   - Monitor all microservices health (UI, API, Engine, Database, Cache, Message Queue)
+   - Identify service issues early with real-time alerts
+   - Track service uptime and response times
+   - Review historical health trends
+
+3. **Performance Analysis**
+
+   - Monitor CPU, memory, disk, and network usage
+   - Track container resource consumption
+   - Identify performance bottlenecks
+   - Optimize resource allocation
+
 ### Vulnerability Assessment Workflow
 
 1. **Initial Scan**
@@ -150,10 +173,12 @@ docker compose restart sirius-ui
 
 ### Performance Issues
 
-1. Monitor system resources
-2. Adjust scan concurrency
-3. Check database performance
-4. Review log files for errors
+1. Access the System Monitor Dashboard (`/system-monitor`)
+2. Review real-time resource metrics
+3. Check centralized logs for errors
+4. Adjust scan concurrency if needed
+5. Monitor database and cache performance
+6. Verify container resource limits
 
 ## Next Steps
 

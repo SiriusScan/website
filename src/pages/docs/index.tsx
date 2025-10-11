@@ -308,21 +308,35 @@ const DocsIndex = () => {
           {/* Latest Updates */}
           <div className="mt-12">
             <h2 className="mb-4 text-2xl font-semibold text-violet-200">
-              Latest Updates
+              Latest Updates - v0.4.0
             </h2>
             <div className="rounded-lg border border-violet-700/40 bg-violet-900/5 p-4">
               <div className="space-y-4">
                 <div className="flex items-start space-x-4">
                   <div className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-500/10">
-                    <StarIcon className="h-4 w-4 text-violet-400" />
+                    <ChartBarIcon className="h-4 w-4 text-violet-400" />
                   </div>
                   <div>
                     <h3 className="font-medium text-violet-200">
-                      New Feature: Advanced Scanning
+                      System Monitoring & Observability
                     </h3>
                     <p className="mt-1 text-sm text-gray-400">
-                      Added support for custom scan patterns and improved
-                      detection algorithms.
+                      Real-time health monitoring, centralized logging, and
+                      performance metrics dashboard for all components.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-4">
+                  <div className="flex h-6 w-6 items-center justify-center rounded-full bg-violet-500/10">
+                    <ShieldCheckIcon className="h-4 w-4 text-violet-400" />
+                  </div>
+                  <div>
+                    <h3 className="font-medium text-violet-200">
+                      Enhanced Reliability
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-400">
+                      Improved container builds, better error handling, and
+                      comprehensive automated testing.
                     </p>
                   </div>
                 </div>
@@ -332,10 +346,11 @@ const DocsIndex = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-violet-200">
-                      Documentation Update
+                      Production-Ready Configuration
                     </h3>
                     <p className="mt-1 text-sm text-gray-400">
-                      Expanded API reference with new endpoints and examples.
+                      New deployment options including user-focused and
+                      production configurations with optimized performance.
                     </p>
                   </div>
                 </div>
