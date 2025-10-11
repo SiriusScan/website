@@ -3,30 +3,68 @@ const VGPTSection: React.FC = () => {
     <div className="bg-gradient-to-b from-[#15162c] to-blue-500 py-16 text-white">
       <div className="container mx-auto px-4 text-center">
         <h2 className="mb-8 text-4xl text-amber-300">
-          Your Vulnerability Database should work for you. With VulnerabilityGPT
-          it can!
+          Production-Ready Deployment Options for Every Use Case
         </h2>
         <p className="mb-8 text-xl text-violet-200">
-          The Sirius Vulnerability Database (SVDB) is powered by generative AI
-          using VulnerabilityGPT. Through deep programmatic analysis vGPT is
-          able to overcome most hallucination problems and arrives upon the most
-          modern and accurate vulnerability database in the world.
+          Sirius Scan offers flexible deployment configurations tailored to your needs. 
+          Choose from Standard, User-Focused, or Production setups with comprehensive 
+          Docker Compose orchestration. Get started in minutes with one command.
         </p>
+
+        {/* Deployment Options Grid */}
+        <div className="mb-12 grid gap-6 md:grid-cols-3">
+          <div className="rounded-lg border border-violet-700/40 bg-violet-900/10 p-6">
+            <h3 className="mb-3 text-2xl font-semibold text-violet-200">Standard Setup</h3>
+            <p className="mb-4 text-gray-300">Complete scanning capabilities out-of-the-box with pre-configured vulnerability databases</p>
+            <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">docker compose up -d</code>
+          </div>
+          <div className="rounded-lg border border-violet-700/40 bg-violet-900/10 p-6">
+            <h3 className="mb-3 text-2xl font-semibold text-violet-200">User-Focused</h3>
+            <p className="mb-4 text-gray-300">Simplified experience without development tooling for production environments</p>
+            <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">docker compose -f docker-compose.user.yaml up -d</code>
+          </div>
+          <div className="rounded-lg border border-violet-700/40 bg-violet-900/10 p-6">
+            <h3 className="mb-3 text-2xl font-semibold text-violet-200">Production</h3>
+            <p className="mb-4 text-gray-300">Optimized performance configuration for enterprise deployments</p>
+            <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">docker compose -f docker-compose.production.yaml up -d</code>
+          </div>
+        </div>
+
         <div className="mb-8">
           <img
             src="vgpt.png"
-            alt="Vulnerability GPT Screenshot"
+            alt="Sirius Scan Architecture"
             className="mx-auto rounded-lg"
           />
         </div>
-        <div>
-          <p className="text-lg font-light">
-            Artificial Intelligence is a game-changer for many open source
-            projects. For Sirius Scan it is through VulnerabilityGPT that we are
-            able to produce more detailed vulnerability reporting than major
-            commercial organizations such as Rapid7 and Tenable.
-          </p>
+
+        {/* System Requirements */}
+        <div className="mb-12">
+          <h3 className="mb-6 text-3xl font-semibold text-amber-300">System Requirements</h3>
+          <div className="mx-auto max-w-4xl text-left">
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="rounded-lg border border-violet-700/40 bg-violet-900/10 p-6">
+                <h4 className="mb-3 text-xl font-semibold text-violet-200">Minimum Requirements</h4>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• Docker Engine 20.10.0+ with Compose V2</li>
+                  <li>• 4GB RAM minimum</li>
+                  <li>• 10GB free disk space</li>
+                  <li>• Linux, macOS, Windows (WSL2)</li>
+                </ul>
+              </div>
+              <div className="rounded-lg border border-violet-700/40 bg-violet-900/10 p-6">
+                <h4 className="mb-3 text-xl font-semibold text-violet-200">Enterprise Scale</h4>
+                <ul className="space-y-2 text-gray-300">
+                  <li>• 8+ CPU cores recommended</li>
+                  <li>• 16GB+ RAM for large environments</li>
+                  <li>• 500GB+ storage for scan data</li>
+                  <li>• High-speed network connectivity</li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
+
         <EaseOfUseSection />
         <GetStartedBlock />
       </div>

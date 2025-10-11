@@ -26,10 +26,16 @@ const FeaturesSection: React.FC = () => {
       image: require("../../public/svdb.gif"),
     },
     {
-      title: "Modular Scanning Engine",
-      subtitle: "Your favorite scanners, plus one, then enhanced!",
-      description: "The Sirius Scan engine is modular and integrates with the best open source scanners including Rustscan, Nmap Scripting Engine and Nuclei. Sirius also includes its own customizable scanner, Howl.",
+      title: "Enterprise-Grade Architecture",
+      subtitle: "Microservices-based design built for scale and reliability",
+      description: "Sirius Scan leverages a modern microservices architecture with Next.js frontend, Go backend services, and robust infrastructure including PostgreSQL, RabbitMQ, and Valkey. The modular engine integrates with industry-standard tools like Nmap, RustScan, and NSE scripts for comprehensive vulnerability detection.",
       image: require("../../public/scanningEngine.png"),
+    },
+    {
+      title: "System Monitoring & Observability",
+      subtitle: "Real-time health monitoring and centralized logging",
+      description: "New in v0.4.0: Comprehensive system monitoring with real-time service health checks, centralized log collection, and performance metrics tracking. Monitor CPU, memory, disk, and network usage across all containers with automatic log retention and advanced filtering capabilities.",
+      image: require("../../public/dash-dark.gif"),
     },
   ];
 
