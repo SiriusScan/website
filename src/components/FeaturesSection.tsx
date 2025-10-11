@@ -21,26 +21,29 @@ const FeaturesSection: React.FC = () => {
     {
       title: "Vulnerability Discovery and Remediation (VDR)",
       subtitle:
-      "Don't be passive, hunt down vulnerabilities wherever they may be.",
-      description: "With its powerful agent Sirius Scan makes interacting with vulnerabilities a breeze. Are you looking to script specialized discovery? How about automate validation? Exploitation? Sirius Scan has you covered.",
+        "Don't be passive, hunt down vulnerabilities wherever they may be.",
+      description:
+        "With its powerful agent Sirius Scan makes interacting with vulnerabilities a breeze. Are you looking to script specialized discovery? How about automate validation? Exploitation? Sirius Scan has you covered.",
       image: require("../../public/svdb.gif"),
     },
     {
       title: "Enterprise-Grade Architecture",
       subtitle: "Microservices-based design built for scale and reliability",
-      description: "Sirius Scan leverages a modern microservices architecture with Next.js frontend, Go backend services, and robust infrastructure including PostgreSQL, RabbitMQ, and Valkey. The modular engine integrates with industry-standard tools like Nmap, RustScan, and NSE scripts for comprehensive vulnerability detection.",
+      description:
+        "Sirius Scan leverages a modern microservices architecture with Next.js frontend, Go backend services, and robust infrastructure including PostgreSQL, RabbitMQ, and Valkey. The modular engine integrates with industry-standard tools like Nmap, RustScan, and NSE scripts for comprehensive vulnerability detection.",
       image: require("../../public/scanningEngine.png"),
     },
     {
       title: "System Monitoring & Observability",
       subtitle: "Real-time health monitoring and centralized logging",
-      description: "New in v0.4.0: Comprehensive system monitoring with real-time service health checks, centralized log collection, and performance metrics tracking. Monitor CPU, memory, disk, and network usage across all containers with automatic log retention and advanced filtering capabilities.",
+      description:
+        "New in v0.4.0: Comprehensive system monitoring with real-time service health checks, centralized log collection, and performance metrics tracking. Monitor CPU, memory, disk, and network usage across all containers with automatic log retention and advanced filtering capabilities.",
       image: require("../../public/dash-dark.gif"),
     },
   ];
 
   return (
-    <div className="container mx-auto bg-[#15162c] px-4 py-16 text-white mt-[-1px]">
+    <div className="container mx-auto mt-[-1px] bg-[#15162c] px-4 py-16 text-white">
       <h2 className="mb-8 text-center text-4xl text-violet-200 ">
         A Tactical Vulnerability Scanner. One Dedicated To You, The Operator.
       </h2>
