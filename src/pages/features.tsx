@@ -223,7 +223,8 @@ export default function Features() {
                 </span>
               </div>
               <p className="mt-4 text-lg text-gray-300">
-                Comprehensive real-time monitoring, centralized logging, and performance metrics for maintaining optimal system health.
+                Comprehensive real-time monitoring, centralized logging, and
+                performance metrics for maintaining optimal system health.
               </p>
             </div>
 
@@ -235,8 +236,13 @@ export default function Features() {
                       <ShieldCheckIcon className="h-6 w-6 text-violet-400" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-violet-200">Real-time Health Monitoring</h4>
-                      <p className="mt-1 text-gray-400">Monitor all microservices with live health checks for UI, API, Engine, Database, Cache, and Message Queue.</p>
+                      <h4 className="text-lg font-semibold text-violet-200">
+                        Real-time Health Monitoring
+                      </h4>
+                      <p className="mt-1 text-gray-400">
+                        Monitor all microservices with live health checks for
+                        UI, API, Engine, Database, Cache, and Message Queue.
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -244,8 +250,13 @@ export default function Features() {
                       <CommandLineIcon className="h-6 w-6 text-violet-400" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-violet-200">Centralized Logging</h4>
-                      <p className="mt-1 text-gray-400">Unified log collection from all services with advanced filtering, search, and export capabilities.</p>
+                      <h4 className="text-lg font-semibold text-violet-200">
+                        Centralized Logging
+                      </h4>
+                      <p className="mt-1 text-gray-400">
+                        Unified log collection from all services with advanced
+                        filtering, search, and export capabilities.
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
@@ -253,8 +264,13 @@ export default function Features() {
                       <ChartBarIcon className="h-6 w-6 text-violet-400" />
                     </div>
                     <div>
-                      <h4 className="text-lg font-semibold text-violet-200">Performance Metrics</h4>
-                      <p className="mt-1 text-gray-400">Track CPU, memory, disk, and network usage across all containers with historical trend analysis.</p>
+                      <h4 className="text-lg font-semibold text-violet-200">
+                        Performance Metrics
+                      </h4>
+                      <p className="mt-1 text-gray-400">
+                        Track CPU, memory, disk, and network usage across all
+                        containers with historical trend analysis.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -294,7 +310,8 @@ export default function Features() {
                 Terminal Interface
               </h2>
               <p className="mt-4 text-lg text-gray-300">
-                PowerShell-based command interface for advanced operations and agent management.
+                PowerShell-based command interface for advanced operations and
+                agent management.
               </p>
             </div>
 

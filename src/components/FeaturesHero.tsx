@@ -14,14 +14,16 @@ const FeaturesHero: React.FC = () => {
               </span>
             </div>
             <h1 className="mb-6 text-4xl font-bold text-amber-300">
-              Enterprise-Grade Vulnerability Scanning with Real-Time Observability
+              Enterprise-Grade Vulnerability Scanning with Real-Time
+              Observability
             </h1>
             <p className="mb-8 text-xl font-light text-violet-100">
-              Sirius Scan combines powerful network scanning with comprehensive system monitoring. 
-              Built on a modern microservices architecture, it integrates industry-standard tools 
-              like Nmap and RustScan with real-time health monitoring, centralized logging, and 
-              performance metrics. Get complete visibility into both your security posture and 
-              system health in one unified platform.
+              Sirius Scan combines powerful network scanning with comprehensive
+              system monitoring. Built on a modern microservices architecture,
+              it integrates industry-standard tools like Nmap and RustScan with
+              real-time health monitoring, centralized logging, and performance
+              metrics. Get complete visibility into both your security posture
+              and system health in one unified platform.
             </p>
             <div className="flex gap-4">
               <Link

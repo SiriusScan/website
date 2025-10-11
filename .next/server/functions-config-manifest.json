@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "functions": {
+    "/docs/api/rest/authentication": {},
+    "/docs/api/rest/endpoints": {},
+    "/docs/api/rest/errors": {},
+    "/docs/api/sdk/go": {},
+    "/docs/api/sdk/python": {},
+    "/docs/community/contributing": {},
+    "/docs/community/support": {},
+    "/docs/getting-started/installation": {},
+    "/docs/getting-started": {},
+    "/docs/getting-started/interface-tour": {},
+    "/docs/getting-started/quick-start": {}
+  }
+}

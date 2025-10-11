@@ -33,11 +33,11 @@ Sirius consists of several microservices:
 
 ## Installation Options
 
-Sirius Scan offers three installation configurations to suit different use cases:
+Sirius Scan offers two deployment modes to suit different use cases:
 
-### Option 1: Standard Setup (Recommended for Most Users)
+### Option 1: Standard Mode (Recommended for Most Users)
 
-The default configuration provides a complete scanning environment:
+The default configuration provides a production-ready scanning environment:
 
 ```bash
 git clone https://github.com/SiriusScan/Sirius.git
@@ -50,28 +50,27 @@ This provides:
 - ✅ Pre-configured vulnerability databases
 - ✅ No additional setup required
 - ✅ Production-ready security scanning
-
-### Option 2: User-Focused Setup (Simplified)
-
-For the cleanest experience without development tooling:
-
-```bash
-git clone https://github.com/SiriusScan/Sirius.git
-cd Sirius
-docker compose -f docker-compose.user.yaml up -d
-```
-
-### Option 3: Production Deployment
-
-For production environments with optimized performance:
-
-```bash
-git clone https://github.com/SiriusScan/Sirius.git
-cd Sirius
-docker compose -f docker-compose.production.yaml up -d
-```
+- ✅ Optimized performance
 
 **⚠️ Security Notice**: For production deployments, change default credentials immediately.
+
+### Option 2: Development Mode (For Contributors)
+
+For active development with hot-reloading and debugging tools:
+
+```bash
+git clone https://github.com/SiriusScan/Sirius.git
+cd Sirius
+docker compose -f docker-compose.dev.yaml up -d
+```
+
+This includes:
+- ✅ Volume mounts for live code changes
+- ✅ Hot-reloading for frontend (Next.js) and backend (Air)
+- ✅ Development debugging tools
+- ✅ Detailed logging for troubleshooting
+
+**Note**: Development mode is designed for contributors. Most users should use Standard Mode.
 
 ## Access the Web Interface
 
