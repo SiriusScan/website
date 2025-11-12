@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SiriusIcon from "./icons/SiriusIcon";
 
 const FooterSection = () => {
   const footerLinks = [
@@ -14,15 +15,40 @@ const FooterSection = () => {
       <div className="container mx-auto grid grid-cols-1 gap-8 md:grid-cols-3">
         {/* Logo and Tagline */}
         <div className="flex flex-col items-center justify-center">
-          <Image
-            src="/sirius-logo400w.png"
-            alt="Sirius Scan"
-            width={320}
-            height={0}
-            className=""
-          />
-          <p className="mt-4 text-xl font-extralight">
+          <div className="mb-3 flex items-center gap-2">
+            <SiriusIcon
+              width={32}
+              height={32}
+              fill="white"
+              className="transition-opacity hover:opacity-80"
+            />
+            <div className="flex items-baseline gap-2">
+              <h1
+                className="text-2xl font-black tracking-[0.15em] text-white drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                SIRIUS
+              </h1>
+              <h2
+                className="text-xl font-light tracking-[0.3em] text-cyan-400 drop-shadow-[0_0_6px_rgba(6,182,212,0.5)]"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                SCAN
+              </h2>
+            </div>
+          </div>
+          <p className="mt-2 text-base font-extralight">
             Empowering Cybersecurity, One Scan at a Time.
+          </p>
+          <p className="mt-2 text-xs text-gray-400">
+            <a
+              href="https://github.com/SiriusScan/Sirius/blob/main/sirius-ui/docs/LOGO_FONT_STYLE_GUIDE.md"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-violet-300"
+            >
+              View Style Guide
+            </a>
           </p>
         </div>
 

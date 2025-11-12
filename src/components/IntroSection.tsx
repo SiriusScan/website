@@ -14,20 +14,35 @@ const IntroSection: React.FC = () => {
 
   return (
     <div
-      className={`pb-6 pt-20 text-white ${
+      className={`relative pb-6 pt-20 text-white ${
         darkMode
           ? "bg-blue-500"
           : "bg-gradient-to-b from-[#2e026d] to-[#15162c]"
       }`}
       style={{
         backgroundImage: `url(${
-          darkMode ? "/herobg-light.png" : "/herobg-dark.png"
+          darkMode ? "/herobg-light.png" : "/loginbg.jpg"
         })`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="container mx-auto px-4">
+      {/* Overlay to align with UI colors */}
+      {!darkMode && (
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#2e026d]/80 via-[#8b5cf6]/40 to-[#15162c]/95"
+          style={{
+            mixBlendMode: "multiply",
+          }}
+        />
+      )}
+      {/* Bottom fade gradient to seamlessly blend into site background */}
+      {!darkMode && (
+        <div
+          className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-[#15162c]/50 to-[#15162c] pointer-events-none"
+        />
+      )}
+      <div className="container relative mx-auto px-4 z-10">
         <div className="ml-4 grid grid-cols-1 items-center gap-12 md:grid-cols-[2fr,3fr]">
           <div>
             <h2 className="font-robotoSlab text-shadow-md mb-6 text-4xl font-extralight tracking-wide">

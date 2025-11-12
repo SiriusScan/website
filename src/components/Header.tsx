@@ -1,7 +1,7 @@
 // components/Header.tsx
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import SiriusIcon from "./icons/SiriusIcon";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,13 +17,27 @@ const Header: React.FC = () => {
     >
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/">
-          <span>
-            <Image
-              src={"/sirius-logo400w.png"}
-              width={200}
-              height={36}
-              alt={"Sirius Scan Logo"}
+          <span className="flex items-center gap-2">
+            <SiriusIcon
+              width={40}
+              height={40}
+              fill="white"
+              className="transition-opacity hover:opacity-80"
             />
+            <div className="flex items-baseline gap-2">
+              <h1 
+                className="text-2xl font-black text-white tracking-[0.15em] drop-shadow-[0_0_8px_rgba(6,182,212,0.6)]"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                SIRIUS
+              </h1>
+              <h2 
+                className="text-xl font-light text-cyan-400 tracking-[0.3em] drop-shadow-[0_0_6px_rgba(6,182,212,0.5)]"
+                style={{ fontFamily: "Orbitron, sans-serif" }}
+              >
+                SCAN
+              </h2>
+            </div>
           </span>
         </Link>
         <div className="hidden text-xl sm:flex">
