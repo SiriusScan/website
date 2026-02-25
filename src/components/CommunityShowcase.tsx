@@ -1,60 +1,88 @@
-import React, { useState } from "react";
+import React from "react";
+import {
+  ChatBubbleLeftRightIcon,
+  SparklesIcon,
+  ClipboardDocumentListIcon,
+  ServerStackIcon,
+  ArrowPathIcon,
+  ShieldCheckIcon,
+  CpuChipIcon,
+} from "@heroicons/react/24/outline";
 
 const showcaseItems = [
   {
-    id: 0,
-    image: "/community-interaction/build-together.png",
+    icon: ChatBubbleLeftRightIcon,
     title: "Building Together",
+    quote:
+      "Let's build an open-source vulnerability scanner together! 2 weeks ago hundreds of you all participated in a discussion on what features a vulnerability scanner needs.",
+    author: "0sm0s1z",
+    platform: "X / Twitter",
     description:
-      "Driven by the collective voice of hundreds on Twitter, Sirius Scan is more than just a vulnerability scanner — it's a testament to the power of community collaboration. Each feature reflects the specific needs of real security teams.",
+      "Hundreds of security practitioners shaped Sirius Scan's direction from day one through open community discussions.",
   },
   {
-    id: 1,
-    image: "/community-interaction/community-features.png",
+    icon: SparklesIcon,
     title: "Community-Requested Features",
+    quote:
+      "I think I may do a poll on most request features based on this thread. It looks like API extensibility is coming in at the top — module coverage and risk adjustment based on asset tagging.",
+    author: "0sm0s1z",
+    platform: "X / Twitter",
     description:
-      "The features that make Sirius Scan powerful came directly from users. From scan profiles to environment views, community feedback drives what gets built next.",
+      "From scan profiles to environment views, every major feature started as a community request.",
   },
   {
-    id: 2,
-    image: "/community-interaction/wish-list.png",
+    icon: ClipboardDocumentListIcon,
     title: "Community Wish List",
+    quote:
+      "Ok, wish list: 1) Import multiple vuln DBs... Not only the CVE one. 2) Adding more intelligence when fingerprinting. 3) Validation of vulns. 4) Graphic patterns...",
+    author: "skywalkez",
+    platform: "X / Twitter",
     description:
-      "An open wish list lets everyone vote on priorities. The most-requested capabilities rise to the top and shape the project roadmap.",
+      "An open wish list lets everyone vote on priorities. The most-requested capabilities shape the roadmap.",
   },
   {
-    id: 3,
-    image: "/community-interaction/cmdb-integration.png",
+    icon: ServerStackIcon,
     title: "CMDB Integration",
+    quote:
+      "If you want to make it actionable at large scale, integration with an asset inventory is a must. And allow access to results based on that. Inventory data can be assigned through an API.",
+    author: "goncalr",
+    platform: "X / Twitter",
     description:
-      "Enterprise users requested CMDB integration to connect vulnerability data with asset management workflows — and the community delivered.",
+      "Enterprise users requested CMDB integration to connect vulnerability data with asset management workflows.",
   },
   {
-    id: 4,
-    image: "/community-interaction/regular-discussions.png",
+    icon: ArrowPathIcon,
     title: "Regular Discussions",
+    quote:
+      "This week's topic will be on scanning agents! Agent AND scan-based, because I can't put agents on everything. Reasonable costs to deploy small and large. Remote engines. A solid API.",
+    author: "SecCurmDgn",
+    platform: "X / Twitter",
     description:
-      "Ongoing conversations about vulnerability management, scanning strategies, and security operations keep the community engaged and informed.",
+      "Ongoing conversations about scanning strategies and security operations keep the community engaged.",
   },
   {
-    id: 5,
-    image: "/community-interaction/remediation-evaluation.png",
+    icon: ShieldCheckIcon,
     title: "Remediation Evaluation",
+    quote:
+      "Tell me how effective I am at remediation. Ideally from the data the vulnerability was published but you could also take the data from the first scan.",
+    author: "shakthack",
+    platform: "X / Twitter",
     description:
-      "Collaborative assessment of remediation strategies helps teams move from discovery to action with community-validated approaches.",
+      "Collaborative assessment of remediation strategies helps teams move from discovery to action.",
   },
   {
-    id: 6,
-    image: "/community-interaction/agent-scanning.png",
+    icon: CpuChipIcon,
     title: "Agent-Based Scanning",
+    quote:
+      "I'll second the backdooring cleverness. They're all terrible at that. Agent AND scan-based, because I can't put agents on everything.",
+    author: "SecCurmDgn",
+    platform: "X / Twitter",
     description:
-      "The agent architecture was designed with direct community input — lightweight, deployable agents that report back host-level telemetry.",
+      "The agent architecture was designed with direct community input — lightweight, deployable agents that report host-level telemetry.",
   },
 ];
 
 const CommunityShowcase: React.FC = () => {
-  const [selected, setSelected] = useState<number | null>(null);
-
   return (
     <div className="bg-[#15162c] py-20">
       <div className="mx-auto max-w-7xl px-6">
@@ -67,38 +95,41 @@ const CommunityShowcase: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {showcaseItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() =>
-                setSelected(selected === item.id ? null : item.id)
-              }
-              className="group cursor-pointer rounded-xl border border-violet-700/40 bg-violet-900/5 p-0 text-left transition-all duration-300 hover:border-violet-600/60 hover:shadow-lg hover:shadow-violet-500/10"
-            >
-              <div className="overflow-hidden rounded-t-xl">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full transition-transform duration-300 group-hover:scale-105"
-                />
-              </div>
-              <div className="p-5">
-                <h3 className="mb-2 text-lg font-semibold text-violet-200">
-                  {item.title}
-                </h3>
-                <p
-                  className={`text-sm leading-relaxed text-gray-400 transition-all duration-300 ${
-                    selected === item.id
-                      ? "max-h-40 opacity-100"
-                      : "max-h-0 overflow-hidden opacity-0 sm:max-h-40 sm:opacity-100"
-                  }`}
-                >
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {showcaseItems.map((item, i) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={i}
+                className="group flex flex-col rounded-xl border border-violet-700/30 bg-gradient-to-b from-violet-900/10 to-transparent p-6 transition-all duration-300 hover:border-violet-600/50 hover:shadow-lg hover:shadow-violet-500/5"
+              >
+                <div className="mb-4 flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-violet-500/10 transition-colors group-hover:bg-violet-500/20">
+                    <Icon className="h-5 w-5 text-violet-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-violet-200">
+                    {item.title}
+                  </h3>
+                </div>
+
+                <blockquote className="mb-4 flex-1 border-l-2 border-violet-700/40 pl-4 text-sm italic leading-relaxed text-gray-400">
+                  &ldquo;{item.quote}&rdquo;
+                </blockquote>
+
+                <div className="mb-4 flex items-center gap-2 text-xs text-gray-500">
+                  <span className="font-medium text-violet-300">
+                    @{item.author}
+                  </span>
+                  <span>&middot;</span>
+                  <span>{item.platform}</span>
+                </div>
+
+                <p className="text-sm leading-relaxed text-gray-400/80">
                   {item.description}
                 </p>
               </div>
-            </button>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
