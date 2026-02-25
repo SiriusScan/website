@@ -1,7 +1,11 @@
-// pages/features.tsx
 import Head from "next/head";
 import CommunityHero from "~/components/CommunityHero";
-import CommunityInteraction from "~/components/CommunityInteraction";
+import CommunityGetInvolved from "~/components/CommunityGetInvolved";
+import CommunityKEV100 from "~/components/CommunityKEV100";
+import CommunityChannels from "~/components/CommunityChannels";
+import CommunityShowcase from "~/components/CommunityShowcase";
+import CommunityRoadmap from "~/components/CommunityRoadmap";
+import CommunityContributors from "~/components/CommunityContributors";
 import CommunitySponsor from "~/components/CommunitySponsor";
 
 export default function Community() {
@@ -11,25 +15,18 @@ export default function Community() {
         <title>Community - Sirius Scan</title>
         <meta
           name="description"
-          content="Join the Sirius Scan community - contribute, discuss, and collaborate on the open-source vulnerability management platform."
+          content="Join the Sirius Scan community - contribute code, report issues, discuss features, and help build the future of open-source vulnerability management."
         />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="canonical" href="https://sirius.opensecurity.com/community" />
-        <meta property="og:title" content="Community - Sirius Scan" />
-        <meta
-          property="og:description"
-          content="Contribute, discuss, and collaborate on the Sirius Scan open-source vulnerability management platform."
-        />
-        <meta property="og:url" content="https://sirius.opensecurity.com/community" />
-        <meta name="twitter:title" content="Community - Sirius Scan" />
-        <meta
-          name="twitter:description"
-          content="Contribute, discuss, and collaborate on the Sirius Scan open-source vulnerability management platform."
-        />
       </Head>
       <main className="relative flex min-h-screen flex-col overflow-hidden bg-[#15162c]">
         <CommunityHero />
-        <CommunityInteraction />
+        <CommunityGetInvolved />
+        <CommunityKEV100 />
+        <CommunityChannels />
+        <CommunityShowcase />
+        <CommunityRoadmap />
+        <CommunityContributors />
         <CommunitySponsor />
       </main>
     </>
