@@ -1,13 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
 import SiriusIcon from "./icons/SiriusIcon";
 
 const FooterSection = () => {
   const footerLinks = [
-    { title: "Home", href: "/" },
-    { title: "Download", href: "https://github.com/SiriusScan/Sirius" },
-    { title: "Documentation", href: "/docs" },
-    { title: "Community", href: "/Community" },
-    { title: "Support", href: "https://discord.gg/VTjqSxkJqX" },
+    { title: "Home", href: "/", external: false },
+    { title: "Download", href: "https://github.com/SiriusScan/Sirius", external: true },
+    { title: "Documentation", href: "/docs", external: false },
+    { title: "Community", href: "/community", external: false },
+    { title: "Support", href: "https://discord.gg/VTjqSxkJqX", external: true },
   ];
 
   return (
@@ -40,16 +41,6 @@ const FooterSection = () => {
           <p className="mt-2 text-base font-extralight">
             Empowering Cybersecurity, One Scan at a Time.
           </p>
-          <p className="mt-2 text-xs text-gray-400">
-            <a
-              href="https://github.com/SiriusScan/Sirius/blob/main/sirius-ui/docs/LOGO_FONT_STYLE_GUIDE.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline hover:text-violet-300"
-            >
-              View Style Guide
-            </a>
-          </p>
         </div>
 
         {/* Quick Links */}
@@ -58,9 +49,20 @@ const FooterSection = () => {
           <ul>
             {footerLinks.map((link, index) => (
               <li key={index} className="mt-2">
-                <a href={link.href} className="text-base hover:underline">
-                  {link.title}
-                </a>
+                {link.external ? (
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base hover:underline"
+                  >
+                    {link.title}
+                  </a>
+                ) : (
+                  <Link href={link.href} className="text-base hover:underline">
+                    {link.title}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
