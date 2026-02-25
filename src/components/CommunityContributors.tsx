@@ -10,6 +10,8 @@ interface Contributor {
 const contributors: Contributor[] = [
   { name: "0sm0s1z", username: "0sm0s1z", role: "Project Lead" },
   { name: "SiriusScan", username: "SiriusScan", role: "Organization" },
+  { name: "Open Security", username: "OpenSecurity-Infosec", role: "Sponsor" },
+  { name: "Josh Christman", username: "jchristman", role: "Contributor" },
 ];
 
 const CommunityContributors: React.FC = () => {
