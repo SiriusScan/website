@@ -1,3 +1,6 @@
+import Link from "next/link";
+import TerminalBlock from "./TerminalBlock";
+
 const VGPTSection: React.FC = () => {
   return (
     <div className="bg-gradient-to-b from-[#15162c] to-blue-500 py-16 text-white">
@@ -12,41 +15,64 @@ const VGPTSection: React.FC = () => {
         </p>
 
         {/* Deployment Options Grid */}
-        <div className="mb-12 grid gap-6 md:grid-cols-2">
-          <div className="rounded-lg border border-violet-700/40 bg-violet-900/10 p-6">
-            <h3 className="mb-3 text-2xl font-semibold text-violet-200">
+        <div className="mb-8 grid gap-6 md:grid-cols-2">
+          <div className="flex flex-col rounded-xl border border-violet-700/30 bg-violet-900/10 p-6">
+            <h3 className="mb-2 text-2xl font-semibold text-violet-200">
               Standard Mode
             </h3>
             <p className="mb-4 text-gray-300">
               Production-ready setup with installer-managed runtime secrets and
               complete scanning capabilities.
             </p>
-            <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">
-              docker compose -f docker-compose.installer.yaml run --rm sirius-installer
-            </code>
-            <div className="mt-2">
-              <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">
-                docker compose up -d
-              </code>
+            <div className="mt-auto">
+              <TerminalBlock
+                title="production"
+                commands={[
+                  "docker compose -f docker-compose.installer.yaml run --rm sirius-installer",
+                  "docker compose up -d",
+                ]}
+              />
             </div>
           </div>
-          <div className="rounded-lg border border-violet-700/40 bg-violet-900/10 p-6">
-            <h3 className="mb-3 text-2xl font-semibold text-violet-200">
+          <div className="flex flex-col rounded-xl border border-violet-700/30 bg-violet-900/10 p-6">
+            <h3 className="mb-2 text-2xl font-semibold text-violet-200">
               Development Mode
             </h3>
             <p className="mb-4 text-gray-300">
               For contributors with hot-reloading, volume mounts, and debugging
               tools for active development
             </p>
-            <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">
-              docker compose -f docker-compose.installer.yaml run --rm sirius-installer
-            </code>
-            <div className="mt-2">
-              <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">
-                docker compose -f docker-compose.dev.yaml up -d
-              </code>
+            <div className="mt-auto">
+              <TerminalBlock
+                title="development"
+                commands={[
+                  "docker compose -f docker-compose.installer.yaml run --rm sirius-installer",
+                  "docker compose -f docker-compose.dev.yaml up -d",
+                ]}
+              />
             </div>
           </div>
+        </div>
+
+        <div className="mb-12 flex justify-center">
+          <Link
+            href="/docs/getting-started/quick-start"
+            className="inline-flex items-center gap-2 rounded-lg bg-violet-600 px-8 py-3 text-lg font-medium text-white no-underline transition-all duration-200 hover:bg-violet-500 hover:shadow-lg hover:shadow-violet-500/25"
+          >
+            Get Started
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className="h-5 w-5"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </Link>
         </div>
 
         <div className="mb-8">
