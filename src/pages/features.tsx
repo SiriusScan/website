@@ -8,6 +8,11 @@ import {
   ServerIcon,
   CommandLineIcon,
   ArrowRightIcon,
+  FunnelIcon,
+  ExclamationTriangleIcon,
+  ComputerDesktopIcon,
+  TableCellsIcon,
+  ArrowDownTrayIcon,
 } from "@heroicons/react/24/outline";
 
 export default function Features() {
@@ -198,15 +203,31 @@ export default function Features() {
                   <ul className="space-y-3 text-gray-300">
                     <li className="flex items-center gap-3">
                       <ServerIcon className="h-5 w-5 text-violet-400" />
-                      Complete inventory of discovered hosts
+                      Complete host inventory with automatic OS detection
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <ExclamationTriangleIcon className="h-5 w-5 text-violet-400" />
+                      Top vulnerable hosts dashboard with severity breakdown
                     </li>
                     <li className="flex items-center gap-3">
                       <ChartBarIcon className="h-5 w-5 text-violet-400" />
-                      Risk scoring and security metrics
+                      Per-host vulnerability counts with visual severity bars
                     </li>
                     <li className="flex items-center gap-3">
                       <ShieldCheckIcon className="h-5 w-5 text-violet-400" />
-                      Interactive network topology visualization
+                      Risk level classification and tagging system
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <ComputerDesktopIcon className="h-5 w-5 text-violet-400" />
+                      Platform snapshot with OS and package statistics
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <FunnelIcon className="h-5 w-5 text-violet-400" />
+                      Advanced filtering by OS type, risk level, and source
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <ArrowDownTrayIcon className="h-5 w-5 text-violet-400" />
+                      One-click export and data refresh capabilities
                     </li>
                   </ul>
                 </div>

@@ -146,9 +146,7 @@ curl -X POST "http://localhost:9001/app/scan" \
 
 ```json
 {
-  "status": "accepted",
-  "message": "Scan request accepted",
-  "scan_id": "scan-123"
+  "status": "Message sent successfully"
 }
 ```
 
@@ -168,14 +166,12 @@ To access scan status, you can:
 1. Use the Go SDK to query the Valkey database directly
 2. Monitor the message queue for scan updates
 
-### Example using Go SDK (coming soon)
+### Current Access Methods
 
-```go
-import "github.com/siriusscan/sirius/sdk"
+To access scan status, you can:
 
-// Get scan status
-status, err := client.GetScanStatus("scan-123")
-```
+1. Use the Go SDK's `store` package to query Valkey directly
+2. Monitor the RabbitMQ message queue for scan updates
 
 </Endpoint>
 
@@ -184,23 +180,7 @@ status, err := client.GetScanStatus("scan-123")
   method="GET"
   path="/app/scan/{scanId}/results"
 >
-  > **Note:** This endpoint is planned for future implementation. Currently, scan results are stored in the Valkey database and are accessible through the Go SDK.
-
-### Current Access Methods
-
-To access scan results, you can:
-
-1. Use the Go SDK to query the Valkey database directly
-2. Use the database client to query scan results
-
-### Example using Go SDK (coming soon)
-
-```go
-import "github.com/siriusscan/sirius/sdk"
-
-// Get scan results
-results, err := client.GetScanResults("scan-123")
-```
+  > **Note:** This endpoint is planned for future implementation. Scan results are currently stored in the PostgreSQL database and are accessible through the host and vulnerability endpoints.
 
 </Endpoint>
 
@@ -447,26 +427,9 @@ curl -X GET "http://localhost:9001/vulnerability/CVE-2017-0143"
 
 </Endpoint>
 
-<Endpoint
-  title="Get NVD CVE details"
-  method="GET"
-  path="https://services.nvd.nist.gov/rest/json/cves/2.0"
->
-  Query the National Vulnerability Database (NVD) for CVE details.
+### NVD Integration
 
-### Query Parameters
-
-| Parameter | Type   | Description       |
-| --------- | ------ | ----------------- |
-| `cveId`   | string | CVE ID to look up |
-
-### Example Request
-
-```bash
-curl -X GET "https://services.nvd.nist.gov/rest/json/cves/2.0?cveId=CVE-2023-38408"
-```
-
-</Endpoint>
+Sirius Scan integrates with the [National Vulnerability Database](https://nvd.nist.gov/) to enrich vulnerability data. The Go SDK's `nvd` package handles NVD lookups internally -- you do not need to query the NVD API directly.
 
 <Endpoint
   title="Add vulnerability"

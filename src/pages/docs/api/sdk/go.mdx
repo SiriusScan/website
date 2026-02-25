@@ -109,18 +109,18 @@ err := host.DeleteHost("192.168.1.1")
 
 ### Vulnerability Management
 
-The `vulnerability` package handles vulnerability data:
+The `vulnerability` package handles vulnerability data. Note that `GetVulnerability` returns an `nvd.CveItem` (the full NVD record), not a `sirius.Vulnerability`:
 
 ```go
-// Get vulnerability information
-vuln, err := vulnerability.GetVulnerability("CVE-2021-1234")
+// Get vulnerability information (returns nvd.CveItem)
+cveItem, err := vulnerability.GetVulnerability("CVE-2021-1234")
 
 // Check if vulnerability exists
 exists := vulnerability.CheckVulnerabilityExists("CVE-2021-1234")
 
 // Add new vulnerability
 newVuln := sirius.Vulnerability{
-    ID: "CVE-2021-1234",
+    VID: "CVE-2021-1234",
     // ... additional fields
 }
 err := vulnerability.AddVulnerability(newVuln)
@@ -163,8 +163,9 @@ ctx := context.Background()
 // Store a value
 err := kvStore.SetValue(ctx, "scan-status", "running")
 
-// Retrieve a value
-val, err := kvStore.GetValue(ctx, "scan-status")
+// Retrieve a value (returns ValkeyResponse)
+resp, err := kvStore.GetValue(ctx, "scan-status")
+val := resp.Message.Value
 ```
 
 ### NVD Integration
@@ -178,11 +179,12 @@ cve, err := nvd.GetCVE("CVE-2021-1234")
 
 ## Configuration
 
-The API can be configured through environment variables:
+Connection strings for infrastructure services are defined as package-level constants:
 
-- `DB_HOST`: Database host address
-- `SIRIUS_RABBITMQ`: RabbitMQ connection string
-- `SIRIUS_VALKEY`: Valkey store connection string
+- `SIRIUS_RABBITMQ` (`sirius/queue`): RabbitMQ connection string (default: `amqp://guest:guest@sirius-rabbitmq:5672/`)
+- `SIRIUS_VALKEY` (`sirius/store`): Valkey store address (default: `sirius-valkey:6379`)
+
+The database connection is configured automatically based on the runtime environment (Docker vs local).
 
 ## Advanced Usage Examples
 
@@ -253,7 +255,8 @@ func processMessages() {
 1. **Always Check Error Returns**
 2. **Close Resources When Done**
    ```go
-   defer db.Close()
+   sqlDB, _ := db.DB()
+   defer sqlDB.Close()
    defer kvStore.Close()
    ```
 3. **Use Appropriate Context for Cancellation**

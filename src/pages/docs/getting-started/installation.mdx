@@ -64,7 +64,7 @@ For active development with hot-reloading and debugging tools:
 git clone https://github.com/SiriusScan/Sirius.git
 cd Sirius
 docker compose -f docker-compose.installer.yaml run --rm sirius-installer
-docker compose -f docker-compose.dev.yaml up -d
+docker compose -f docker-compose.yaml -f docker-compose.dev.yaml up -d
 ```
 
 This includes:
