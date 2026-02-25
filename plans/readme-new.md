@@ -4,7 +4,7 @@ Sirius is an open-source general purpose vulnerability scanner that leverages co
 
 ## Quick Start Guide
 
-For detailed setup instructions, visit our [Installation Guide](https://sirius.publickey.io/docs/getting-started/installation).
+For detailed setup instructions, visit our [Installation Guide](https://sirius.opensecurity.com/docs/getting-started/installation).
 
 1. **Prerequisites**
 
@@ -31,11 +31,11 @@ For detailed setup instructions, visit our [Installation Guide](https://sirius.p
    - Username: `admin`
    - Password: `password`
 
-That's it! Your Sirius Scan instance is now running. For a complete walkthrough of the system, visit our [Quick Start Guide](https://sirius.publickey.io/docs/getting-started/quick-start).
+That's it! Your Sirius Scan instance is now running. For a complete walkthrough of the system, visit our [Quick Start Guide](https://sirius.opensecurity.com/docs/getting-started/quick-start).
 
 ## Interface Tour
 
-For a comprehensive walkthrough of all features, visit our [Interface Tour](https://sirius.publickey.io/docs/getting-started/interface-tour).
+For a comprehensive walkthrough of all features, visit our [Interface Tour](https://sirius.opensecurity.com/docs/getting-started/interface-tour).
 
 ### Dashboard
 
@@ -48,7 +48,7 @@ The Dashboard serves as your central command center, providing:
 - System performance metrics
 - Quick-access controls for common actions
 
-[Learn more about the Dashboard](https://sirius.publickey.io/docs/getting-started/interface-tour#dashboard-overview)
+[Learn more about the Dashboard](https://sirius.opensecurity.com/docs/getting-started/interface-tour#dashboard-overview)
 
 ### Scanning Interface
 
@@ -62,7 +62,7 @@ The Scan page is where you control vulnerability assessments:
 - Fine-tuned scanning parameters
 - Custom scan profiles and templates
 
-[Learn more about Scanning](https://sirius.publickey.io/docs/guides/scanning)
+[Learn more about Scanning](https://sirius.opensecurity.com/docs/guides/scanning)
 
 ### Vulnerability Navigator
 
@@ -78,7 +78,7 @@ Comprehensive platform for managing discovered vulnerabilities:
   - CVSS scoring breakdown
   - Step-by-step remediation instructions
 
-[Learn more about Vulnerability Management](https://sirius.publickey.io/docs/guides/vulnerabilities)
+[Learn more about Vulnerability Management](https://sirius.opensecurity.com/docs/guides/vulnerabilities)
 
 ### Environment Overview
 
@@ -92,7 +92,7 @@ Complete visibility into your infrastructure:
 - Detailed system information
 - Service enumeration and version tracking
 
-[Learn more about Environment Management](https://sirius.publickey.io/docs/guides/environment)
+[Learn more about Environment Management](https://sirius.opensecurity.com/docs/guides/environment)
 
 ### Host Details
 
@@ -106,7 +106,7 @@ Detailed view of individual systems:
 - Historical scan findings
 - Security risk indicators
 
-[Learn more about Host Management](https://sirius.publickey.io/docs/guides/hosts)
+[Learn more about Host Management](https://sirius.opensecurity.com/docs/guides/hosts)
 
 ### Terminal Interface
 
@@ -120,7 +120,7 @@ Direct access to Sirius backend:
 - System diagnostics
 - Batch operations support
 
-[Learn more about Terminal Access](https://sirius.publickey.io/docs/guides/terminal)
+[Learn more about Terminal Access](https://sirius.opensecurity.com/docs/guides/terminal)
 
 ## System Architecture
 
@@ -135,11 +135,11 @@ Sirius operates through several microservices:
 | sirius-postgres | Database                | 5432                            |
 | sirius-valkey   | Key-value store         | 6379                            |
 
-For detailed configuration options, visit our [Configuration Guide](https://sirius.publickey.io/docs/guides/configuration).
+For detailed configuration options, visit our [Configuration Guide](https://sirius.opensecurity.com/docs/guides/configuration).
 
 ## Development
 
-For complete development setup instructions, visit our [Contributing Guide](https://sirius.publickey.io/docs/community/contributing).
+For complete development setup instructions, visit our [Contributing Guide](https://sirius.opensecurity.com/docs/community/contributing).
 
 1. **Configure Development Environment**
 
@@ -167,15 +167,15 @@ For complete development setup instructions, visit our [Contributing Guide](http
 
 ## API Integration
 
-For API documentation and SDK usage, visit our [API Documentation](https://sirius.publickey.io/docs/api).
+For API documentation and SDK usage, visit our [API Documentation](https://sirius.opensecurity.com/docs/api).
 
-- [REST API Reference](https://sirius.publickey.io/docs/api/rest/authentication)
-- [Go SDK Documentation](https://sirius.publickey.io/docs/api/sdk/go)
-- [Error Handling](https://sirius.publickey.io/docs/api/rest/errors)
+- [REST API Reference](https://sirius.opensecurity.com/docs/api/rest/authentication)
+- [Go SDK Documentation](https://sirius.opensecurity.com/docs/api/sdk/go)
+- [Error Handling](https://sirius.opensecurity.com/docs/api/rest/errors)
 
 ## Troubleshooting
 
-For detailed troubleshooting steps, visit our [FAQ](https://sirius.publickey.io/docs/community/faq).
+For detailed troubleshooting steps, visit our [FAQ](https://sirius.opensecurity.com/docs/community/faq).
 
 ### Service Status
 
@@ -217,17 +217,17 @@ For production deployments:
 - Update environment variables
 - Configure firewall rules
 
-For detailed security best practices, visit our [Security Guide](https://sirius.publickey.io/docs/guides/security).
+For detailed security best practices, visit our [Security Guide](https://sirius.opensecurity.com/docs/guides/security).
 
 ## Support & Resources
 
-- [Documentation Home](https://sirius.publickey.io/docs)
-- [API Reference](https://sirius.publickey.io/docs/api)
-- [User Guides](https://sirius.publickey.io/docs/guides)
+- [Documentation Home](https://sirius.opensecurity.com/docs)
+- [API Reference](https://sirius.opensecurity.com/docs/api)
+- [User Guides](https://sirius.opensecurity.com/docs/guides)
 - [GitHub Issues](https://github.com/SiriusScan/Sirius/issues)
-- [Discord Community](https://sirius.publickey.io/community)
-- [FAQ](https://sirius.publickey.io/docs/community/faq)
-- [Contributing Guide](https://sirius.publickey.io/docs/community/contributing)
+- [Discord Community](https://sirius.opensecurity.com/community)
+- [FAQ](https://sirius.opensecurity.com/docs/community/faq)
+- [Contributing Guide](https://sirius.opensecurity.com/docs/community/contributing)
 
 ## License
 
