@@ -51,20 +51,20 @@ const IntroSection: React.FC = () => {
 
             <p className="mb-2 text-xl font-extralight leading-relaxed tracking-wide">
               Sirius Scan is an enterprise-grade, open-source vulnerability
-              scanner with comprehensive system monitoring and real-time
-              observability. Built for security professionals who demand both
-              power and precision.
+              management platform that unifies network scanning, host-based
+              agent telemetry, and operator-driven triage in one interface.
+              Built for security teams that need speed, context, and control.
             </p>
             <div className="mb-4 flex items-center gap-2">
               <span className="rounded-full bg-violet-500/20 px-3 py-1 text-sm font-semibold text-violet-300">
-                v0.4.0 Released
+                v1.0.0 Released
               </span>
               <span className="text-sm text-violet-300">
-                Now with System Monitoring & Observability
+                Production-ready scanning and operator workflows
               </span>
             </div>
             <h3 className="mb-6 text-2xl leading-relaxed tracking-wide">
-              Discover, Monitor, Assess, and Remediate
+              Discover, Prioritize, Investigate, and Remediate
             </h3>
             <div className="mt-4">
               <a

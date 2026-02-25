@@ -6,10 +6,9 @@ const VGPTSection: React.FC = () => {
           Flexible Deployment for Production and Development
         </h2>
         <p className="mb-8 text-xl text-violet-200">
-          Sirius Scan provides two deployment modes: Standard mode for
-          production use, and Development mode for contributors and advanced
-          users. Get started in minutes with comprehensive Docker Compose
-          orchestration.
+          Sirius Scan v1.0.0 supports installer-first startup for secure
+          defaults, plus flexible compose workflows for production and
+          contributor environments.
         </p>
 
         {/* Deployment Options Grid */}
@@ -19,12 +18,17 @@ const VGPTSection: React.FC = () => {
               Standard Mode
             </h3>
             <p className="mb-4 text-gray-300">
-              Production-ready setup with complete scanning capabilities,
-              pre-configured vulnerability databases, and optimized performance
+              Production-ready setup with installer-managed runtime secrets and
+              complete scanning capabilities.
             </p>
             <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">
-              docker compose up -d
+              docker compose -f docker-compose.installer.yaml run --rm sirius-installer
             </code>
+            <div className="mt-2">
+              <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">
+                docker compose up -d
+              </code>
+            </div>
           </div>
           <div className="rounded-lg border border-violet-700/40 bg-violet-900/10 p-6">
             <h3 className="mb-3 text-2xl font-semibold text-violet-200">
@@ -35,15 +39,20 @@ const VGPTSection: React.FC = () => {
               tools for active development
             </p>
             <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">
-              docker compose -f docker-compose.dev.yaml up -d
+              docker compose -f docker-compose.installer.yaml run --rm sirius-installer
             </code>
+            <div className="mt-2">
+              <code className="rounded bg-black/30 px-2 py-1 text-sm text-violet-300">
+                docker compose -f docker-compose.dev.yaml up -d
+              </code>
+            </div>
           </div>
         </div>
 
         <div className="mb-8">
           <img
-            src="vgpt.png"
-            alt="Sirius Scan Architecture"
+            src="/docs/scanner-overview.png"
+            alt="Sirius Scan scanning dashboard overview"
             className="mx-auto rounded-lg"
           />
         </div>

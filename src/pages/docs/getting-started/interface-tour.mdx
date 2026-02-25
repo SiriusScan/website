@@ -20,9 +20,9 @@ The Dashboard serves as your central command center, providing real-time insight
 - Quick-access controls for common actions
 - Overview of critical security metrics
 
-![Sirius Scan Dashboard](/dash-dark.gif)
+![Sirius Scan Dashboard](/dashboard-dark.gif)
 
-## System Monitoring Dashboard (New in v0.4.0)
+## System Monitoring Dashboard
 
 The System Monitoring Dashboard provides comprehensive observability into the health and performance of your Sirius Scan deployment. Accessible at `/system-monitor`, this interface is essential for maintaining optimal system operation and quickly identifying issues.
 
@@ -69,9 +69,9 @@ Track container resource utilization and system performance:
 
 ## Scanning Interface
 
-The Scan page is the heart of Sirius Scan's functionality, where you have complete control over vulnerability assessments. This powerful interface allows you to not only initiate and monitor scans but also fine-tune your scanning strategy. The visual module editor enables you to customize scanning parameters, create specialized workflows, and manage automated scan schedules. You can view real-time scan progress, adjust scan intensity on the fly, and access detailed scan configurations all from one centralized location.
+The Scan page is the heart of Sirius Scan's functionality, where you have complete control over vulnerability assessments. This interface lets you initiate and monitor scans, tune scan strategy, and review host and vulnerability outcomes in one place. You can view real-time progress, adjust scan intensity, and run profile-based workflows from a centralized operator view.
 
-![Scanning Interface](/docs/scanner.jpg)
+![Scanning Interface](/docs/scanner.png)
 
 ### Basic Scan Controls
 
@@ -89,21 +89,19 @@ The Scan page is the heart of Sirius Scan's functionality, where you have comple
 - Set up automated scanning schedules
 - Adjust resource utilization and scan intensity
 
-### Visual Module Editor
+### Scan Profiles and Workflow Control
 
-The module editor provides an intuitive graphical interface for:
-
-- Browse and select from available scanning modules
-- Customize module parameters and settings
-- Create and test custom scan workflows
-- Preview module configurations before deployment
-- Save and manage scanning templates
+- Select scan profiles for quick, standard, and broad assessments
+- Configure target scope and exclusions
+- Manage agent and network scan visibility in one workflow
+- Export results directly from scan views
+- Track completion and historical runs for repeatability
 
 ## Vulnerability Navigator
 
 The Vulnerability Navigator is your comprehensive platform for managing discovered vulnerabilities across your environment. This powerful interface aggregates all findings and provides multiple ways to view, sort, and analyze vulnerabilities. With advanced search capabilities and flexible viewing options, you can quickly identify critical issues and track remediation progress. The interface supports various visualization methods to help you understand your security posture from different perspectives.
 
-![Vulnerability Navigator](/docs/vulnerability-navigator.jpg)
+![Vulnerability Navigator](/docs/vulnerability-navigator.png)
 
 ### Key Features
 
@@ -118,7 +116,7 @@ The Vulnerability Navigator is your comprehensive platform for managing discover
 
 When you select a specific vulnerability, you'll access a detailed report that provides comprehensive information about the security issue. These reports are designed to give you all the information needed for understanding, validating, and remediating the vulnerability. Each report includes technical details, impact assessment, and actionable remediation steps.
 
-![Vulnerability Details](/docs/vulnerability.jpg)
+![Vulnerability Details](/docs/vulnerability-detail.png)
 
 - Detailed CVE/CPE identification and mapping
 - Complete CVSS scoring breakdown and risk assessment
@@ -128,11 +126,23 @@ When you select a specific vulnerability, you'll access a detailed report that p
 - Historical context and discovery information
 - Related vulnerabilities and dependencies
 
+### Grouped Triage View
+
+Sirius Scan also supports grouped triage views for faster investigation during high-volume assessments.
+
+![Grouped Vulnerability View](/docs/vulnerability-grouped.png)
+
+### NVD Detail Context
+
+The NVD details tab provides deeper scoring context and source metadata directly inside the vulnerability workflow.
+
+![Vulnerability NVD Details](/docs/vulnerability-nvd.png)
+
 ## Environment Overview
 
 The Environment page provides a comprehensive view of your infrastructure security landscape. This interface gives you visibility into all discovered hosts, their security status, and associated risks. You can quickly identify high-risk assets, track security metrics across your environment, and monitor the overall health of your infrastructure. The interface includes both high-level overviews and detailed drill-down capabilities.
 
-![Environment Overview](/docs/environment.jpg)
+![Environment Overview](/docs/environment.png)
 
 ### Host Management
 
@@ -147,7 +157,7 @@ The Environment page provides a comprehensive view of your infrastructure securi
 
 The Host Details page provides an in-depth view of individual systems in your environment. When you select a specific host, you'll see a comprehensive breakdown of its security posture, including vulnerability counts, system information, and available services. This interface helps you understand the specific risks and characteristics of each asset in your infrastructure.
 
-![Host Details](/docs/host.jpg)
+![Host Details](/docs/host.png)
 
 - Detailed system information and specifications
 - Complete port and service enumeration
@@ -157,20 +167,33 @@ The Host Details page provides an in-depth view of individual systems in your en
 - Service version information
 - Security risk indicators and metrics
 
-## Terminal Interface
+## Software Inventory & SBOM
 
-The Terminal interface provides direct access to Sirius Scan's backend through a powerful PowerShell environment. This interface is designed for advanced users who need to perform custom operations, automate tasks, or manage agents directly. Through the terminal, you can execute complex commands, create custom scripts, and have granular control over the scanning infrastructure.
+The Software Inventory view gives you package-level insight across your environment and supports SBOM export workflows for downstream compliance and analysis.
 
-![Terminal Interface](/docs/terminal.jpg)
+![Software Inventory](/docs/software-inventory.png)
 
-### PowerShell Interface
+- Package inventory by host and architecture
+- Quick security status visibility per package
+- Inventory search and filter controls
+- Export-ready SBOM workflows
+
+## Operator Console
+
+The Operator Console provides direct access to Sirius Scan's backend through terminal execution, history tracking, and agent-aware targeting. This interface is designed for advanced users who need to perform custom operations, automate tasks, and manage distributed agents.
+
+![Operator Console Terminal](/docs/terminal.png)
+
+### Terminal & History
 
 - Direct command-line access to Sirius backend
 - Custom script creation and execution
 - Advanced scan configuration options
 - System diagnostic capabilities
 - Batch operation support
-- Output formatting and filtering
+- Output formatting, filtering, and historical replay
+
+![Operator Console Multi-target Mode](/docs/console-multi.png)
 
 ### Agent Management
 
@@ -180,6 +203,8 @@ The Terminal interface provides direct access to Sirius Scan's backend through a
 - Agent update and maintenance tools
 - Performance metrics and logging
 - Remote troubleshooting capabilities
+
+![Operator Console Agent View](/docs/console-agent.png)
 
 ## Interface Tips
 

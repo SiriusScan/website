@@ -11,41 +11,41 @@ interface Feature {
 const FeaturesSection: React.FC = () => {
   const features: Feature[] = [
     {
-      title: "Actionable Vulnerabilities",
+      title: "Actionable Vulnerability Intelligence",
       subtitle:
-        "Understand systems, work through vulnerabilities, and take action.",
+        "Prioritize, filter, and investigate findings with operator-focused workflows.",
       description:
-        "Interacting with vulnerabilities is a core security practice. Your vulnerability scanner should make it easy to take action on your findings. Sirius Scan allows you to quickly exclude vulnerabilities from systems or even entire engagements so that you can focus on what matters most.",
-      image: require("../../public/vulnerabilityNav.png"),
+        "Sirius Scan gives you a live vulnerability navigator with severity distribution, CVSS-based filtering, grouped views, and fast export options. Move from raw findings to concrete remediation decisions without leaving the platform.",
+      image: require("../../public/docs/vulnerability-navigator.png"),
     },
     {
-      title: "Vulnerability Discovery and Remediation (VDR)",
+      title: "Operator Console & Agent Operations",
       subtitle:
-        "Don't be passive, hunt down vulnerabilities wherever they may be.",
+        "Coordinate interactive investigations across connected agents and targets.",
       description:
-        "With its powerful agent Sirius Scan makes interacting with vulnerabilities a breeze. Are you looking to script specialized discovery? How about automate validation? Exploitation? Sirius Scan has you covered.",
-      image: require("../../public/svdb.gif"),
+        "Use the Operator Console to execute commands, review command history, and manage active agents from a unified terminal experience. Sirius Scan combines interactive response with scalable automation for modern security operations.",
+      image: require("../../public/docs/terminal.png"),
     },
     {
       title: "Enterprise-Grade Architecture",
       subtitle: "Microservices-based design built for scale and reliability",
       description:
-        "Sirius Scan leverages a modern microservices architecture with Next.js frontend, Go backend services, and robust infrastructure including PostgreSQL, RabbitMQ, and Valkey. The modular engine integrates with industry-standard tools like Nmap, RustScan, and NSE scripts for comprehensive vulnerability detection.",
-      image: require("../../public/scanningEngine.png"),
+        "Sirius Scan runs on a production-ready architecture with Next.js, Go services, PostgreSQL, RabbitMQ, and Valkey. The scanning pipeline integrates Nmap, Naabu, and agent telemetry with installer-first setup and hardened deployment options.",
+      image: require("../../public/docs/scanner.png"),
     },
     {
       title: "System Monitoring & Observability",
       subtitle: "Real-time health monitoring and centralized logging",
       description:
-        "New in v0.4.0: Comprehensive system monitoring with real-time service health checks, centralized log collection, and performance metrics tracking. Monitor CPU, memory, disk, and network usage across all containers with automatic log retention and advanced filtering capabilities.",
-      image: require("../../public/dash-dark.gif"),
+        "Track service health, infrastructure metrics, and vulnerability trends in real time. Sirius Scan provides centralized observability across the stack so teams can validate scan outcomes while monitoring platform stability.",
+      image: require("../../public/dashboard-dark.gif"),
     },
   ];
 
   return (
     <div className="container mx-auto mt-[-1px] bg-[#15162c] px-4 py-16 text-white">
       <h2 className="mb-8 text-center text-4xl text-violet-200 ">
-        A Tactical Vulnerability Scanner. One Dedicated To You, The Operator.
+        A Tactical Vulnerability Platform Built for Operators.
       </h2>
       <div className="grid grid-cols-1 gap-12">
         {features.map((feature, index) => (

@@ -308,7 +308,7 @@ const DocsIndex = () => {
           {/* Latest Updates */}
           <div className="mt-12">
             <h2 className="mb-4 text-2xl font-semibold text-violet-200">
-              Latest Updates - v0.4.0
+              Latest Updates - v1.0.0
             </h2>
             <div className="rounded-lg border border-violet-700/40 bg-violet-900/5 p-4">
               <div className="space-y-4">
@@ -318,11 +318,11 @@ const DocsIndex = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-violet-200">
-                      System Monitoring & Observability
+                      Expanded Operator Workflows
                     </h3>
                     <p className="mt-1 text-sm text-gray-400">
-                      Real-time health monitoring, centralized logging, and
-                      performance metrics dashboard for all components.
+                      New Operator Console interactions across terminal,
+                      multi-target execution, and agent-aware operational views.
                     </p>
                   </div>
                 </div>
@@ -332,11 +332,12 @@ const DocsIndex = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-violet-200">
-                      Enhanced Reliability
+                      Installer-First Deployment
                     </h3>
                     <p className="mt-1 text-sm text-gray-400">
-                      Improved container builds, better error handling, and
-                      comprehensive automated testing.
+                      Production and development startup now begin with an
+                      installer workflow that generates and merges runtime
+                      configuration safely.
                     </p>
                   </div>
                 </div>
@@ -346,11 +347,12 @@ const DocsIndex = () => {
                   </div>
                   <div>
                     <h3 className="font-medium text-violet-200">
-                      Production-Ready Configuration
+                      Release-Ready Platform Hardening
                     </h3>
                     <p className="mt-1 text-sm text-gray-400">
-                      New deployment options including user-focused and
-                      production configurations with optimized performance.
+                      v1.0.0 includes stabilized CI/CD, improved API key support
+                      across services, and stronger operational defaults for
+                      public deployments.
                     </p>
                   </div>
                 </div>

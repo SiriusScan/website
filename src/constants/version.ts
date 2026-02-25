@@ -1,5 +1,5 @@
-export const SIRIUS_VERSION = "0.4.0";
-export const LAST_UPDATED_DATE = "2025-10-11"; // This should be updated by your build process or CI/CD pipeline
+export const SIRIUS_VERSION = "1.0.0";
+export const LAST_UPDATED_DATE = "2026-02-25"; // This should be updated by your build process or CI/CD pipeline
 
 export function getTimeAgo(date: string): string {
   const now = new Date();
