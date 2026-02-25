@@ -1,47 +1,28 @@
 // components/IntroSection.tsx
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 
 import Image from "next/image";
 import useTypewriter from "react-typewriter-hook";
 import "typeface-roboto-slab";
 
 const IntroSection: React.FC = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [showPro, setShowPro] = useState(false);
   const title = useTypewriter("Welcome to Sirius Scan");
-
-  // Inside your component
-  const buttonRef = useRef(null);
 
   return (
     <div
-      className={`relative pb-6 pt-20 text-white ${
-        darkMode
-          ? "bg-blue-500"
-          : "bg-gradient-to-b from-[#2e026d] to-[#15162c]"
-      }`}
+      className="relative pb-6 pt-20 text-white bg-gradient-to-b from-[#2e026d] to-[#15162c]"
       style={{
-        backgroundImage: `url(${
-          darkMode ? "/herobg-light.png" : "/loginbg.jpg"
-        })`,
+        backgroundImage: "url(/loginbg.jpg)",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      {/* Overlay to align with UI colors */}
-      {!darkMode && (
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-[#2e026d]/80 via-[#8b5cf6]/40 to-[#15162c]/95"
-          style={{
-            mixBlendMode: "multiply",
-          }}
-        />
-      )}
-      {/* Bottom fade gradient to seamlessly blend into site background */}
-      {!darkMode && (
-        <div
-          className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-[#15162c]/50 to-[#15162c] pointer-events-none"
-        />
-      )}
+      <div
+        className="absolute inset-0 bg-gradient-to-b from-[#2e026d]/80 via-[#8b5cf6]/40 to-[#15162c]/95"
+        style={{ mixBlendMode: "multiply" }}
+      />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-transparent via-[#15162c]/50 to-[#15162c] pointer-events-none" />
       <div className="container relative mx-auto px-4 z-10">
         <div className="ml-4 grid grid-cols-1 items-center gap-12 md:grid-cols-[2fr,3fr]">
           <div>
@@ -76,77 +57,72 @@ const IntroSection: React.FC = () => {
             </div>
           </div>
           <div>
-            {darkMode ? (
-              <Image
-                src="/dashboard-light.png"
-                alt="Sirius Scan"
-                width={800}
-                height={0}
-                className="rounded-lg"
-              />
-            ) : (
-              <Image
-                src="/dashboard-dark.gif"
-                alt="Sirius Scan"
-                width={800}
-                height={0}
-                className="rounded-lg"
-              />
-            )}
-            <div className="mt-6 flex cursor-pointer justify-center space-x-1">
-              <button
-                ref={buttonRef}
-                className={`h-9 w-16 rounded-l-xl pl-6 text-white ${
-                  !darkMode
-                    ? "border border-white bg-gray-700"
-                    : "bg-black hover:bg-gray-700"
-                }`}
-                onClick={() => {
-                  setDarkMode(false);
-                }}
-              >
-                {/* Dark Icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  className="h-6 w-6"
+            {/* Stable aspect-ratio wrapper so both views occupy the same space */}
+            <div className="relative w-full" style={{ aspectRatio: "800 / 460" }}>
+              {showPro ? (
+                <div className="absolute inset-0 flex items-center justify-center rounded-lg border border-violet-500/30 bg-gradient-to-br from-[#1e1b4b]/80 via-[#2e1065]/60 to-[#15162c]/90 backdrop-blur-sm">
+                  <div className="text-center px-8">
+                    <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-violet-500/20 border border-violet-400/30">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.5"
+                        stroke="currentColor"
+                        className="h-10 w-10 text-violet-400"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+                        />
+                      </svg>
+                    </div>
+                    <h3 className="mb-2 text-2xl font-semibold text-white">
+                      Sirius Pro
+                    </h3>
+                    <p className="mb-6 text-lg text-violet-300/80">
+                      Coming Soon
+                    </p>
+                    <p className="mx-auto max-w-sm text-sm leading-relaxed text-gray-400">
+                      Advanced reporting, team collaboration, managed
+                      infrastructure, and priority support for enterprise
+                      security operations.
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <Image
+                  src="/dashboard-dark.gif"
+                  alt="Sirius Scan"
+                  fill
+                  className="rounded-lg object-contain"
+                />
+              )}
+            </div>
+            <div className="mt-6 flex cursor-pointer justify-center">
+              <div className="inline-flex rounded-xl overflow-hidden border border-violet-500/30">
+                <button
+                  className={`px-5 py-2 text-sm font-medium transition-all duration-200 ${
+                    !showPro
+                      ? "bg-violet-600 text-white"
+                      : "bg-[#1e1b4b]/60 text-gray-400 hover:text-white hover:bg-violet-600/30"
+                  }`}
+                  onClick={() => setShowPro(false)}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"
-                  />
-                </svg>
-              </button>
-              <button
-                className={`h-9 w-16 rounded-r-xl pl-4 text-black ${
-                  darkMode
-                    ? "border border-black bg-gray-400"
-                    : "bg-white hover:bg-gray-300"
-                }`}
-                onClick={() => {
-                  setDarkMode(true);
-                }}
-              >
-                {/* Light Icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="h-6 w-6"
+                  Open Source
+                </button>
+                <button
+                  className={`px-5 py-2 text-sm font-medium transition-all duration-200 ${
+                    showPro
+                      ? "bg-violet-600 text-white"
+                      : "bg-[#1e1b4b]/60 text-gray-400 hover:text-white hover:bg-violet-600/30"
+                  }`}
+                  onClick={() => setShowPro(true)}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                  />
-                </svg>
-              </button>
+                  Pro
+                </button>
+              </div>
             </div>
           </div>
         </div>

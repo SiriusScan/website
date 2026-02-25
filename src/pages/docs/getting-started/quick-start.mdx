@@ -4,6 +4,7 @@ export const meta = {
   title: "Quick Start Guide - Sirius Scan",
   description:
     "Get started with Sirius Scan quickly and learn the essential first steps.",
+  lastReviewed: "2026-02-25",
 };
 
 # Quick Start Guide
@@ -184,7 +185,7 @@ docker compose restart sirius-ui
 
 ### Advanced Configuration
 
-- Review [Docker setup documentation](https://github.com/SiriusScan/Sirius/blob/main/documentation/README.docker.md) for production deployments
+- Review [Docker architecture documentation](https://github.com/SiriusScan/Sirius/blob/main/documentation/dev/architecture/README.docker-architecture.md) for production deployments
 - Check the [troubleshooting guide](https://github.com/SiriusScan/Sirius/blob/main/README.md#troubleshooting) for common issues
 - Join our [community discussions](https://github.com/SiriusScan/Sirius/discussions) for tips and support
 
@@ -218,4 +219,4 @@ For production deployments:
    - Implement access controls
    - Regular security assessments
 
-export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
+export default ({ children }) => <DocsLayout meta={meta}>{children}</DocsLayout>;

@@ -1,0 +1,27 @@
+name: Deploy Smoke Tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      deployment_url:
+        description: "Base URL to test against"
+        required: false
+        default: "https://sirius.opensecurity.com"
+  schedule:
+    - cron: "0 8 * * *" # daily at 08:00 UTC
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Run smoke tests
+        run: |
+          BASE_URL="${{ github.event.inputs.deployment_url || 'https://sirius.opensecurity.com' }}"
+          node scripts/smoke-tests.js --base-url="$BASE_URL"

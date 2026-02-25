@@ -4,6 +4,7 @@ export const meta = {
   title: "Installation Guide - Sirius Scan",
   description:
     "Learn how to install and set up Sirius Scan using Docker Compose.",
+  lastReviewed: "2026-02-25",
 };
 
 # Installing Sirius Scan
@@ -203,4 +204,4 @@ If you continue to experience issues:
 - Take the [Interface Tour](/docs/getting-started/interface-tour)
 - Review the [comprehensive documentation](https://github.com/SiriusScan/Sirius/blob/main/README.md) in the main repository
 
-export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
+export default ({ children }) => <DocsLayout meta={meta}>{children}</DocsLayout>;

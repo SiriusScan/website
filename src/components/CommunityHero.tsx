@@ -1,47 +1,61 @@
 import React from "react";
 import Link from "next/link";
 
+const stats = [
+  { label: "GitHub Stars", value: "1.2k+" },
+  { label: "Contributors", value: "30+" },
+  { label: "Discord Members", value: "200+" },
+  { label: "Repositories", value: "10+" },
+];
+
 const CommunityHero: React.FC = () => {
   return (
-    <div className="bg-gradient-to-r from-blue-900 to-[#15162c] py-20">
-      <div className="container mx-auto px-4 text-white">
-        <div className="grid items-center gap-8 md:grid-cols-2">
-          {/* Text Section */}
-          <div>
-            <h1 className="mb-4 text-4xl font-bold text-amber-300">
-              The Race to #KEV100
-            </h1>
-            <p className="mb-8 text-2xl font-extralight">
-              Not all vulnerabilities are created equal and most CVEs will never
-              be exploited. By anyone. Ever.
-            </p>
-            <p className="mb-8 text-xl text-violet-200">
-              How do we know what matters and is their an free option to empower
-              all security teams to find the most important vulnerabilities?{" "}
-              <br />
-              Sirius Scan is proud to support the endeavor to create an open
-              source option to discover every vulnerability on the Cybersecurity
-              Infrastructure Security Agency's (CISA) Known Exploited
-              Vulnerabilities (KEV) list.
-            </p>
-            <Link href="https://opensecurity.com">
-              <button className="rounded-md border border-violet-200 px-8 py-2 text-white transition duration-300 hover:bg-white hover:text-blue-500 hover:shadow-lg">
-                Join the Fight!
-              </button>
-            </Link>
-          </div>
+    <div className="relative bg-gradient-to-b from-[#2e026d] to-[#15162c] pb-16 pt-28">
+      <div className="absolute left-0 top-0 z-0 h-full w-full translate-x-[-50%] -rotate-45 transform bg-gradient-to-br from-transparent via-violet-300/5 to-transparent md:-rotate-12" />
 
-          {/* Imagery Section */}
-          <div className="flex items-center justify-center">
-            {/* Placeholder for the image or collage */}
-            <div className="rounded-lg">
-              <img
-                className="rounded-xl"
-                src="/kev100.png"
-                alt="Community Hero"
-              />
+      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+        <span className="mb-6 inline-block rounded-full bg-violet-500/20 px-4 py-1 text-sm font-semibold text-violet-300">
+          Open Source
+        </span>
+
+        <h1 className="mb-6 text-4xl font-bold text-amber-300 sm:text-5xl">
+          Built by Security Professionals,
+          <br />
+          for Security Professionals
+        </h1>
+
+        <p className="mx-auto mb-12 max-w-3xl text-xl font-light text-violet-100">
+          Sirius Scan is shaped by the collective voice of its community.
+          Every feature, integration, and workflow reflects the real needs of
+          security teams working in the field. Join us and help build the
+          future of open-source vulnerability management.
+        </p>
+
+        <div className="mb-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="rounded-xl border border-violet-700/40 bg-violet-900/10 px-4 py-6"
+            >
+              <div className="text-3xl font-bold text-white">{stat.value}</div>
+              <div className="mt-1 text-sm text-violet-300">{stat.label}</div>
             </div>
-          </div>
+          ))}
+        </div>
+
+        <div className="flex justify-center gap-4">
+          <Link
+            href="https://discord.gg/VTjqSxkJqX"
+            className="inline-block rounded-md border border-violet-200 bg-violet-600 px-8 py-2.5 font-medium text-white transition duration-300 hover:bg-violet-700 hover:shadow-lg"
+          >
+            Join Discord
+          </Link>
+          <Link
+            href="https://github.com/SiriusScan/Sirius"
+            className="inline-block rounded-md border border-violet-200 px-8 py-2.5 font-medium text-white transition duration-300 hover:bg-white hover:text-violet-600 hover:shadow-lg"
+          >
+            View on GitHub
+          </Link>
         </div>
       </div>
     </div>

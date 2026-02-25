@@ -9,7 +9,10 @@
     "start": "next start",
     "docs:dev": "next dev",
     "docs:build": "next build",
-    "docs:start": "next start"
+    "docs:start": "next start",
+    "check:links": "node scripts/check-links.js",
+    "check:links:ci": "node scripts/check-links.js --ci",
+    "test:smoke": "node scripts/smoke-tests.js"
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",

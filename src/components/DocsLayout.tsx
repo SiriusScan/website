@@ -61,9 +61,15 @@ const sidebar: SidebarItem[] = [
   },
 ];
 
+interface DocsMeta {
+  title?: string;
+  description?: string;
+  lastReviewed?: string;
+}
+
 interface DocsLayoutProps {
   children: React.ReactNode;
-  meta: any;
+  meta?: DocsMeta;
 }
 
 const DocsLayout: React.FC<DocsLayoutProps> = ({ children, meta }) => {
@@ -293,6 +299,16 @@ const DocsLayout: React.FC<DocsLayoutProps> = ({ children, meta }) => {
 
         {/* Main Content */}
         <div className="flex-1 px-4 py-8 md:px-8">
+          {meta?.lastReviewed && (
+            <div className="mb-4 flex items-center gap-2 text-xs text-gray-400">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-violet-500/60" />
+              Last reviewed{" "}
+              {new Date(meta.lastReviewed + "T00:00:00").toLocaleDateString(
+                "en-US",
+                { year: "numeric", month: "long", day: "numeric" }
+              )}
+            </div>
+          )}
           <div className="prose prose-invert max-w-none">
             <MDXWrapper>{children}</MDXWrapper>
           </div>

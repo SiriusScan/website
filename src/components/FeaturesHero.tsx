@@ -1,5 +1,6 @@
 import Link from "next/link";
-import React, { useState, useRef } from "react";
+import Image from "next/image";
+import React from "react";
 
 const FeaturesHero: React.FC = () => {
   return (
@@ -41,10 +42,12 @@ const FeaturesHero: React.FC = () => {
 
           {/* Image Section (1/3 width) */}
           <div className="flex items-center justify-center md:col-span-2">
-            <img
+            <Image
               src="/docs/host.png"
-              alt="Sirius Scan Image"
-              className="max-h-full w-auto rounded-lg shadow-2xl shadow-violet-300/20"
+              alt="Sirius Scan host detail view showing vulnerability counts, services, and system information for a discovered asset"
+              width={600}
+              height={400}
+              className="w-auto rounded-lg shadow-2xl shadow-violet-300/20"
             />
           </div>
         </div>

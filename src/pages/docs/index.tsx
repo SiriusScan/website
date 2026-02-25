@@ -3,7 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import DocsLayout from "~/components/DocsLayout";
 import GridBackground from "~/components/GridBackground";
-import CodePlayground from "~/components/CodePlayground";
 import {
   SIRIUS_VERSION,
   LAST_UPDATED_DATE,
@@ -23,36 +22,6 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 
-const quickStartExample = {
-  python: `from sirius_scan import Scanner
-
-scanner = Scanner()
-results = scanner.scan("example.com", 
-    scan_type="full",
-    options={
-        "threads": 10,
-        "timeout": 30
-    }
-)
-
-for vulnerability in results.vulnerabilities:
-    print(f"Found {vulnerability.severity}: {vulnerability.title}")`,
-  javascript: `import { Scanner } from 'sirius-scan';
-
-const scanner = new Scanner();
-const results = await scanner.scan('example.com', {
-  scanType: 'full',
-  options: {
-    threads: 10,
-    timeout: 30
-  }
-});
-
-results.vulnerabilities.forEach(vulnerability => {
-  console.log(\`Found \${vulnerability.severity}: \${vulnerability.title}\`);
-});`,
-};
-
 const DocsIndex = () => {
   return (
     <>
@@ -60,7 +29,19 @@ const DocsIndex = () => {
         <title>Documentation - Sirius Scan</title>
         <meta
           name="description"
-          content="Documentation for Sirius Scan - Enterprise-grade Open-source Vulnerability Scanner"
+          content="Documentation for Sirius Scan - Enterprise-grade open-source vulnerability management platform. Installation, interface tour, API reference, and more."
+        />
+        <link rel="canonical" href="https://sirius.opensecurity.com/docs" />
+        <meta property="og:title" content="Documentation - Sirius Scan" />
+        <meta
+          property="og:description"
+          content="Installation, interface tour, API reference, and guides for the Sirius Scan vulnerability management platform."
+        />
+        <meta property="og:url" content="https://sirius.opensecurity.com/docs" />
+        <meta name="twitter:title" content="Documentation - Sirius Scan" />
+        <meta
+          name="twitter:description"
+          content="Installation, interface tour, API reference, and guides for the Sirius Scan vulnerability management platform."
         />
       </Head>
       <DocsLayout

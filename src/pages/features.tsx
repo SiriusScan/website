@@ -17,9 +17,21 @@ export default function Features() {
         <title>Features - Sirius Scan</title>
         <meta
           name="description"
-          content="Explore the powerful features of Sirius Scan - Real-time vulnerability scanning, comprehensive dashboard, advanced scanning controls, and more."
+          content="Explore Sirius Scan features: vulnerability navigator, operator console, agent management, software inventory, and real-time observability."
         />
         <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://sirius.opensecurity.com/features" />
+        <meta property="og:title" content="Features - Sirius Scan" />
+        <meta
+          property="og:description"
+          content="Vulnerability navigator, operator console, agent management, software inventory, and real-time observability in one platform."
+        />
+        <meta property="og:url" content="https://sirius.opensecurity.com/features" />
+        <meta name="twitter:title" content="Features - Sirius Scan" />
+        <meta
+          name="twitter:description"
+          content="Vulnerability navigator, operator console, agent management, software inventory, and real-time observability in one platform."
+        />
       </Head>
       <main className="relative min-h-screen bg-[#15162c]">
         <div className="absolute left-0 top-0 z-0 h-full w-full translate-x-[-50%] -rotate-45 transform bg-gradient-to-br from-transparent via-violet-300/5 to-transparent md:-rotate-12"></div>
@@ -41,13 +53,13 @@ export default function Features() {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
                 <Image
                   src="/dashboard-dark.gif"
-                  alt="Sirius Scan Dashboard"
+                  alt="Sirius Scan dashboard with real-time vulnerability trends, scan activity, and system health metrics"
                   width={800}
                   height={450}
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div className="flex flex-col justify-center space-y-6">
@@ -108,13 +120,13 @@ export default function Features() {
                   </ul>
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
                 <Image
                   src="/docs/scanner.png"
-                  alt="Scanning Interface"
+                  alt="Scanning interface with scan profile controls, target configuration, and real-time progress"
                   width={800}
                   height={450}
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
             </div>
@@ -133,13 +145,13 @@ export default function Features() {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
                 <Image
                   src="/docs/vulnerability-navigator.png"
-                  alt="Vulnerability Navigator"
+                  alt="Vulnerability navigator listing CVEs by severity with filtering and grouped triage controls"
                   width={800}
                   height={450}
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div className="flex flex-col justify-center space-y-6">
@@ -199,13 +211,13 @@ export default function Features() {
                   </ul>
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
                 <Image
                   src="/docs/environment.png"
-                  alt="Environment Overview"
+                  alt="Environment overview showing discovered hosts with risk scores, vulnerability counts, and security status"
                   width={800}
                   height={450}
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
             </div>
@@ -311,13 +323,13 @@ export default function Features() {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
                 <Image
                   src="/docs/software-inventory.png"
-                  alt="Software Inventory"
+                  alt="Software inventory table listing installed packages with architecture metadata and security status"
                   width={800}
                   height={450}
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div className="flex flex-col justify-center space-y-6">
@@ -357,13 +369,13 @@ export default function Features() {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
                 <Image
                   src="/docs/vulnerability-detail.png"
-                  alt="Vulnerability details"
+                  alt="CVE detail page showing CVSS score breakdown, attack vector, affected systems, and remediation guidance"
                   width={800}
                   height={450}
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div className="flex flex-col justify-center space-y-6">
@@ -424,13 +436,13 @@ export default function Features() {
                   </ul>
                 </div>
               </div>
-              <div className="relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
                 <Image
                   src="/docs/console-agent.png"
-                  alt="Operator Console agent management"
+                  alt="Operator Console agent management view showing connected agents with health status and targeting options"
                   width={800}
                   height={450}
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
             </div>
@@ -449,13 +461,13 @@ export default function Features() {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="relative overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-xl border border-violet-700/40 bg-violet-900/5">
                 <Image
                   src="/docs/terminal.png"
-                  alt="Operator Console Terminal"
+                  alt="Operator Console terminal tab with interactive command input, execution output, and command history"
                   width={800}
                   height={450}
-                  className="w-full"
+                  className="h-full w-full object-cover"
                 />
               </div>
               <div className="flex flex-col justify-center space-y-6">

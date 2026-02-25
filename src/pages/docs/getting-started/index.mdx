@@ -15,6 +15,7 @@ export const meta = {
   title: "Getting Started - Sirius Scan",
   description:
     "Get started with Sirius Scan - An enterprise-grade open-source vulnerability scanner.",
+  lastReviewed: "2026-02-25",
 };
 
 <div className="space-y-8">
@@ -214,4 +215,4 @@ export const meta = {
   </div>
 </div>
 
-export default ({ children }) => <DocsLayout>{children}</DocsLayout>;
+export default ({ children }) => <DocsLayout meta={meta}>{children}</DocsLayout>;

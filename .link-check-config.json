@@ -1,0 +1,11 @@
+{
+  "ignorePatterns": [
+    "localhost",
+    "127.0.0.1",
+    "example.com",
+    "your-server"
+  ],
+  "externalTimeout": 8000,
+  "maxRetries": 2,
+  "notes": "Used by scripts/check-links.js. Hosts in ignorePatterns are skipped during external validation."
+}

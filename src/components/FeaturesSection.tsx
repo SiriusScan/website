@@ -73,16 +73,29 @@ const FeaturesSection: React.FC = () => {
 
 export default FeaturesSection;
 
+const featureAltText: Record<string, string> = {
+  "Actionable Vulnerability Intelligence":
+    "Vulnerability navigator listing CVEs with severity distribution chart and CVSS-based filtering controls",
+  "Operator Console & Agent Operations":
+    "Operator Console terminal showing interactive command execution and agent targeting interface",
+  "Enterprise-Grade Architecture":
+    "Scanning interface with profile selection, target input, and real-time scan progress indicators",
+  "System Monitoring & Observability":
+    "Dashboard displaying service health status, container metrics, and vulnerability trend graphs",
+};
+
 const FeatureImage: React.FC<{ feature: Feature }> = ({ feature }) => (
   <div className="px-8 py-4 text-center">
-    <Image
-      src={feature.image}
-      alt={feature.title}
-      layout="responsive"
-      width={500}
-      height={300}
-      className="rounded-lg"
-    />
+    <div className="aspect-[5/3] overflow-hidden rounded-lg">
+      <Image
+        src={feature.image}
+        alt={featureAltText[feature.title] ?? feature.title}
+        layout="responsive"
+        width={500}
+        height={300}
+        className="rounded-lg object-cover"
+      />
+    </div>
   </div>
 );
 

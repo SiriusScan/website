@@ -53,7 +53,19 @@ const APIOverview = () => {
         <title>API Overview - Sirius Scan</title>
         <meta
           name="description"
-          content="API and SDK documentation for Sirius Scan - Enterprise-grade vulnerability scanner"
+          content="API and SDK documentation for Sirius Scan - Go SDK, host management, vulnerability queries, and scan orchestration."
+        />
+        <link rel="canonical" href="https://sirius.opensecurity.com/docs/api" />
+        <meta property="og:title" content="API Overview - Sirius Scan" />
+        <meta
+          property="og:description"
+          content="Go SDK reference, host management, vulnerability queries, and scan orchestration for Sirius Scan."
+        />
+        <meta property="og:url" content="https://sirius.opensecurity.com/docs/api" />
+        <meta name="twitter:title" content="API Overview - Sirius Scan" />
+        <meta
+          name="twitter:description"
+          content="Go SDK reference, host management, vulnerability queries, and scan orchestration for Sirius Scan."
         />
       </Head>
       <DocsLayout
