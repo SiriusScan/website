@@ -131,9 +131,31 @@ export const meta = {
       </div>
     </Link>
 
-  </div>
+</div>
 
 {/* Learning Path */}
+
+<div className="mb-8 rounded-xl border border-violet-600/40 bg-violet-900/10 p-6">
+  <h2 className="mb-2 text-xl font-semibold text-violet-200">Sirius Agent</h2>
+  <p className="mb-4 text-sm text-gray-300">
+    Need to deploy remote agents? Use the dedicated download page and setup
+    guide with required environment variables.
+  </p>
+  <div className="flex flex-wrap gap-4">
+    <Link
+      href="/get-started/downloads"
+      className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white no-underline transition-colors hover:bg-violet-500"
+    >
+      Open Downloads
+    </Link>
+    <Link
+      href="/docs/getting-started/agent-downloads"
+      className="rounded-lg border border-violet-600/40 px-4 py-2 text-sm font-medium text-violet-200 no-underline transition-colors hover:border-violet-500/60 hover:text-violet-100"
+    >
+      Open Setup Guide
+    </Link>
+  </div>
+</div>
 
 <div className="mb-8 rounded-xl border border-violet-700/40 bg-violet-900/5 p-8">
   <h2 className="mb-6 text-2xl font-semibold text-violet-200">
@@ -215,4 +237,6 @@ export const meta = {
   </div>
 </div>
 
-export default ({ children }) => <DocsLayout meta={meta}>{children}</DocsLayout>;
+export default ({ children }) => (
+  <DocsLayout meta={meta}>{children}</DocsLayout>
+);

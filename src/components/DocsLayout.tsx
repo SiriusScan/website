@@ -29,6 +29,10 @@ const sidebar: SidebarItem[] = [
     items: [
       { title: "Installation", href: "/docs/getting-started/installation" },
       { title: "Quick Start", href: "/docs/getting-started/quick-start" },
+      {
+        title: "Agent Downloads",
+        href: "/docs/getting-started/agent-downloads",
+      },
       { title: "Interface Tour", href: "/docs/getting-started/interface-tour" },
     ],
   },
@@ -305,7 +309,7 @@ const DocsLayout: React.FC<DocsLayoutProps> = ({ children, meta }) => {
               Last reviewed{" "}
               {new Date(meta.lastReviewed + "T00:00:00").toLocaleDateString(
                 "en-US",
-                { year: "numeric", month: "long", day: "numeric" }
+                { year: "numeric", month: "long", day: "numeric" },
               )}
             </div>
           )}

@@ -3,11 +3,13 @@ import React, { useState } from "react";
 interface TerminalBlockProps {
   title?: string;
   commands: string[];
+  className?: string;
 }
 
 const TerminalBlock: React.FC<TerminalBlockProps> = ({
   title = "bash",
   commands,
+  className = "",
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -18,7 +20,9 @@ const TerminalBlock: React.FC<TerminalBlockProps> = ({
   };
 
   return (
-    <div className="overflow-hidden rounded-lg border border-white/[0.08] bg-[#0a0a14] text-left shadow-2xl shadow-black/60">
+    <div
+      className={`flex h-full flex-col overflow-hidden rounded-lg border border-white/[0.08] bg-[#0a0a14] text-left shadow-2xl shadow-black/60 ${className}`}
+    >
       <div className="flex items-center justify-between border-b border-white/[0.08] bg-[#12121f] px-4 py-2.5">
         <div className="flex items-center gap-3">
           <div className="flex gap-1.5">
@@ -38,7 +42,7 @@ const TerminalBlock: React.FC<TerminalBlockProps> = ({
         </button>
       </div>
 
-      <div className="space-y-1 p-4 font-mono text-[13px] leading-relaxed">
+      <div className="flex-1 space-y-1 p-4 font-mono text-[13px] leading-relaxed">
         {commands.map((cmd, i) => (
           <div key={i} className="flex">
             <span className="mr-2 select-none text-emerald-500">$</span>

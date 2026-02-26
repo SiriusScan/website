@@ -1,0 +1,50 @@
+import DocsLayout from "../../../components/DocsLayout";
+
+export const meta = {
+  title: "Agent Downloads and Setup - Sirius Scan",
+  description:
+    "Download Sirius Agent and run it with required environment variables for API key and server address.",
+  lastReviewed: "2026-02-25",
+};
+
+# Sirius Agent Downloads and Setup
+
+Use this guide to download the Sirius Agent binary for your platform and run it with the required runtime environment variables.
+
+- Download page: [/get-started/downloads](/get-started/downloads)
+- Releases: [github.com/SiriusScan/app-agent/releases](https://github.com/SiriusScan/app-agent/releases)
+
+## Required Environment Variables
+
+The agent must receive these values at runtime:
+
+- `SIRIUS_API_KEY`: API key used to submit results to the Sirius API
+- `SERVER_ADDRESS`: Sirius server gRPC address (for example `sirius.example.com:50051`)
+
+## Linux / macOS
+
+```bash
+export SIRIUS_API_KEY="<your-sirius-api-key>"
+export SERVER_ADDRESS="<sirius-host>:50051"
+sirius-agent
+```
+
+## Windows (PowerShell)
+
+```powershell
+$env:SIRIUS_API_KEY = "<your-sirius-api-key>"
+$env:SERVER_ADDRESS = "<sirius-host>:50051"
+.\sirius-agent.exe
+```
+
+## Validate the Agent Binary
+
+```bash
+sirius-agent version
+```
+
+If you need older versions or checksums, use the release assets on GitHub or the links in the download page.
+
+export default ({ children }) => (
+  <DocsLayout meta={meta}>{children}</DocsLayout>
+);

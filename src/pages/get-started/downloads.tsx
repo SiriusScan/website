@@ -281,13 +281,14 @@ export default function AgentDownload({
             <h2 className="mb-6 text-2xl font-semibold text-violet-200">
               Installation
             </h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div>
+            <div className="grid items-stretch gap-6 md:grid-cols-2">
+              <div className="flex h-full flex-col">
                 <h3 className="mb-3 text-lg font-medium text-gray-200">
                   Linux / macOS
                 </h3>
                 <TerminalBlock
                   title="bash"
+                  className="flex-1"
                   commands={[
                     `tar xzf sirius-agent_${version}_<os>_<arch>.tar.gz`,
                     "sudo mv sirius-agent /usr/local/bin/",
@@ -295,12 +296,13 @@ export default function AgentDownload({
                   ]}
                 />
               </div>
-              <div>
+              <div className="flex h-full flex-col">
                 <h3 className="mb-3 text-lg font-medium text-gray-200">
                   Windows
                 </h3>
                 <TerminalBlock
                   title="powershell"
+                  className="flex-1"
                   commands={[
                     `tar xzf sirius-agent_${version}_windows_amd64.tar.gz`,
                     ".\\sirius-agent.exe version",
@@ -314,8 +316,12 @@ export default function AgentDownload({
             <h2 className="mb-6 text-2xl font-semibold text-violet-200">
               Usage
             </h2>
-            <div className="grid gap-6 md:grid-cols-2">
-              <div>
+            <p className="mb-4 text-sm text-gray-400">
+              Sirius Agent requires both <code>SIRIUS_API_KEY</code> and{" "}
+              <code>SERVER_ADDRESS</code> at runtime.
+            </p>
+            <div className="grid items-stretch gap-6 md:grid-cols-2">
+              <div className="flex h-full flex-col">
                 <h3 className="mb-3 text-lg font-medium text-gray-200">
                   Server Mode
                 </h3>
@@ -325,23 +331,29 @@ export default function AgentDownload({
                 </p>
                 <TerminalBlock
                   title="bash"
+                  className="flex-1"
                   commands={[
-                    "sirius-agent server --address <sirius-host>:50051",
+                    'export SIRIUS_API_KEY="<your-sirius-api-key>"',
+                    'export SERVER_ADDRESS="<sirius-host>:50051"',
+                    "sirius-agent",
                   ]}
                 />
               </div>
-              <div>
+              <div className="flex h-full flex-col">
                 <h3 className="mb-3 text-lg font-medium text-gray-200">
-                  CLI Mode
+                  Windows Server Mode
                 </h3>
                 <p className="mb-3 text-sm text-gray-400">
-                  Run scans and templates locally for testing and development.
+                  Use the same required environment variables on Windows before
+                  starting the agent.
                 </p>
                 <TerminalBlock
-                  title="bash"
+                  title="powershell"
+                  className="flex-1"
                   commands={[
-                    "sirius-agent scan --format text",
-                    "sirius-agent template run ./templates/builtin/<template>.yaml",
+                    '$env:SIRIUS_API_KEY = "<your-sirius-api-key>"',
+                    '$env:SERVER_ADDRESS = "<sirius-host>:50051"',
+                    ".\\sirius-agent.exe",
                   ]}
                 />
               </div>
@@ -366,10 +378,10 @@ export default function AgentDownload({
               All Releases
             </a>
             <Link
-              href="/docs/getting-started/installation"
+              href="/docs/getting-started/agent-downloads"
               className="text-violet-400 no-underline hover:text-violet-300"
             >
-              Sirius Scan Installation
+              Agent Setup Guide
             </Link>
           </div>
         </div>
