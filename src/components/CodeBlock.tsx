@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { CheckIcon, ClipboardIcon } from "@heroicons/react/24/outline";
 
 interface CodeBlockProps {
@@ -7,16 +7,20 @@ interface CodeBlockProps {
 
 const CodeBlock: React.FC<CodeBlockProps> = ({ children }) => {
   const [copied, setCopied] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const handleCopy = async () => {
-    const code = (children as any).props.children;
+    const codeElement =
+      containerRef.current?.querySelector("pre code") ??
+      containerRef.current?.querySelector("pre");
+    const code = codeElement?.textContent ?? "";
     await navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
-    <div className="code-block-container">
+    <div ref={containerRef} className="code-block-container">
       {children}
       <button
         onClick={handleCopy}
