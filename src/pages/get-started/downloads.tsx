@@ -279,56 +279,18 @@ export default function AgentDownload({
 
           <section className="mb-16">
             <h2 className="mb-6 text-2xl font-semibold text-violet-200">
-              Installation
-            </h2>
-            <div className="grid items-stretch gap-6 md:grid-cols-2">
-              <div className="flex h-full flex-col">
-                <h3 className="mb-3 text-lg font-medium text-gray-200">
-                  Linux / macOS
-                </h3>
-                <TerminalBlock
-                  title="bash"
-                  className="flex-1"
-                  commands={[
-                    `tar xzf sirius-agent_${version}_<os>_<arch>.tar.gz`,
-                    "sudo mv sirius-agent /usr/local/bin/",
-                    "sirius-agent version",
-                  ]}
-                />
-              </div>
-              <div className="flex h-full flex-col">
-                <h3 className="mb-3 text-lg font-medium text-gray-200">
-                  Windows
-                </h3>
-                <TerminalBlock
-                  title="powershell"
-                  className="flex-1"
-                  commands={[
-                    `tar xzf sirius-agent_${version}_windows_amd64.tar.gz`,
-                    ".\\sirius-agent.exe version",
-                  ]}
-                />
-              </div>
-            </div>
-          </section>
-
-          <section className="mb-16">
-            <h2 className="mb-6 text-2xl font-semibold text-violet-200">
-              Usage
+              Install and Run
             </h2>
             <p className="mb-4 text-sm text-gray-400">
-              Sirius Agent requires both <code>SIRIUS_API_KEY</code> and{" "}
-              <code>SERVER_ADDRESS</code> at runtime.
+              Managed runtime uses <code>SIRIUS_API_KEY</code> and{" "}
+              <code>SERVER_ADDRESS</code>. CLI mode can run templates locally
+              without server connectivity.
             </p>
-            <div className="grid items-stretch gap-6 md:grid-cols-2">
+            <div className="grid items-stretch gap-6 md:grid-cols-3">
               <div className="flex h-full flex-col">
                 <h3 className="mb-3 text-lg font-medium text-gray-200">
-                  Server Mode
+                  Linux / macOS Runtime
                 </h3>
-                <p className="mb-3 text-sm text-gray-400">
-                  Connects to your Sirius Scan instance and listens for scan
-                  jobs.
-                </p>
                 <TerminalBlock
                   title="bash"
                   className="flex-1"
@@ -341,12 +303,8 @@ export default function AgentDownload({
               </div>
               <div className="flex h-full flex-col">
                 <h3 className="mb-3 text-lg font-medium text-gray-200">
-                  Windows Server Mode
+                  Windows Runtime
                 </h3>
-                <p className="mb-3 text-sm text-gray-400">
-                  Use the same required environment variables on Windows before
-                  starting the agent.
-                </p>
                 <TerminalBlock
                   title="powershell"
                   className="flex-1"
@@ -354,6 +312,20 @@ export default function AgentDownload({
                     '$env:SIRIUS_API_KEY = "<your-sirius-api-key>"',
                     '$env:SERVER_ADDRESS = "<sirius-host>:50051"',
                     ".\\sirius-agent.exe",
+                  ]}
+                />
+              </div>
+              <div className="flex h-full flex-col">
+                <h3 className="mb-3 text-lg font-medium text-gray-200">
+                  CLI Mode (Local)
+                </h3>
+                <TerminalBlock
+                  title="bash"
+                  className="flex-1"
+                  commands={[
+                    "sirius-agent template list",
+                    "sirius-agent template run ./templates/builtin/<template>.yaml",
+                    "sirius-agent template run-all",
                   ]}
                 />
               </div>

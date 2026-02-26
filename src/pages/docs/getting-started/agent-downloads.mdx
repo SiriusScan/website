@@ -9,14 +9,14 @@ export const meta = {
 
 # Sirius Agent Downloads and Setup
 
-Use this guide to download the Sirius Agent binary for your platform and run it with the required runtime environment variables.
+Use this guide to download the Sirius Agent binary for your platform and run it with the correct runtime commands.
 
 - Download page: [/get-started/downloads](/get-started/downloads)
 - Releases: [github.com/SiriusScan/app-agent/releases](https://github.com/SiriusScan/app-agent/releases)
 
-## Required Environment Variables
+## Managed Runtime Environment Variables
 
-The agent must receive these values at runtime:
+Use these variables when running the agent in managed mode:
 
 - `SIRIUS_API_KEY`: API key used to submit results to the Sirius API
 - `SERVER_ADDRESS`: Sirius server gRPC address (for example `sirius.example.com:50051`)
@@ -35,6 +35,16 @@ sirius-agent
 $env:SIRIUS_API_KEY = "<your-sirius-api-key>"
 $env:SERVER_ADDRESS = "<sirius-host>:50051"
 .\sirius-agent.exe
+```
+
+## CLI Mode (Local Execution)
+
+CLI mode can run templates locally without server connectivity.
+
+```bash
+sirius-agent template list
+sirius-agent template run ./templates/builtin/<template>.yaml
+sirius-agent template run-all
 ```
 
 ## Validate the Agent Binary
