@@ -50,7 +50,7 @@ const Header: React.FC = () => {
           <Link href="/community">
             <span className="mx-2 hover:font-bold">Community</span>
           </Link>
-          <Link href="https://github.com/SiriusScan/Sirius">
+          <Link href="/get-started">
             <span className="mx-2 hover:font-bold">Getting Started</span>
           </Link>
         </div>
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
           <Link href="/community">
             <span className="mx-2 my-2 block hover:font-bold">Community</span>
           </Link>
-          <Link href="https://github.com/SiriusScan/Sirius">
+          <Link href="/get-started">
             <span className="mx-2 my-2 block hover:font-bold">
               Getting Started
             </span>

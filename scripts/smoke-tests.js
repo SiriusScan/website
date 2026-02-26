@@ -17,11 +17,17 @@ const https = require("https");
 const http = require("http");
 
 function parseArgs() {
-  const args = { baseUrl: "https://sirius.opensecurity.com", retries: 3, timeout: 10000 };
+  const args = {
+    baseUrl: "https://sirius.opensecurity.com",
+    retries: 3,
+    timeout: 10000,
+  };
   for (const arg of process.argv.slice(2)) {
     if (arg.startsWith("--base-url=")) args.baseUrl = arg.split("=")[1];
-    else if (arg.startsWith("--retries=")) args.retries = parseInt(arg.split("=")[1], 10);
-    else if (arg.startsWith("--timeout=")) args.timeout = parseInt(arg.split("=")[1], 10);
+    else if (arg.startsWith("--retries="))
+      args.retries = parseInt(arg.split("=")[1], 10);
+    else if (arg.startsWith("--timeout="))
+      args.timeout = parseInt(arg.split("=")[1], 10);
   }
   args.baseUrl = args.baseUrl.replace(/\/+$/, "");
   return args;
@@ -32,6 +38,8 @@ const ROUTES = [
   { path: "/features", expect: "Features" },
   { path: "/community", expect: "Community" },
   { path: "/docs", expect: "Documentation" },
+  { path: "/get-started", expect: "Get Started with" },
+  { path: "/get-started/downloads", expect: "Download" },
   { path: "/docs/getting-started/installation", expect: "Install" },
   { path: "/docs/getting-started/interface-tour", expect: "Interface Tour" },
 ];
@@ -39,11 +47,15 @@ const ROUTES = [
 function fetchPage(url, timeout) {
   return new Promise((resolve, reject) => {
     const mod = url.startsWith("https") ? https : http;
-    const req = mod.get(url, { timeout, headers: { "User-Agent": "SiriusScan-SmokeTest/1.0" } }, (res) => {
-      let body = "";
-      res.on("data", (c) => (body += c));
-      res.on("end", () => resolve({ status: res.statusCode, body }));
-    });
+    const req = mod.get(
+      url,
+      { timeout, headers: { "User-Agent": "SiriusScan-SmokeTest/1.0" } },
+      (res) => {
+        let body = "";
+        res.on("data", (c) => (body += c));
+        res.on("end", () => resolve({ status: res.statusCode, body }));
+      },
+    );
     req.on("error", reject);
     req.on("timeout", () => {
       req.destroy();
@@ -59,9 +71,14 @@ async function testRoute(baseUrl, route, retries, timeout) {
   for (let i = 0; i < retries; i++) {
     try {
       const { status, body } = await fetchPage(url, timeout);
-      if (status !== 200) return { ok: false, path: route.path, reason: `HTTP ${status}` };
+      if (status !== 200)
+        return { ok: false, path: route.path, reason: `HTTP ${status}` };
       if (route.expect && !body.includes(route.expect)) {
-        return { ok: false, path: route.path, reason: `Missing expected content: "${route.expect}"` };
+        return {
+          ok: false,
+          path: route.path,
+          reason: `Missing expected content: "${route.expect}"`,
+        };
       }
       return { ok: true, path: route.path };
     } catch (e) {
@@ -69,19 +86,32 @@ async function testRoute(baseUrl, route, retries, timeout) {
       if (i < retries - 1) await new Promise((r) => setTimeout(r, 2000));
     }
   }
-  return { ok: false, path: route.path, reason: lastErr?.message || "Unknown error" };
+  return {
+    ok: false,
+    path: route.path,
+    reason: lastErr?.message || "Unknown error",
+  };
 }
 
 async function main() {
   const args = parseArgs();
-  console.log(`\nSmoke testing ${args.baseUrl} (retries: ${args.retries}, timeout: ${args.timeout}ms)\n`);
+  console.log(
+    `\nSmoke testing ${args.baseUrl} (retries: ${args.retries}, timeout: ${args.timeout}ms)\n`,
+  );
 
   const results = [];
   for (const route of ROUTES) {
-    const result = await testRoute(args.baseUrl, route, args.retries, args.timeout);
+    const result = await testRoute(
+      args.baseUrl,
+      route,
+      args.retries,
+      args.timeout,
+    );
     results.push(result);
     const icon = result.ok ? "PASS" : "FAIL";
-    console.log(`  ${icon}  ${route.path}${result.reason ? `  (${result.reason})` : ""}`);
+    console.log(
+      `  ${icon}  ${route.path}${result.reason ? `  (${result.reason})` : ""}`,
+    );
   }
 
   const passed = results.filter((r) => r.ok).length;
