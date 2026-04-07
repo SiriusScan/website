@@ -2,10 +2,10 @@ import React from "react";
 import Link from "next/link";
 
 const stats = [
-  { label: "GitHub Stars", value: "1.2k+" },
-  { label: "Contributors", value: "30+" },
-  { label: "Discord Members", value: "200+" },
-  { label: "Repositories", value: "10+" },
+  { label: "GitHub Stars", value: "1.6k+" },
+  { label: "Contributors", value: "10+" },
+  { label: "Discord Members", value: "2081" },
+  { label: "KEV100 Goal", value: "100" },
 ];
 
 const CommunityHero: React.FC = () => {
