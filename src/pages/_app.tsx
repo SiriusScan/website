@@ -1,6 +1,7 @@
 import { type AppType } from "next/dist/shared/lib/utils";
 import Head from "next/head";
 import Footer from "~/components/Footer";
+import MarketingPixel from "~/components/MarketingPixel";
 import Header from "../components/Header";
 import "~/styles/globals.css";
 import { useRouter } from "next/router";
@@ -42,6 +43,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
           content={`${SITE_URL}/dashboard-dark.gif`}
         />
       </Head>
+      {process.env.NODE_ENV === "production" && <MarketingPixel />}
       <Header />
       <Component {...pageProps} />
       {!isDocsPage && <Footer />}
